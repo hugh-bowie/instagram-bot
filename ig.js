@@ -15,6 +15,7 @@ const badEmail = process.argv[3]; // node be.js 1226 hughbowie@me.com
 		await page.type("[name='username']", 'hb.iv');
 		await page.keyboard.press('Tab');
 		await page.keyboard.type('Fabweld112358');
+		//FIRST OPTIONAL SCREEN 
 		await page.evaluate(() => {
 			const btns = [...document.querySelector('.HmktE').querySelectorAll('button')];
 			btns.forEach(function (btn) {
@@ -24,12 +25,22 @@ const badEmail = process.argv[3]; // node be.js 1226 hughbowie@me.com
 			});
 		});
 		await page.waitForNavigation();
-
+	//2ND OPTIONAL SCREEN 
 		await page.evaluate(() => {
 			const btns2 = [...document.querySelector('#react-root').querySelectorAll('button')];
 			btns2.forEach(function (btn2) {
 				if (btn2.innerText === 'Not Now') {
 					btn2.click();
+				}
+			});
+		});
+		await page.waitForNavigation();
+				//3rd OPTIONAL SCREEN 
+		await page.evaluate(() => {
+			const btns3 = [...document.querySelector('#react-root').querySelectorAll('button')];
+			btns3.forEach(function (btn3) {
+				if (btn3.innerText === 'Cancel') {
+					btn3.click();
 				}
 			});
 		});
