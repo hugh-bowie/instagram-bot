@@ -25,25 +25,17 @@ const badEmail = process.argv[3]; // node be.js 1226 hughbowie@me.com
 			});
 		});
 		await page.waitForNavigation();
-	//2ND OPTIONAL SCREEN 
-		await page.evaluate(() => {
-			const btns2 = [...document.querySelector('#react-root').querySelectorAll('button')];
-			btns2.forEach(function (btn2) {
-				if (btn2.innerText === 'Not Now') {
-					btn2.click();
-				}
-			});
-		});
-		await page.waitForNavigation();
-				//3rd OPTIONAL SCREEN 
-		await page.evaluate(() => {
-			const btns3 = [...document.querySelector('#react-root').querySelectorAll('button')];
-			btns3.forEach(function (btn3) {
-				if (btn3.innerText === 'Cancel') {
-					btn3.click();
-				}
-			});
-		});
+		//TRY THIS TOO
+		const othersBtn = await page.$()
+
+		//TRY THIS 
+		const notifyBtns = await.$x('//button[contains(text), "Not Now")]');
+		if (notifyBtns.length > 0) {
+			await notifyBtns[0].click();
+		} else {
+			console.log('no notifaction button today');
+		}
+
 		await page.waitForNavigation();
 		//await page.waitForSelector('#react-root > section > nav > div > div > div > div > div > div:nth-child(2) > a > svg');
 
