@@ -1,56 +1,96 @@
 const puppeteer = require('puppeteer');
 const iPhone = puppeteer.devices['iPhone X'];
-const caseId = process.argv[2]; //node be.js 1226
-const badEmail = process.argv[3]; // node be.js 1226 hughbowie@me.com
+const random10 = Math.floor(Math.random() * 10 + 1);
+
+//console.log(random10) "3" ;
+//console.log(random10 + 1) "4";
 
 (async () => {
 	try {
-		const browser = await puppeteer.launch({ headless: false });
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(iPhone);
 		//LOGIN
-		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher');
-		await page.waitForSelector("[name='username']");
-		await page.click("[name='username']");
-		await page.type("[name='username']", 'hb.iv');
-		await page.keyboard.press('Tab');
-		await page.keyboard.type('Fabweld112358');
-		//FIRST OPTIONAL SCREEN 
-		await page.evaluate(() => {
-			const btns = [...document.querySelector('.HmktE').querySelectorAll('button')];
-			btns.forEach(function (btn) {
-				if (btn.innerText === 'Log In') {
-					btn.click();
-				}
-			});
-		});
-		await page.waitForNavigation();
-		//TRY THIS TOO
-		const othersBtn = await page.$()
+		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
+		await page.waitForSelector('[name="username"]');
+		await page.type("#loginForm input[name='username']", 'hb.iv', { delay: 20 });
+		await page.type("#loginForm input[name='password']", 'Fabweld112358', { delay: 21 });
+		await page.click("#loginForm button[type='submit']", { delay: 19 });
+		await page.waitForTimeout(5000);
 
-		//TRY THIS 
-		const notifyBtns = await.$x('//button[contains(text), "Not Now")]');
+		//NOTIFICATIONS SCREEN
+		const notifyBtns = await page.$x("//button[contains(text(), 'Not Now')]");
+		if (notifyBtns.length > 0) {
+			await notifyBtns[0].click();
+		} else {
+			console.log('no notifaction buttons to click');
+		}
+
+		//GOTO THE PAGE TO FARM FOLLOWERS
+		await page.goto('https://www.instagram.com/explore/tags/pursebop', { waitUntil: 'networkidle2' });
+		await page.waitForTimeout(2485);
+		const random20 = Math.floor(Math.random() * 20 + 10);
+		const newestPost = await page.$$('a[href^="/p/"]');
+		await newestPost[random20].evaluate(clk => clk.click());
+
+		//CLICK OTHERS LIST OF FOLLOWERS WHO LIKES IT
+		await page.waitForTimeout(3122);
+		const othersLink = await page.$x("//a[contains(text(), 'others')]");
+		if (othersLink.length > 0) {
+			await othersLink[0].click();
+		} else {
+			const backBTN = await page.$x("//svg[@aria-label='Back']");
+			await backBTN[0].evaluate(backk => backk.click({ delay: 333 }));
+			console.log('othersLink: not Found ', othersLink);
+		}
+
+		//GOTO RANDOM LINK 1-10
+		await page.waitForTimeout(2855);
+		const followers = await page.$$('a[title]');
+		if (followers.length > 0) {
+			await followers[random10].click();
+		} else {
+			console.log('followers not found ', followers);
+		}
+
+		//LIKE RANDOM 1-3 PHOTO
+		await page.waitForTimeout(3322);
+		const isPrivate = await page.$x("//div[contains(text(), 'Follow to see their photos and videos.')]");
+		const backBtn = await page.$x("//svg[@aria-label='Back']");
+		console.log('isPrivate.length', isPrivate.length);
+
+		if (isPrivate.length === 0) {
+			console.log('isPrivate === 0');
+			const random3 = Math.floor(Math.random() * 3 + 1);
+			const posts = await page.$x('//a[starts-with(@href, "/p/")]');
+			await posts[random3].evaluate(cl => cl.click());
+			await page.waitForTimeout(3145);
+			//GOTO FOLLOERS PHOTO PAGE
+			await page.waitForSelector('svg[aria-label="Like"]');
+			const likeBtn = await page.$('svg[aria-label="Like"]');
+			console.log('likeBtn.length: ', likeBtn.length);
+			await likeBtn.evaluate(clck => clck.click());
+			console.log('We hit that like button!');
+			await browser.close();
+			process.exit(1);
+		} else {
+			console.log('This Account is Private');
+			await backBtn[0].evaluate(c => c.click());
+		}
+
+		console.log('pastthe last if statement');
+		/*//TRY THIS for the optional btns screen
+		const notifyBtns = await page.$x('//button[contains(text), "Not Now")]');
 		if (notifyBtns.length > 0) {
 			await notifyBtns[0].click();
 		} else {
 			console.log('no notifaction button today');
 		}
 
-		await page.waitForNavigation();
-		//await page.waitForSelector('#react-root > section > nav > div > div > div > div > div > div:nth-child(2) > a > svg');
-
-		/*await page.click('#react-root > section > main > article > div > div > div > div:nth-child(2) > button');
-		// LOGIN INPUT DETAILS
-		await page.click('#loginForm > div > div:nth-child(1) > div > label > input');
-		await page.type('#loginForm > div > div:nth-child(1) > div > label > input', 'hb.iv');
-		await page.click('#loginForm > div > div:nth-child(2) > div > label > input');
-		await page.type('#loginForm > div > div:nth-child(2) > div > label > input', 'Fabweld112358');
-		await Promise.all([page.waitForNavigation(), page.focus('#loginForm > div > div:nth-child(3) > button'), page.click('#loginForm > div > div:nth-child(3) > button')]);
-		//DO STUFF*/
 		//await browser.close();
-		//process.exit(1);
+		process.exit(1);*/
 	} catch (e) {
-		console.log('error = ', e);
+		console.log('ERROR:-> ', e);
 		//process.exit(1);
 	}
 })();
