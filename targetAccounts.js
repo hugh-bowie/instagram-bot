@@ -1,0 +1,4 @@
+const trgtAcct = ['https://www.instagram.com/mandi_lynn_bbw/', 'https://www.instagram.com/therealnatashatosini/', 'https://www.instagram.com/jaidexoxo_/', 'https://www.instagram.com/ivykiaraofficial/', 'https://www.instagram.com/tatted.mama44/', 'https://www.instagram.com/officialmakaylaalt/', 'https://www.instagram.com/amberleighhh/', 'https://www.instagram.com/devin.meow/', 'https://www.instagram.com/jessicakes33/', 'https://www.instagram.com/jessicacakes2/', 'https://www.instagram.com/jessicafitcake/', 'https://www.instagram.com/millenawhite/', 'https://www.instagram.com/_lucky_ladybird/', 'https://www.instagram.com/millena_white/', 'https://www.instagram.com/missjessarhodes/', 'https://www.instagram.com/fierysireniv/', 'https://www.instagram.com/egoistqaa/', 'https://www.instagram.com/liubov_kalish/', 'https://www.instagram.com/lsdiamonds69/'];
+
+
+module.exports = trgtAcct;
