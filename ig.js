@@ -14,7 +14,7 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'onlymadisonmay_');
+		await page.type("[name='username']", 'onllymadisonmay');
 		await page.type("[name='password']", 'Lxk7zUx2VpGsqHGfc8H!');
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(4000);
