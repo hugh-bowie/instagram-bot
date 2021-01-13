@@ -1,23 +1,24 @@
 const puppeteer = require('puppeteer');
-const trgtAccts = require('./targetAccounts');
-let r1 = Math.floor(Math.random() * trgtAccts.length);
+const targetAccounts = require('./targetAccounts');
+let r = require('./r');
+let r1 = Math.floor(Math.random() * targetAccounts.length);
 const iPhone = puppeteer.devices['iPhone X'];
 const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
 const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 
 (async () => {
 	try {
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(iPhone);
 		//LOGIN
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'onllymadisonmay');
-		await page.type("[name='password']", 'Lxk7zUx2VpGsqHGfc8H!');
+		await page.type("[name='username']", 'hb.iv', { delay: r(5, 20) });
+		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0PA', { delay: r(5, 20) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
-		await page.waitForTimeout(4000);
+		await page.waitForTimeout(r(3000, 5000));
 		//Click The NOT NOW BUTTON
 		const notifyBtn = await page.$x("//button[contains(text(), 'Not Now')]");
 		if (notifyBtn.length > 0) {
@@ -25,12 +26,12 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		} else {
 			console.log('no notifaction buttons to click');
 		}
-		await page.waitForTimeout(4000);
+		await page.waitForTimeout(r(3000, 5000));
 		//GOTO RANDOM ACCOUNT FROM LIST
-		await page.goto(trgtAccts[r1]);
-		await page.waitForTimeout(3500);
+		await page.goto(targetAccounts[r1]);
+		await page.waitForTimeout(r(3000, 5000));
 		//GET TOP 22 POSTS
-		const posts = await page.$x('//*[@class="FFVAD"]');
+		const posts = await page.$x('//*[@sizes="123px"]');
 		if (posts.length > 0) {
 			const r22 = Math.floor(Math.random() * 22) + 1;
 			await posts[r22].tap();
