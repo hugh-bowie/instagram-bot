@@ -11,7 +11,9 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(iPhone);
-
+		//await page.goto('https://bot.sannysoft.com/');
+		//await page.waitForTimeout(3000);
+		//await page.screenshot({ path: savePath + 'ROBOT_TEST.png', fullPage: true });
 		//LOGIN
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		await page.waitForSelector("[name='username']");
