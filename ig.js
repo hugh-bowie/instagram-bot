@@ -18,8 +18,8 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'hb.iv', { delay: r(50, 100) });
-		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0PA', { delay: r(50, 100) });
+		await page.type("[name='username']", 'username', { delay: r(50, 100) });
+		await page.type("[name='password']", 'password', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r(3000, 5000));
 
