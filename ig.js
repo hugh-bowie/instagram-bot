@@ -1,16 +1,19 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const device = require('./device');
 const targetAccounts = require('./targetAccounts');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 let r = require('./r');
 let r1 = Math.floor(Math.random() * targetAccounts.length);
-const iPhone = puppeteer.devices['iPhone X'];
 const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
 const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
+puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
-		await page.emulate(iPhone);
+		await page.emulate(device);
+		//CHECK BOT VISIBILITY
 		//await page.goto('https://bot.sannysoft.com/');
 		//await page.waitForTimeout(3000);
 		//await page.screenshot({ path: savePath + 'ROBOT_TEST.png', fullPage: true });
@@ -18,8 +21,8 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'username', { delay: r(50, 100) });
-		await page.type("[name='password']", 'password', { delay: r(50, 100) });
+		await page.type("[name='username']", 'hb.iv', { delay: r(50, 100) });
+		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0PA', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r(3000, 5000));
 
@@ -60,7 +63,7 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		const follows = await page.$x("//button[contains(text(), 'Follow')]");
 		let z;
 		if (follows.length > 0) {
-			for (z = 0; z < 4; z++) {
+			for (z = 0; z < r(4, 7); z++) {
 				let num = r(1, 72 - z);
 				await follows[num].tap();
 				await page.waitForTimeout(r(3000, 5000));
@@ -71,7 +74,7 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		await page.screenshot({ path: savePath + now + '.png', fullPage: true });
 
 		//BACK AND CLOSE BROWSER
-		await page.click('svg[aria-label="Close"]');
+
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
@@ -79,3 +82,22 @@ const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
 		process.exit(1);
 	}
 })();
+
+
+
+
+
+
+/*//ACCEPT COOKIES SCREEN
+const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
+if (cookieBtn.length > 0) {
+	await cookieBtn[0].tap();
+	await page.waitForTimeout(r(1000, 2000));
+} else {
+	console.log('no notifaction buttons to click');
+}
+
+let r72 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 71) + 1);
+let r71 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 70) + 1);
+let r70 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 69) + 1);
+let r69 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 68) + 1);*/
