@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
 		//CHECK BOT VISIBILITY
@@ -30,11 +30,23 @@ puppeteer.use(StealthPlugin());
 		await page.waitForTimeout(3000);
 		await page.click('#main > div > div > div.jsx-2200220622.main.inbox > form > button');
 		await page.waitForTimeout(3000);*/
-		//LOGIN
+
+		//INITiLIAZE
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
+
+		//ACCEPT COOKIES SCREEN
+		const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
+		if (cookieBtn.length > 0) {
+			await cookieBtn[0].tap();
+			await page.waitForTimeout(r(1000, 2000));
+		} else {
+			console.log('no notifaction buttons to click');
+		}
+
+		//LOGIN
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'hb.iv', { delay: r(50, 100) });
+		await page.type("[name='username']", 'dinkinn.flicka', { delay: r(50, 100) });
 		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0PA', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r(3000, 5000));
@@ -101,14 +113,7 @@ puppeteer.use(StealthPlugin());
 
 
 
-/*//ACCEPT COOKIES SCREEN
-const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
-if (cookieBtn.length > 0) {
-	await cookieBtn[0].tap();
-	await page.waitForTimeout(r(1000, 2000));
-} else {
-	console.log('no notifaction buttons to click');
-}
+/*
 
 let r72 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 71) + 1);
 let r71 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 70) + 1);
