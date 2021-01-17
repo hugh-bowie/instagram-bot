@@ -1,15 +1,14 @@
-
 const device = {
-  name: 'iPhone X',
-  userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
-  viewport: {
-    width: 375,
-    height: 812,
-    deviceScaleFactor: 3,
-    isMobile: true,
-    hasTouch: true,
-    isLandscape: false,
-  }
-}
+	name: 'iPhone 11 Pro Max',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1',
+	viewport: {
+		width: 414,
+		height: 896,
+		deviceScaleFactor: 3,
+		isMobile: true,
+		hasTouch: true,
+		isLandscape: false,
+	},
+};
 
-module.exports = device;
+module.expoorts = device;
