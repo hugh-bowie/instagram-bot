@@ -10,15 +10,106 @@ puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
+		//----initialize
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
-		//CHECK BOT VISIBILITY
-		//await page.goto('https://bot.sannysoft.com/');		
-		//await page.waitForTimeout(3000);
-		//await page.screenshot({ path: savePath + 'ROBOT_TEST.png', fullPage: true });
-		//REPORT LEXXFOXX
-		/*await page.goto('https://www.tiktok.com/@lexx.foxx?lang=en', { waitUntil: 'load' });
+		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
+		/*//----accept_cookies
+								const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
+								if (cookieBtn.length > 0) {
+									await cookieBtn[0].tap();
+									await page.waitForTimeout(r(1000, 2000));
+								} else {
+									console.log('no notifaction buttons to click');
+								}*/
+		//----login
+		await page.waitForSelector("[name='username']");
+		await page.tap("[name='username']");
+		await page.type("[name='username']", 'hb.iv', { delay: r(50, 100) });
+		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0Pa', { delay: r(50, 100) });
+		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
+		await page.waitForTimeout(r(2000, 4000));
+		//----notifications
+		const notifyBtn = await page.$x('//button[contains(text(), "Not Now")]');
+		if (notifyBtn.length > 0) {
+			await notifyBtn[0].tap();
+			await page.waitForTimeout(r(2000, 4000));
+		} else {
+			console.log('no notifaction buttons to click');
+		}
+		//----target_account
+		await page.goto(targetAccounts[r1]);
+		await page.waitForTimeout(r(2000, 5000));
+		//----all_account_posts
+		const posts = await page.$x('//*[@sizes="136px"]');
+		if (posts.length > 0) {
+			await posts[r(1, 22)].tap();
+			await page.waitForTimeout(r(2000, 5000));
+		} else {
+			console.log('posts', posts.length);
+		}
+		//----liked_by
+		await page.tap('[href$="liked_by/"]');
+		await page.waitForTimeout(r(2000, 5000));
+		//----pagination_72_followers 
+		let i;
+		for (i = 0; i < 5; i++) {
+			await page.keyboard.press('PageDown');
+			await page.waitForTimeout(r(1000, 2000));
+		}
+		//DYNAMIC CRAWL EACH FOLLOWER
+		let likers = await page.$x('//div[@id]');
+		let x;
+		let y = r(4, 7);
+		if (likers.length > 0) {
+			for (x = 0; x < y; x++) {
+				let num = r(1, 72 - y);
+				await likers[num].tap();//---------------------------------------------click a random liker
+				await page.waitForTimeout(r(3000, 5000));
+				//----get users posts----
+				let posts = await page.$x('//*[@sizes="136px"]');
+				if (posts.length > 0) {
+					let p = r(0, posts.length);
+					await posts[p].tap();//--------------------------------------------click random post to like
+					await page.waitForTimeout(r(3000, 5000));
+					//----get all the like buttons----
+					let like = await page.$x('//*[@aria-label="Like"]');
+					if (like.length > 0) {
+						await like[0].tap();//-----------------------------------------you liked that shit
+						await page.waitForTimeout(r(3000, 5000));
+					} else {
+						console.log('like btn selector not found');
+					}
+				} else {//-------------------------------------------------------------private profile or no posts
+					let follow = await page.$x("//button[contains(text(), 'Follow')]");
+					if (follow.length > 0) {
+						await follow[0].tap();
+						await page.waitForTimeout(r(2000, 3000));
+						await page.tap('[aria-label="Back"]');//-----------------------followed
+						await page.waitForTimeout(r(2000, 4000));
+					}
+				}
+			}
+		}
+
+		await page.screenshot({ path: savePath + now + '.png', fullPage: true });
+
+		//BACK AND CLOSE BROWSER
+		//await browser.close();
+		//process.exit(1);
+	} catch (e) {
+		console.log('error = ', e);
+		//process.exit(1);
+	}
+})();
+
+
+
+
+
+/*		//REPORT LEXXFOXX
+		await page.goto('https://www.tiktok.com/@lexx.foxx?lang=en', { waitUntil: 'load' });
 		await page.waitForSelector('div.jsx-966597281.guide > span');
 		await page.click('div.jsx-966597281.guide > span');
 		await page.waitForTimeout(3000);
@@ -29,92 +120,7 @@ puppeteer.use(StealthPlugin());
 		await page.click('#main > div > div > div.jsx-2200220622.main.inbox > form > div > label:nth-child(2) > span.jsx-158707282.radio-icon > i');
 		await page.waitForTimeout(3000);
 		await page.click('#main > div > div > div.jsx-2200220622.main.inbox > form > button');
-		await page.waitForTimeout(3000);*/
-
-		//INITiLIAZE
-		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
-
-		//ACCEPT COOKIES SCREEN
-		const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
-		if (cookieBtn.length > 0) {
-			await cookieBtn[0].tap();
-			await page.waitForTimeout(r(1000, 2000));
-		} else {
-			console.log('no notifaction buttons to click');
-		}
-
-		//LOGIN
-		await page.waitForSelector("[name='username']");
-		await page.tap("[name='username']");
-		await page.type("[name='username']", 'dinkinn.flicka', { delay: r(50, 100) });
-		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0PA', { delay: r(50, 100) });
-		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
-		await page.waitForTimeout(r(3000, 5000));
-
-		//Click The NOT NOW BUTTON
-		const notifyBtn = await page.$x("//button[contains(text(), 'Not Now')]");
-		if (notifyBtn.length > 0) {
-			await notifyBtn[0].tap();
-			await page.waitForTimeout(r(3000, 5000));
-		} else {
-			console.log('no notifaction buttons to click');
-		}
-
-		//GOTO RANDOM ACCOUNT FROM LIST
-		await page.goto(targetAccounts[r1]);
-		await page.waitForTimeout(r(3000, 5000));
-
-		//GET TOP 22 POSTS
-		const posts = await page.$x('//*[@sizes="123px"]');
-		if (posts.length > 0) {
-			await posts[r(1, 22)].tap();
-			await page.waitForTimeout(r(3000, 5000));
-		} else {
-			console.log('posts', posts.length);
-		}
-
-		//HIT THE LIKED BY BUTTON
-		await page.tap('[href$="liked_by/"]');
-		await page.waitForTimeout(r(3000, 5000));
-
-		//GET PAGINATION 72 FOLLOWERS 
-		let i;
-		for (i = 0; i < 5; i++) {
-			await page.keyboard.press('PageDown');
-			await page.waitForTimeout(r(3000, 5000));
-		}
-
-		//TAP FOLLOW BUTTON FOR THESE FOOLS
-		const follows = await page.$x("//button[contains(text(), 'Follow')]");
-		let z;
-		let r7 = r(4, 7);
-		if (follows.length > 0) {
-			for (z = 0; z < r7; z++) {
-				let num = r(1, 72 - z);
-				await follows[num].tap();
-				await page.waitForTimeout(r(3000, 5000));
-			}
-		} else {
-			console.log('error follows:', follows[num]);
-		}
-		await page.screenshot({ path: savePath + now + '.png', fullPage: true });
-
-		//BACK AND CLOSE BROWSER
-		await browser.close();
-		process.exit(1);
-	} catch (e) {
-		console.log('error = ', e);
-		process.exit(1);
-	}
-})();
-
-
-
-
-
-
-/*
-
+		await page.waitForTimeout(3000);
 let r72 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 71) + 1);
 let r71 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 70) + 1);
 let r70 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 69) + 1);
