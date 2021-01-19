@@ -27,8 +27,8 @@ puppeteer.use(StealthPlugin());
 		}*/
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'hb.iv', { delay: r(50, 100) });
-		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0Pa', { delay: r(50, 100) });
+		await page.type("[name='username']", 'sold.by.jared', { delay: r(50, 100) });
+		await page.type("[name='password']", 'Soldbyjaredb1!', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r35);
 		//----notifications
@@ -43,9 +43,9 @@ puppeteer.use(StealthPlugin());
 		await page.goto(targetAccounts[r1]);
 		await page.waitForTimeout(r35);
 		//----all_account_posts
-		const posts = await page.$x('//*[@sizes="136px"]');
+		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
-			await posts[r(1, 22)].tap();
+			await posts[r(0, posts.length)].tap();
 			await page.waitForTimeout(r35);
 		} else {
 			console.log('posts', posts.length);
@@ -55,7 +55,7 @@ puppeteer.use(StealthPlugin());
 		await page.waitForTimeout(r35);
 		//----pagination_72_followers 
 		let i;
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < 4; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(1000, 2000));
 		}
@@ -69,11 +69,11 @@ puppeteer.use(StealthPlugin());
 				await page.goto('https://www.instagram.com' + likers[num]);//----------goto a random link
 				await page.waitForTimeout(r(4000, 5000));
 				await page.waitForSelector('#react-root');
-				let posts = await page.$x('//*[@sizes="136px"]');//--------------------get users top 24 posts
+				let posts = await page.$x('//*[@class="FFVAD"]');//--------------------get users top 24 posts
 				if (posts.length > 0) {//----------------------------------------------if users posts are public
 					let p = r(0, posts.length);
 					await posts[p].tap();//--------------------------------------------click random post to like
-					await page.waitForTimeout(r35);
+					await page.waitForTimeout(r(4000, 5000));
 					//----get all the like buttons----
 					let like = await page.$x('//*[@aria-label="Like"]');
 					if (like.length > 0) {
@@ -100,9 +100,6 @@ puppeteer.use(StealthPlugin());
 		process.exit(1);
 	}
 })();
-
-
-
 
 
 /*		//REPORT LEXXFOXX
