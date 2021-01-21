@@ -27,8 +27,8 @@ puppeteer.use(StealthPlugin());
 		}*/
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'sold.by.jared', { delay: r(50, 100) });
-		await page.type("[name='password']", 'Soldbyjaredb1!', { delay: r(50, 100) });
+		await page.type("[name='username']", 'dinkinn.flicka', { delay: r(50, 100) });
+		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0Pa', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r35);
 		//----notifications
@@ -62,7 +62,7 @@ puppeteer.use(StealthPlugin());
 		//DYNAMIC CRAWL EACH FOLLOWER
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
-		let y = r(8, 10);
+		let y = r(7, 10);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {//------------------------------------------------repeat 4,7 times
 				let num = r(0, likers.length);
