@@ -27,8 +27,8 @@ puppeteer.use(StealthPlugin());
 		}*/
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'dinkinn.flicka', { delay: r(50, 100) });
-		await page.type("[name='password']", 'Hb24pZ26gLUiScwy0Pa', { delay: r(50, 100) });
+		await page.type("[name='username']", 'YOURigUSERNAME', { delay: r(50, 100) });
+		await page.type("[name='password']", 'YOURigPASSWORD', { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r35);
 		//----notifications
@@ -100,22 +100,3 @@ puppeteer.use(StealthPlugin());
 		process.exit(1);
 	}
 })();
-
-
-/*		//REPORT LEXXFOXX
-		await page.goto('https://www.tiktok.com/@lexx.foxx?lang=en', { waitUntil: 'load' });
-		await page.waitForSelector('div.jsx-966597281.guide > span');
-		await page.click('div.jsx-966597281.guide > span');
-		await page.waitForTimeout(3000);
-		await page.click('#main > div > div > header > div.jsx-239651328.header-icon.header-right > svg');
-		await page.waitForTimeout(3000);
-		await page.click('#tiktok-share > div > div > div.jsx-2204186530.icontainer.report-container > div > div > svg > path:nth-child(2)');
-		await page.waitForTimeout(3000);
-		await page.click('#main > div > div > div.jsx-2200220622.main.inbox > form > div > label:nth-child(2) > span.jsx-158707282.radio-icon > i');
-		await page.waitForTimeout(3000);
-		await page.click('#main > div > div > div.jsx-2200220622.main.inbox > form > button');
-		await page.waitForTimeout(3000);
-let r72 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 71) + 1);
-let r71 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 70) + 1);
-let r70 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 69) + 1);
-let r69 = Math.abs(Math.floor(Math.random() * 72) + 1 - Math.floor(Math.random() * 68) + 1);*/
