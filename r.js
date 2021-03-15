@@ -3,3 +3,4 @@ function r(min, max) {
 }
 
 module.exports = r;
+// Function that creates random time delays
