@@ -79,10 +79,10 @@ puppeteer.use(StealthPlugin());
 					if (like.length > 0) {
 						await like[0].tap();//-----------------------------------------you liked that shit
 						await page.waitForTimeout(r(3000, 5000));
-					} else {
+					} else if{
 						console.log('like btn selector not found');
 					}
-				} else {//-------------------------------------------------------------if users posts are private
+				} else if{//-------------------------------------------------------------if users posts are private
 					let follow = await page.$x("//button[contains(text(), 'Follow')]");
 					if (follow.length > 0) {
 						await follow[0].tap();
