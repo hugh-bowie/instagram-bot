@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer-extra');
 const device = require('./device');
-const targetAccounts = require('./targetAccounts');
+const targetAccounts = require('../targetAccounts');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-let r = require('./r');
+let r = require('../r');
 const r35 = r(3000, 5000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
 const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
@@ -53,7 +53,7 @@ puppeteer.use(StealthPlugin());
 		//----liked_by
 		await page.tap('[href$="liked_by/"]');
 		await page.waitForTimeout(r35);
-		//----pagination_72_followers 
+		//----pagination_72_followers
 		let i;
 		for (i = 0; i < 4; i++) {
 			await page.keyboard.press('PageDown');
@@ -64,34 +64,34 @@ puppeteer.use(StealthPlugin());
 		let x;
 		let y = r(7, 10);
 		if (likers.length > 0) {
-			for (x = 0; x < y; x++) {//------------------------------------------------repeat 4,7 times
+			for (x = 0; x < y; x++) {
+				//------------------------------------------------repeat 4,7 times
 				let num = r(0, likers.length);
-				await page.goto('https://www.instagram.com' + likers[num]);//----------goto a random link
+				await page.goto('https://www.instagram.com' + likers[num]); //----------goto a random link
 				await page.waitForTimeout(r(4000, 5000));
 				await page.waitForSelector('#react-root');
-				let posts = await page.$x('//*[@class="FFVAD"]');//--------------------get users top 24 posts
-				if (posts.length > 0) {//----------------------------------------------if users posts are public
+				let posts = await page.$x('//*[@class="FFVAD"]'); //--------------------get users top 24 posts
+				if (posts.length > 0) {
+					//----------------------------------------------if users posts are public
 					let p = r(0, posts.length);
-					await posts[p].tap();//--------------------------------------------click random post to like
+					await posts[p].tap(); //--------------------------------------------click random post to like
 					await page.waitForTimeout(r(4000, 5000));
 					//----get all the like buttons----
 					let like = await page.$x('//*[@aria-label="Like"]');
 					if (like.length > 0) {
-						await like[0].tap();//-----------------------------------------you liked that shit
+						await like[0].tap(); //-----------------------------------------you liked that shit
 						await page.waitForTimeout(r(3000, 5000));
-					} else if{
-						console.log('like btn selector not found');
-					}
-				} else if{//-------------------------------------------------------------if users posts are private
-					let follow = await page.$x("//button[contains(text(), 'Follow')]");
-					if (follow.length > 0) {
-						await follow[0].tap();
-						await page.waitForTimeout(r(2000, 3000));
+					} else {
+						//-------------------------------------------------------------if users posts are private
+						let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						if (follow.length > 0) {
+							await follow[0].tap();
+							await page.waitForTimeout(r(2000, 3000));
+						}
 					}
 				}
 			}
 		}
-
 		//BACK AND CLOSE BROWSER*/
 		await browser.close();
 		process.exit(1);
