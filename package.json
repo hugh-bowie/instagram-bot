@@ -1,12 +1,13 @@
 {
 	"name": "pptr",
-	"version": "1.0.0",
+	"version": "1.5.0",
 	"description": "puppeteer",
 	"main": "ig.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"schedule": "node schedule.js",
-		"start": "node ig.js"
+		"start": "node ig.js",
+		"stealth":"node stealth.js"
 	},
 	"author": "",
 	"license": "ISC",

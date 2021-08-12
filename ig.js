@@ -1,16 +1,15 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
-const device = require('./device');
 const targetAccounts = require('./targetAccounts');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const device = require('./device');
 let r = require('./rndm');
 const r12 = r(1000, 2000);
 const r23 = r(2000, 3000);
 const r35 = r(3000, 5000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
-//const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
-const savePath = process.env.SAVE_PATH;
 puppeteer.use(StealthPlugin());
+
 
 (async () => {
 	try {
@@ -18,11 +17,6 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
-
-		//----Stealth Check
-		//await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
-		//await page.screenshot({ path: savePath, fullPage: true });
-		//await page.waitForTimeout(r35);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
