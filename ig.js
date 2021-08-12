@@ -16,9 +16,13 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
+
 		//----Stealth Check
-		await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
-		await page.screenshot({ path: savePath, fullPage: true });
+
+		//await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
+		//await page.screenshot({ path: savePath, fullPage: true });
+		//await page.waitForTimeout(r35);
+
 		//----login
 
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
