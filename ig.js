@@ -4,7 +4,7 @@ const device = require('./device');
 const targetAccounts = require('./targetAccounts');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 let r = require('./rndm');
-const r35 = r(1000, 2000);
+const r35 = r(2000, 3000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
 //const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
 const savePath = process.env.SAVE_PATH;
@@ -71,31 +71,31 @@ puppeteer.use(StealthPlugin());
 		//DYNAMIC CRAWL EACH FOLLOWER
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
-		let y = r(7, 10);
+		let y = r(4, 5);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
 				//------------------------------------------------repeat 4,7 times
 				let num = r(0, likers.length);
 				await page.goto('https://www.instagram.com' + likers[num]); //----------goto a random link
-				await page.waitForTimeout(r(1000, 2000));
+				await page.waitForTimeout(r35);
 				await page.waitForSelector('#react-root');
 				let posts = await page.$x('//*[@class="FFVAD"]'); //--------------------get users top 24 posts
 				if (posts.length > 0) {
 					//----------------------------------------------if users posts are public
 					let p = r(0, posts.length);
 					await posts[p].tap(); //--------------------------------------------click random post to like
-					await page.waitForTimeout(r(1000, 2000));
+					await page.waitForTimeout(r35);
 					//----get all the like buttons----
 					let like = await page.$x('//*[@aria-label="Like"]');
 					if (like.length > 0) {
 						await like[0].tap(); //-----------------------------------------you liked that shit
-						await page.waitForTimeout(r(1000, 2000));
+						await page.waitForTimeout(r35);
 					} else {
 						//-------------------------------------------------------------if users posts are private
 						let follow = await page.$x("//button[contains(text(), 'Follow')]");
 						if (follow.length > 0) {
 							await follow[0].tap();
-							await page.waitForTimeout(r(1000, 2000));
+							await page.waitForTimeout(r35);
 						}
 					}
 				}
