@@ -24,7 +24,7 @@ To overcome thier efforts I have added a few Puppeteer plugins to aid in detecti
 
 ## 🎬 Screenshot
 
-![Puppeteer-ig-bot](./src/assets/images/pptr-ig-bot.gif)
+![Puppeteer-ig-bot](./ig.gif)
 
 ## 📋 Table of Contents
 
