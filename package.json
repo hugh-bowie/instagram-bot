@@ -6,11 +6,12 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"schedule": "node schedule.js",
-		"start": " cd src && node ig.js"
+		"start": "node ig.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"dotenv": "^10.0.0",
 		"node-schedule": "^1.3.2",
 		"puppeteer": "^5.5.0",
 		"puppeteer-extra": "^3.1.16",

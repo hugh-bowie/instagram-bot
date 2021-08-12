@@ -1,21 +1,30 @@
+require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const device = require('./device');
 const targetAccounts = require('./targetAccounts');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 let r = require('./rndm');
-const r35 = r(3000, 5000);
+const r35 = r(1000, 2000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
-const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
-const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
+//const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
+const savePath = process.env.SAVE_PATH;
 puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
+
+		//----Stealth Check
+
+		//await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
+		//await page.screenshot({ path: savePath, fullPage: true });
+		//await page.waitForTimeout(r35);
+
 		//----login
+
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		//----accept_cookies
 		/*const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
@@ -27,8 +36,8 @@ puppeteer.use(StealthPlugin());
 		}*/
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'YOURigUSERNAME', { delay: r(50, 100) });
-		await page.type("[name='password']", 'YOURigPASSWORD', { delay: r(50, 100) });
+		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
+		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r35);
 		//----notifications
@@ -68,25 +77,25 @@ puppeteer.use(StealthPlugin());
 				//------------------------------------------------repeat 4,7 times
 				let num = r(0, likers.length);
 				await page.goto('https://www.instagram.com' + likers[num]); //----------goto a random link
-				await page.waitForTimeout(r(4000, 5000));
+				await page.waitForTimeout(r(1000, 2000));
 				await page.waitForSelector('#react-root');
 				let posts = await page.$x('//*[@class="FFVAD"]'); //--------------------get users top 24 posts
 				if (posts.length > 0) {
 					//----------------------------------------------if users posts are public
 					let p = r(0, posts.length);
 					await posts[p].tap(); //--------------------------------------------click random post to like
-					await page.waitForTimeout(r(4000, 5000));
+					await page.waitForTimeout(r(1000, 2000));
 					//----get all the like buttons----
 					let like = await page.$x('//*[@aria-label="Like"]');
 					if (like.length > 0) {
 						await like[0].tap(); //-----------------------------------------you liked that shit
-						await page.waitForTimeout(r(3000, 5000));
+						await page.waitForTimeout(r(1000, 2000));
 					} else {
 						//-------------------------------------------------------------if users posts are private
 						let follow = await page.$x("//button[contains(text(), 'Follow')]");
 						if (follow.length > 0) {
 							await follow[0].tap();
-							await page.waitForTimeout(r(2000, 3000));
+							await page.waitForTimeout(r(1000, 2000));
 						}
 					}
 				}
