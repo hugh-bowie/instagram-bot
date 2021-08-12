@@ -5,7 +5,8 @@
 	"main": "ig.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"schedule": "node schedule.js"
+		"schedule": "node schedule.js",
+		"start": " cd src && node ig.js"
 	},
 	"author": "",
 	"license": "ISC",
