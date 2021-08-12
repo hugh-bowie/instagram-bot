@@ -3,6 +3,6 @@ const schedule = require('node-schedule');
 
 schedule.scheduleJob('13,43 * * * *', () => {
 	let now = new Date().toLocaleString();
-	console.log('running ig.js every 35 min' + now);
+	console.log('running ig.js every hour at :13 and :43 ' + now);
 	spawn('node', ['ig.js']);
 });

@@ -10,7 +10,6 @@ const r35 = r(3000, 5000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
-
 (async () => {
 	try {
 		//----initialize
