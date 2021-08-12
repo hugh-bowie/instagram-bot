@@ -12,7 +12,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
 		//----login
@@ -27,8 +27,8 @@ puppeteer.use(StealthPlugin());
 		}*/
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", 'YOURigUSERNAME', { delay: r(50, 100) });
-		await page.type("[name='password']", 'YOURigPASSWORD', { delay: r(50, 100) });
+		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
+		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r35);
 		//----notifications
