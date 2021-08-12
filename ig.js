@@ -1,3 +1,4 @@
+require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const device = require('./device');
 const targetAccounts = require('./targetAccounts');
@@ -6,7 +7,7 @@ let r = require('./rndm');
 const r35 = r(3000, 5000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
 const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
-const savePath = 'C:\\o\\globaldebtsolutions.com\\gds - a\\hb\\';
+//const savePath = process.env.SAVE_PATH;
 puppeteer.use(StealthPlugin());
 
 (async () => {
