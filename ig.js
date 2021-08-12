@@ -7,7 +7,7 @@ let r = require('./rndm');
 const r35 = r(1000, 2000);
 let r1 = Math.floor(Math.random() * targetAccounts.length);
 //const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
-//const savePath = process.env.SAVE_PATH;
+const savePath = process.env.SAVE_PATH;
 puppeteer.use(StealthPlugin());
 
 (async () => {
@@ -16,7 +16,11 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
+		//----Stealth Check
+		await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
+		await page.screenshot({ path: savePath, fullPage: true });
 		//----login
+
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
 		//----accept_cookies
 		/*const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
