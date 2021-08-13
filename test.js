@@ -27,15 +27,12 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r12);
 
-		//-------click not now app
-		const appBtn = await page.$x('//*[@href="/"]');
-		if (appBtn) {
-			await appBtn[0].tap();
-			console.log('tapped that Not Now button');
-			await page.waitForTimeout(r12);
-		} else {
-			console.log('Nice ! We were Not Prompted for App Download ');
-		}
+		// //-------click not now app
+		// const appBtn = await page.$x('//*[@href="/"]');
+		// if (appBtn.length > 0) {
+		// 	await appBtn[0].tap();
+		// 	console.log('tapped that Not Now button');
+		// 	await page.waitForTimeout(r12);
 
 		//----click notifications
 		const notifyBtn = await page.$x('//button[contains(text(), "Not Now")]');
