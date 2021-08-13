@@ -8,20 +8,16 @@
 
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/Node-33cc33" />
-    <img src="https://img.shields.io/badge/Crontab-orange" />
-    <img src="https://img.shields.io/badge/React_Router-99ccff"  />
-    <img src="https://img.shields.io/badge/Puppeteer-99ff99"  />
+<img src="https://img.shields.io/badge/Puppeteer-99ff99"  />
+    <img src="https://img.shields.io/badge/Node-Schedule-orange" />
+    <img src="https://img.shields.io/badge/puppeteer-extra-99ccff"  />
     <img src="https://img.shields.io/badge/puppeteer-extra-stealth-ff4d4d"  />
 </p>
 
 ## 📓 Description
 
-This application uses the Puppeteer Library to Automate Engagement (Like Follow
-Comment) for the purpose of growing an account. Instagram has extensive AI to
-detect any Bots and remove those profiles. To overcome thier efforts I have
-added a few Puppeteer plugins to aid in detection avoidance. Test the stealth
-using this site. ![https://bot.sannysoft.com/](https://bot.sannysoft.com/)
+This application uses the Puppeteer Library to Automate Engagement (Like Follow Comment) for the purpose of growing an account. Instagram has extensive AI to detect any Bots and remove those profiles.
+To overcome thier efforts I have added a few Puppeteer plugins to aid in detection avoidance. Test the stealth using this site. [https://bot.sannysoft.com/](https://bot.sannysoft.com/)
 
 ## 🎬 Screenshot
 
@@ -29,13 +25,13 @@ using this site. ![https://bot.sannysoft.com/](https://bot.sannysoft.com/)
 
 ## 📋 Table of Contents
 
-- [Description](#description)
-- [Screenshot](#Screenshot)
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Questions](#questions)
+-   [Description](#description)
+-   [Screenshot](#Screenshot)
+-   [Table of Contents](#table-of-contents)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [Questions](#questions)
 
 ## 🛠 Installation
 
@@ -43,8 +39,7 @@ using this site. ![https://bot.sannysoft.com/](https://bot.sannysoft.com/)
 
 ## ▶️ Useage
 
-You must give this Bot Accounts to engage with. Add them or remove them to the
-targetAccounts.js Array.
+You must give this Bot Accounts to engage with. Add them or remove them to the targetAccounts.js Array.
 
 `node ig.js`
 
@@ -54,5 +49,4 @@ targetAccounts.js Array.
 
 ## ⁉️ Questions
 
-Contact me with any questions:
-[hughbowie@me.com](mailto:hughbowie@me.com)<br />[GitHub](https://github.com/hugh-bowie)<br />
+Contact me with any questions: [hughbowie@me.com](mailto:hughbowie@me.com)<br />[GitHub](https://github.com/hugh-bowie)<br />
