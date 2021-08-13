@@ -27,10 +27,12 @@ puppeteer.use(StealthPlugin());
 		await page.waitForTimeout(r35);
 
 		//-------click not now app
-		const noAppBtn = await page.$x("//a[contains(text(), 'Not Now')]");
-		if (noAppBtn.length > 0) {
-			await noAppBtn[0].tap();
-			await page.waitForTimeout(r35);
+		const appBtn = await page.$x('//*[@href="/"]');
+		await console.log('appBtn: ' + appBtn.length);
+		if (appBtn.length) {
+			await appBtn[0].tap();
+			console.log('tapped that Not Now button');
+			await page.waitForTimeout(r12);
 		} else {
 			console.log('Nice ! We were Not Prompted for App Download ');
 		}
@@ -93,16 +95,14 @@ puppeteer.use(StealthPlugin());
 					await page.waitForTimeout(r35);
 					//----get all the like buttons----
 					let like = await page.$x('//*[@aria-label="Like"]');
-					console.log("Like: " + like.length);
+					console.log('Like: ' + like.length);
 					//let privateAcct = await page.$x('//*[@class="rkEop"]')
 					//console.log('PrivateAcct: ' + privateAcct.length);
 					if (like.length > 0) {
 						//----SMASH THAT LIKE BUTTON
 						await like[0].tap();
 						await page.waitForTimeout(r35);
-
 					} else {
-
 						//----FOLLOW THE PRIVATE PROFILES
 						let follow = await page.$x("//button[contains(text(), 'Follow')]");
 						if (follow.length > 0) {
@@ -123,8 +123,7 @@ puppeteer.use(StealthPlugin());
 	}
 })();
 
-
-		//----accept_cookies
+//----accept_cookies
 /*const cookieBtn = await page.$x("//button[contains(text(), 'Accept')]");
 if (cookieBtn.length > 0) {
 	await cookieBtn[0].tap();
