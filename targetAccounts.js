@@ -1,7 +1,15 @@
 const targetAccounts = [
+	////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
-
-	///////////POPULAR DELRAY LOCAL PLACES
+	'https://www.instagram.com/downtowndelray/',
+	'https://www.instagram.com/visit_delray_beach/',
+	'https://www.instagram.com/visitbocaraton/',
+	'https://www.instagram.com/bocaratonfl/',
+	'https://www.instagram.com/citybocaraton/',
+	'https://www.instagram.com/bocapolice/',
+	'https://www.instagram.com/delraybeachopen/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/sandbardelraybeach/',
 	'https://www.instagram.com/new_vegan76/',
 	'https://www.instagram.com/restorationlane/',
 	'https://www.instagram.com/delraymag/',
@@ -13,7 +21,6 @@ const targetAccounts = [
 	'https://www.instagram.com/bocalifemag/',
 	'https://www.instagram.com/oldschoolsquaredelray/',
 	'https://www.instagram.com/serenitynowstaging/',
-	'https://www.instagram.com/himmelsellshomes',
 	'https://www.instagram.com/cerverare',
 	'https://www.instagram.com/livingproof.photography/',
 	'https://www.instagram.com/megangribblehome',
@@ -31,7 +38,7 @@ const targetAccounts = [
 	'https://www.instagram.com/artsgaragedelraybeach/',
 	'https://www.instagram.com/cornellartmuseum/',
 	'https://www.instagram.com/dadadelray/',
-	'https://www.instagram.com/elcaminofla' /
+	'https://www.instagram.com/elcaminofla/',
 	'https://www.instagram.com/lesorellerestaurant/',
 	'https://www.instagram.com/deck84_delray/',
 	'https://www.instagram.com/parktavernfl/',
@@ -42,12 +49,9 @@ const targetAccounts = [
 	'https://www.instagram.com/puttnaround/',
 	'https://www.instagram.com/sandowaydiscovery/',
 	'https://www.instagram.com/sundy_house/',
-
-
 ];
 
 module.exports = targetAccounts;
-
 
 /*  PAGES WOMEN GO TO
 	'https://www.instagram.com/boandtee/',
@@ -77,7 +81,6 @@ module.exports = targetAccounts;
 	'https://www.instagram.com/glossy_zodiac/',
 	'https://www.instagram.com/bossbabe.inc/',
 	*/
-
 
 /*
 
