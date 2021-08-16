@@ -21,10 +21,18 @@ const device = {
     }
 }
 
+const badAccounts = [
+
+    'https://www.instagram.com/hb.iv',
+    'https://www.instagram.com/lj_brink_',
+]
+
 const targetAccounts = [
+
+    'https://www.instagram.com/hb.iv',
     ////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
-    'https://www.instagram.com/downtowndelray/',
+    /*'https://www.instagram.com/downtowndelray/',
     'https://www.instagram.com/visit_delray_beach/',
     'https://www.instagram.com/visitbocaraton/',
     'https://www.instagram.com/bocaratonfl/',
@@ -72,8 +80,115 @@ const targetAccounts = [
     'https://www.instagram.com/puttnaround/',
     'https://www.instagram.com/sandowaydiscovery/',
     'https://www.instagram.com/sundy_house/',
+
+    ///////Valcatch List 
+
+    //////////////////////Builders/Designer/Architects:
+    'https://www.instagram.com/verandaestatehomes',
+    'https://www.instagram.com/houseofjade',
+    'https://www.instagram.com/pikeproperties',
+    'https://www.instagram.com/daileyjanssenarcchitects',
+    'https://www.instagram.com/architectanddesign',
+    'https://www.instagram.com/momentdesign_architecture',
+    'https://www.instagram.com/mansionspageforyou',
+    'https://www.instagram.com/lush.homes',
+    'https://www.instagram.com/luxryious',
+    'https://www.instagram.com/successowner',
+    'https://www.instagram.com/pool.logic',
+    'https://www.instagram.com/vivirdesign',
+
+    ////////////////////////Bloggers/influencers
+    'https://www.instagram.com/malloryervin',
+    'https://www.instagram.com/champagneandchanel',
+    'https://www.instagram.com/brittanyaldean',
+    'https://www.instagram.com/letmetakeyourselfie',
+    'https://www.instagram.com/itsmadebybeck',
+    'https://www.instagram.com/raelynnofficial',
+    'https://www.instagram.com/allexa.anglin ',
+
+    ////////////////////////Brands/Builder Source:
+    'https://www.instagram.com/fergusonshowrooms',
+    'https://www.instagram.com/subzeroandwolf ',
+    'https://www.instagram.com/kbis_official',
+    'https://www.instagram.com/homebuilders ',
+    'https://www.instagram.com/buildingsciencefightclub',
+    'https://www.instagram.com/awesomeframers',
+    'https://www.instagram.com/carpentry_bymar',
+    'https://www.instagram.com/finehomebuilding',
+    'https://www.instagram.com/mmlighting',
+    'https://www.instagram.com/bedrosianstile',
+
+    //////////////////////////LOCALS
+    'https://www.instagram.com/Visitflorida',
+    'https://www.instagram.com/Ftlauderdalesun',
+    'https://www.instagram.com/Visit_delray_beach',
+    'https://www.instagram.com/Visitbocaraton',
+    'https://www.instagram.com/Visitlauderdale',
+    'https://www.instagram.com/Downtowndelray',
+    'https://www.instagram.com/Palmbeachmoms',
+    'https://www.instagram.com/Palmbeachesfl',
+    'https://www.instagram.com/Palmbeachcountyfl',
+    'https://www.instagram.com/Westpalmbeachflorida',
+    'https://www.instagram.com/Visitpalmbeach',
+    'https://www.instagram.com/Thebreakers',
+    'https://www.instagram.com/Eaupalmbeach',
+    
+    /*  PAGES WOMEN GO TO
+    'https://www.instagram.com/boandtee/',
+    'https://www.instagram.com/revolve/',
+    'https://www.instagram.com/revolvebeauty/',
+    'https://www.instagram.com/maccosmetics/',
+    'https://www.instagram.com/ohpolly/',
+    'https://www.instagram.com/ohpollyswim/',
+    'https://www.instagram.com/pallascouture/',
+    'https://www.instagram.com/pallascollective/',
+    'https://www.instagram.com/studio.albus/',
+    'https://www.instagram.com/seduction_la/',
+    'https://www.instagram.com/fuckologyofficial/',
+    'https://www.instagram.com/betchwithnolife/',
+    'https://www.instagram.com/basic/',
+    'https://www.instagram.com/bipolar_girlfriend_/',
+    'https://www.instagram.com/ohmboutique/',
+    'https://www.instagram.com/yourbreakupbestie/',
+    'https://www.instagram.com/sahirajewelrydesign/',
+    'https://www.instagram.com/okb_int/',
+    'https://www.instagram.com/cottononbody/',
+    'https://www.instagram.com/lv_perfection_medspa/',
+    'https://www.instagram.com/berrybeachyswimwear/',
+    'https://www.instagram.com/callherdaddy/',
+    'https://www.instagram.com/bangn.body/',
+    'https://www.instagram.com/lovetrends.shop/',
+    'https://www.instagram.com/glossy_zodiac/',
+    'https://www.instagram.com/bossbabe.inc/',
+    */
+
+
+    /*LIST TARGETING MEN - ONLYFANS
+    'https://www.instagram.com/mandi_lynn_bbw/',
+    'https://www.instagram.com/therealnatashatosini/',
+    'https://www.instagram.com/jaidexoxo_/',
+    'https://www.instagram.com/ivykiaraofficial/',
+    'https://www.instagram.com/tatted.mama44/',
+    'https://www.instagram.com/officialmakaylaalt/',
+    'https://www.instagram.com/amberleighhh/',
+    'https://www.instagram.com/devin.meow/',
+    'https://www.instagram.com/jessicakes33/',
+    'https://www.instagram.com/jessicacakes2/',
+    'https://www.instagram.com/jessicafitcake/',
+    'https://www.instagram.com/millenawhite/',
+    'https://www.instagram.com/_lucky_ladybird/',
+    'https://www.instagram.com/millena_white/',
+    'https://www.instagram.com/missjessarhodes/',
+    'https://www.instagram.com/fierysireniv/',
+    'https://www.instagram.com/egoistqaa/',
+    'https://www.instagram.com/liubov_kalish/',
+    'https://www.instagram.com/lsdiamonds69/',
+    */
+
 ];
 
 
 
-module.exports = { device, timeStamp, r, targetAccounts };
+
+
+module.exports = { device, timeStamp, r, targetAccounts, badAccounts };

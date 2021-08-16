@@ -1,7 +1,7 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { device, timeStamp, r, targetAccounts } = require('./src/helpers');
+const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/helpers');
 const r12 = r(1500, 2000);
 let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
@@ -12,6 +12,7 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
+		console.log('badAccounts: ' + badAccounts);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
@@ -37,6 +38,7 @@ puppeteer.use(StealthPlugin());
 		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
 		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
 		await page.screenshot({ path: process.env.SAVE_PATH + 'flwrs-' + followers + '_flwng-' + following + '.png', fullPage: true });
+
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
@@ -107,9 +109,6 @@ puppeteer.use(StealthPlugin());
 					if (privateAcct) {
 						console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
 					}
-
-
-
 
 					//Else Follow
 					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
