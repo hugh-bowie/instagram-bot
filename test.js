@@ -39,12 +39,10 @@ puppeteer.use(StealthPlugin());
 		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
 		await page.screenshot({ path: process.env.SAVE_PATH + 'flwrs-' + followers + '_flwng-' + following + '.png', fullPage: true });
 
-
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r12);
 		console.log('Random Account to Farm: ' + targetAccounts[randomAccount]);
-
 
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
@@ -74,7 +72,6 @@ puppeteer.use(StealthPlugin());
 			for (x = 0; x < y; x++) {
 				//----repeat random between 5 to 7 times
 				let num = r(0, likers.length);
-
 				//----goto first random link
 				await page.goto('https://www.instagram.com' + likers[num]);
 				await page.waitForSelector('#react-root');
