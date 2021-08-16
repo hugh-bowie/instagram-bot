@@ -49,6 +49,59 @@ const targetAccounts = [
 	'https://www.instagram.com/puttnaround/',
 	'https://www.instagram.com/sandowaydiscovery/',
 	'https://www.instagram.com/sundy_house/',
+
+	///////Valcatch List 
+
+	//////////////////////Builders/Designer/Architects:
+	'https://www.instagram.com/verandaestatehomes',
+	'https://www.instagram.com/houseofjade',
+	'https://www.instagram.com/pikeproperties',
+	'https://www.instagram.com/daileyjanssenarcchitects',
+	'https://www.instagram.com/architectanddesign',
+	'https://www.instagram.com/momentdesign_architecture',
+	'https://www.instagram.com/mansionspageforyou',
+	'https://www.instagram.com/lush.homes',
+	'https://www.instagram.com/luxryious',
+	'https://www.instagram.com/successowner',
+	'https://www.instagram.com/pool.logic',
+	'https://www.instagram.com/vivirdesign',
+
+	////////////////////////Bloggers/influencers
+	'https://www.instagram.com/malloryervin',
+	'https://www.instagram.com/champagneandchanel',
+	'https://www.instagram.com/brittanyaldean',
+	'https://www.instagram.com/letmetakeyourselfie',
+	'https://www.instagram.com/itsmadebybeck',
+	'https://www.instagram.com/raelynnofficial',
+	'https://www.instagram.com/allexa.anglin ',
+
+	////////////////////////Brands/Builder Source:
+	'https://www.instagram.com/fergusonshowrooms',
+	'https://www.instagram.com/subzeroandwolf ',
+	'https://www.instagram.com/kbis_official',
+	'https://www.instagram.com/homebuilders ',
+	'https://www.instagram.com/buildingsciencefightclub',
+	'https://www.instagram.com/awesomeframers',
+	'https://www.instagram.com/carpentry_bymar',
+	'https://www.instagram.com/finehomebuilding',
+	'https://www.instagram.com/mmlighting',
+	'https://www.instagram.com/bedrosianstile',
+
+	//////////////////////////LOCALS
+	'https://www.instagram.com/Visitflorida',
+	'https://www.instagram.com/Ftlauderdalesun',
+	'https://www.instagram.com/Visit_delray_beach',
+	'https://www.instagram.com/Visitbocaraton',
+	'https://www.instagram.com/Visitlauderdale',
+	'https://www.instagram.com/Downtowndelray',
+	'https://www.instagram.com/Palmbeachmoms',
+	'https://www.instagram.com/Palmbeachesfl',
+	'https://www.instagram.com/Palmbeachcountyfl',
+	'https://www.instagram.com/Westpalmbeachflorida',
+	'https://www.instagram.com/Visitpalmbeach',
+	'https://www.instagram.com/Thebreakers',
+	'https://www.instagram.com/Eaupalmbeach',
+
 ];
 
 module.exports = targetAccounts;

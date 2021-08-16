@@ -5,6 +5,7 @@ const { device, timeStamp, r, targetAccounts } = require('./src/helpers');
 const r23 = r(2000, 3000);
 let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
+console.log(process.env.SAVE_PATH + timeStamp + '.png');
 
 (async () => {
 	try {
@@ -19,6 +20,7 @@ puppeteer.use(StealthPlugin());
 		await page.tap("[name='username']");
 		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
 		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
+		await page.screenshot({ path: process.env.SAVE_PATH + timeStamp + '.png', fullPage: true });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r23);
 

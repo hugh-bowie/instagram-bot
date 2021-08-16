@@ -1,5 +1,5 @@
 //For Saving screenshots
-const timeStamp = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
+const timeStamp = new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(', ', '_').replace(' ', '_');
 
 //random number function
 function r(min, max) {

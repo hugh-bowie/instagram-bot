@@ -31,6 +31,13 @@ puppeteer.use(StealthPlugin());
 			console.log('wasnt prompted for notifaction buttons to click');
 		}
 
+		//---- got to home and screenshot the follower count
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER);
+		await page.waitForSelector("a[href$='/following/']");
+		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
+		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
+		await page.screenshot({ path: process.env.SAVE_PATH + 'flwrs-' + followers + '_flwng-' + following + '.png', fullPage: true });
+
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r12);
@@ -50,21 +57,21 @@ puppeteer.use(StealthPlugin());
 		await page.tap('[href$="liked_by/"]');
 		await page.waitForTimeout(r12);
 
-		//----pagedown 4 times to get 72 followers to choose from
+		//----pagedown 4 times to get 90 followers to choose from
 		let i;
-		for (i = 0; i < 4; i++) {
+		for (i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r12);
 		}
 		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
-		//----ADJUST THIS AMMOUNT OF PROFILES TO GO TO
-		let y = r(5, 6);
+		let y = r(8, 10);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
-				//----repeat random between 4 to 5 times
+				//----repeat random between 5 to 7 times
 				let num = r(0, likers.length);
+
 				//----goto first random link
 				await page.goto('https://www.instagram.com' + likers[num]);
 				await page.waitForSelector('#react-root');
@@ -94,12 +101,23 @@ puppeteer.use(StealthPlugin());
 					}
 					// THIS USER HAS No Posts, Request to follow				
 				} else {
-					let follow = await page.$x("//button[contains(text(), 'Follow')]");
-					if (follow.length > 0) {
-						await follow[0].tap();
-						console.log('----Followed Private Page: ' + await page.url());
-						await page.waitForTimeout(r12);
+
+					//check if private
+					let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
+					if (privateAcct) {
+						console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
 					}
+
+
+
+
+					//Else Follow
+					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
+					// if (follow.length > 0) {
+					// 	await follow[0].tap();
+					// 	console.log('----Followed Private Page: ' + await page.url());
+					// 	await page.waitForTimeout(r12);
+					// }
 				}
 			}
 		}
