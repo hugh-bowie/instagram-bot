@@ -30,9 +30,10 @@ const badAccounts = [
 const targetAccounts = [
 
     'https://www.instagram.com/hb.iv',
+    'https://www.instagram.com/lj_brink_',
     ////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
-    /*'https://www.instagram.com/downtowndelray/',
+    'https://www.instagram.com/downtowndelray/',
     'https://www.instagram.com/visit_delray_beach/',
     'https://www.instagram.com/visitbocaraton/',
     'https://www.instagram.com/bocaratonfl/',
@@ -132,7 +133,7 @@ const targetAccounts = [
     'https://www.instagram.com/Visitpalmbeach',
     'https://www.instagram.com/Thebreakers',
     'https://www.instagram.com/Eaupalmbeach',
-    
+
     /*  PAGES WOMEN GO TO
     'https://www.instagram.com/boandtee/',
     'https://www.instagram.com/revolve/',

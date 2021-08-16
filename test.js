@@ -12,7 +12,7 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
-		console.log('badAccounts: ' + badAccounts);
+		//console.log('badAccounts: ' + badAccounts);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
@@ -44,6 +44,7 @@ puppeteer.use(StealthPlugin());
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r12);
 		console.log('Random Account to Farm: ' + targetAccounts[randomAccount]);
+
 
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
