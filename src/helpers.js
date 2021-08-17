@@ -8,12 +8,12 @@ function r(min, max) {
 
 //pretends this is a phone not a desktop
 const device = {
-    name: 'iPhone 11 Pro Max',
+    name: 'iPhone 12 Pro Max',
     userAgent:
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/604.1',
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/605.1.15',
     viewport: {
-        width: 414,
-        height: 896,
+        width: 426,
+        height: 926,
         deviceScaleFactor: 3,
         isMobile: true,
         hasTouch: true,
@@ -29,8 +29,9 @@ const badAccounts = [
 
 const targetAccounts = [
 
-    'https://www.instagram.com/hb.iv',
-    'https://www.instagram.com/lj_brink_',
+
+
+
     ////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
     'https://www.instagram.com/downtowndelray/',
@@ -86,9 +87,7 @@ const targetAccounts = [
 
     //////////////////////Builders/Designer/Architects:
     'https://www.instagram.com/verandaestatehomes',
-    'https://www.instagram.com/houseofjade',
     'https://www.instagram.com/pikeproperties',
-    'https://www.instagram.com/daileyjanssenarcchitects',
     'https://www.instagram.com/architectanddesign',
     'https://www.instagram.com/momentdesign_architecture',
     'https://www.instagram.com/mansionspageforyou',
@@ -105,7 +104,6 @@ const targetAccounts = [
     'https://www.instagram.com/letmetakeyourselfie',
     'https://www.instagram.com/itsmadebybeck',
     'https://www.instagram.com/raelynnofficial',
-    'https://www.instagram.com/allexa.anglin ',
 
     ////////////////////////Brands/Builder Source:
     'https://www.instagram.com/fergusonshowrooms',

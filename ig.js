@@ -10,7 +10,7 @@ console.log('badAccounts: ' + badAccounts);
 
 (async () => {
 	try {
-		//----initialize
+		//----initialize 
 		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
@@ -59,7 +59,7 @@ console.log('badAccounts: ' + badAccounts);
 		await page.tap('[href$="liked_by/"]');
 		await page.waitForTimeout(r23);
 
-		//----pagedown 4 times to get 72 followers to choose from
+		//----pagedown 5 times to get 72 followers to choose from
 		let i;
 		for (i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
