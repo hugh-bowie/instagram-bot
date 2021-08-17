@@ -64,13 +64,13 @@ puppeteer.use(StealthPlugin());
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r12);
 		}
+
 		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
 		let y = r(8, 11);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
-
 
 				//----repeat random between 5 to 7 times
 				let num = r(0, likers.length);
@@ -81,6 +81,13 @@ puppeteer.use(StealthPlugin());
 				await page.waitForTimeout(r12);
 				const currentURL = await page.url();
 				console.log('currentURL ' + currentURL + '\n');
+				//console.log('badAccounts: ' + badAccounts);
+
+				// for (let b = 0; b < badAccounts.length; b++) {
+				// 	if (!currentURL == badAccounts[b]) {
+				// 		console.log(currentURL + 'not equal to' + badAccounts[b]);
+				// 	}
+				// }
 
 				//----get This users top 24 posts
 				let posts = await page.$x('//*[@class="FFVAD"]');

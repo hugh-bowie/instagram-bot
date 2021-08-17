@@ -21,6 +21,7 @@ const device = {
     }
 }
 
+
 const badAccounts = [
 
     'https://www.instagram.com/hb.iv',
@@ -28,9 +29,6 @@ const badAccounts = [
 ]
 
 const targetAccounts = [
-
-
-
 
     ////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
@@ -98,7 +96,7 @@ const targetAccounts = [
     'https://www.instagram.com/vivirdesign',
     'https://www.instagram.com/bedrosianstile',
     'https://www.instagram.com/designlovesdetail/',
-    /*/added by hb*/
+    //added by hb
     'https://www.instagram.com/stofferphotographyinteriors/',
     'https://www.instagram.com/sohohouse/',
     'https://www.instagram.com/momentdesign_architecture/',
