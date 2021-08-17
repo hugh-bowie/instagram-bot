@@ -96,6 +96,21 @@ const targetAccounts = [
     'https://www.instagram.com/successowner',
     'https://www.instagram.com/pool.logic',
     'https://www.instagram.com/vivirdesign',
+    'https://www.instagram.com/bedrosianstile',
+    'https://www.instagram.com/designlovesdetail/',
+    /*/added by hb*/
+    'https://www.instagram.com/stofferphotographyinteriors/',
+    'https://www.instagram.com/sohohouse/',
+    'https://www.instagram.com/momentdesign_architecture/',
+    'https://www.instagram.com/nicoledavisinteriors/',
+    'https://www.instagram.com/gubiofficial/',
+    'https://www.instagram.com/amyastley/',
+    'https://www.instagram.com/sarahshermansamuel/',
+    'https://www.instagram.com/all.sorts.of/',
+    'https://www.instagram.com/franparente/',
+    'https://www.instagram.com/smpliving/',
+    'https://www.instagram.com/rejuvenation/',
+
 
     ////////////////////////Bloggers/influencers
     'https://www.instagram.com/malloryervin',
@@ -107,7 +122,7 @@ const targetAccounts = [
 
     ////////////////////////Brands/Builder Source:
     'https://www.instagram.com/fergusonshowrooms',
-    'https://www.instagram.com/subzeroandwolf ',
+    'https://www.instagram.com/subzeroandwolf',
     'https://www.instagram.com/kbis_official',
     'https://www.instagram.com/homebuilders ',
     'https://www.instagram.com/buildingsciencefightclub',
@@ -115,7 +130,6 @@ const targetAccounts = [
     'https://www.instagram.com/carpentry_bymar',
     'https://www.instagram.com/finehomebuilding',
     'https://www.instagram.com/mmlighting',
-    'https://www.instagram.com/bedrosianstile',
 
     //////////////////////////LOCALS
     'https://www.instagram.com/Visitflorida',
