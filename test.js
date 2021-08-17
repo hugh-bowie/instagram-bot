@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/helpers');
@@ -37,20 +38,25 @@ puppeteer.use(StealthPlugin());
 		await page.waitForSelector("a[href$='/following/']");
 		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
 		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
-		await page.screenshot({ path: process.env.SAVE_PATH + 'flw ' + followers + ' flwng ' + following + ' at ' + timeStamp + '.png', fullPage: true });
+		//await page.screenshot({ path: process.env.SAVE_PATH + 'flw ' + followers + ' flwng ' + following + ' at ' + timeStamp + '.png', fullPage: true });
+		fs.appendFile('src/log.txt', 'flws: ' + followers + ' flwng: ' + following + ' at ' + timeStamp + '\n', err => {
+			if (err) throw err;
+			console.log('flws: ' + followers + ' flwng: ' + following + ' at ' + timeStamp + '\n');
+		});
 
-		/*
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r12);
-		console.log('Random Account to Farm: ' + targetAccounts[randomAccount]);
+		fs.appendFile('src/log.txt', targetAccounts[randomAccount] + '\n', err => {
+			if (err) throw err;
+			console.log('Random Account to Farm: ' + targetAccounts[randomAccount]);
+		});
 
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await posts[r(0, posts.length)].tap();
 			await page.waitForTimeout(r12);
-			console.log(await page.url());
 		} else {
 			console.log('No Posts found: ' + posts.length);
 		}
@@ -79,39 +85,54 @@ puppeteer.use(StealthPlugin());
 				await page.waitForSelector('#react-root');
 				await page.waitForTimeout(r12);
 				let currentURL = await page.url();
-				console.log(`visiting this page: ${currentURL}`);
+				fs.appendFile('src/log.txt', 'visiting this page: ' + currentURL + '\n', err => {
+					if (err) throw err;
+					console.log('visiting this page: ' + currentURL);
+				});
 				//NEW BIG FOR LOOP CHECK
 				for (let bb = 0; bb < badAccounts.length; bb++) {
 					if (currentURL.indexOf(badAccounts[bb]) === -1) {
-						console.log(` ❌ DID NOT MATCH  ${currentURL} did not match any ${badAccounts[bb]} \n`);
+						//console.log(` ❌ DID NOT MATCH ANY badAccounts`);
 						//----get This users top 24 posts
 						let posts = await page.$x('//*[@class="FFVAD"]');
+
 						// IF USER HAS POSTS To CLICK;
 						if (posts.length > 0) {
 							let p = r(0, posts.length);
+
 							//----click One random Public post to like
 							await posts[p].tap();
 							await page.waitForTimeout(r12);
-							console.log(await page.url());
+
 							//----get all the like buttons----
 							let likeBtn = await page.$x('//*[@aria-label="Like"]');
 							if (likeBtn.length > 0) {
 								//----SMASH THAT LIKE BUTTON
 								await likeBtn[0].tap();
 								await page.waitForTimeout(r12);
-								console.log('Like Button Tapped');
+								fs.appendFile('src/log.txt', 'like button Tapped: ' + (await page.url()) + '\n', err => {
+									if (err) throw err;
+									console.log('Like Button Tapped: ');
+								});
 								// THIS USER HAS No Posts, Request to follow
 							} else {
-								console.log('LikeBtn Not Found here: ' + (await page.url()));
+								fs.appendFile('src/log.txt', 'LikeBtn Not Found here: ' + (await page.url()) + '\n', err => {
+									if (err) throw err;
+									console.log('LikeBtn Not Found:');
+								});
 							}
 						} else {
 							////Else Follow////
 							let follow = await page.$x("//button[contains(text(), 'Follow')]");
 							if (follow.length > 0) {
-								await follow[0].tap();
-								console.log('----Followed Private Page: ' + (await page.url()));
 								await page.waitForTimeout(r12);
+								await follow[0].tap();
+								fs.appendFile('src/log.txt', '----Followed Private Page: ' + (await page.url()) + '\n', err => {
+									if (err) throw err;
+									console.log('----Followed Private Page: ');
+								});
 							}
+
 							// //check if private
 							// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
 							// if (privateAcct) {
@@ -119,17 +140,20 @@ puppeteer.use(StealthPlugin());
 							// }
 						}
 					} else {
-						console.log(` ✔️ DID MATCH the current url ${currentURL} did match ${badAccounts[xxx]} of the baddies \n`);
+						fs.appendFile('src/log.txt', '✔️ DID MATCH ONE OF badAccounts: ' + (await page.url()) + '\n', err => {
+							if (err) throw err;
+							console.log('✔️ DID MATCH ONE OF badAccounts: ');
+						});
 					}
 				}
 			}
-		}*/
+		}
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
 		console.log('error = ', e);
-		//process.exit(1);
+		process.exit(1);
 	}
 })();
 

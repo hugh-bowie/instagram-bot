@@ -1,6 +1,5 @@
 //For Saving screenshots   returns this  8-17-2021_1.43.24_PM
 const timeStamp = new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(',', '').replace(/\s/g, '_').trim();
-
 //console.log(timeStamp);
 
 //random number function
@@ -22,11 +21,12 @@ const device = {
 	},
 };
 
+//List of accounts to not engage with
 const badAccounts = ['https://www.instagram.com/lj_brink_', 'https://www.instagram.com/hb.iv'];
 
+//List of accounts to farm for followers
 const targetAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
-
 	'https://www.instagram.com/downtowndelray/',
 	'https://www.instagram.com/visit_delray_beach/',
 	'https://www.instagram.com/visitbocaraton/',
