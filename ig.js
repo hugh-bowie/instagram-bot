@@ -5,13 +5,11 @@ const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/hel
 const r23 = r(2000, 3000);
 let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
-console.log(process.env.SAVE_PATH + timeStamp + '.png');
-console.log('badAccounts: ' + badAccounts);
 
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });/*slowMo: 100,*/
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); /*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -77,7 +75,7 @@ console.log('badAccounts: ' + badAccounts);
 				//----goto first random link
 				await page.goto('https://www.instagram.com' + likers[num]);
 				await page.waitForSelector('#react-root');
-				console.log('visiting this page: ' + await page.url());
+				console.log('visiting this page: ' + (await page.url()));
 				await page.waitForTimeout(r23);
 
 				//----get This users top 24 posts
@@ -100,20 +98,18 @@ console.log('badAccounts: ' + badAccounts);
 					}
 					// THIS USER HAS No Posts, Request to follow
 				} else {
-
-					//check if private
-					let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
-					if (privateAcct) {
-						console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
+					//////Else Follow///////
+					let follow = await page.$x("//button[contains(text(), 'Follow')]");
+					if (follow.length > 0) {
+						await follow[0].tap();
+						console.log('----Followed Private Page: ' + (await page.url()));
+						await page.waitForTimeout(r12);
+						// //check if private///////////////
+						// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
+						// if (privateAcct) {
+						// 	console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
+						// }
 					}
-
-					//Else Follow
-					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-					// if (follow.length > 0) {
-					// 	await follow[0].tap();
-					// 	console.log('----Followed Private Page: ' + await page.url());
-					// 	await page.waitForTimeout(r12);
-					// }
 				}
 			}
 		}
