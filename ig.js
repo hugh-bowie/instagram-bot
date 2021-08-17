@@ -2,16 +2,14 @@ require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/helpers');
-const r23 = r(2000, 3000);
+const r23 = r(1500, 3000);
 let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
-console.log(process.env.SAVE_PATH + timeStamp + '.png');
-console.log('badAccounts: ' + badAccounts);
 
 (async () => {
 	try {
 		//----initialize 
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });/*slowMo: 100,*/
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -49,8 +47,8 @@ console.log('badAccounts: ' + badAccounts);
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await posts[r(0, posts.length)].tap();
-			console.log(await page.url());
 			await page.waitForTimeout(r23);
+			console.log(await page.url());
 		} else {
 			console.log('No Posts found: ' + posts.length);
 		}
@@ -69,7 +67,7 @@ console.log('badAccounts: ' + badAccounts);
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
 		//----ADJUST THIS AMMOUNT OF PROFILES TO GO TO
-		let y = r(8, 11);
+		let y = r(7, 11);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
 				//----repeat random between 8 to 11 times
@@ -101,18 +99,17 @@ console.log('badAccounts: ' + badAccounts);
 					// THIS USER HAS No Posts, Request to follow
 				} else {
 
-					//check if private
-					let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
-					if (privateAcct) {
-						console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
-					}
-
 					//Else Follow
-					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-					// if (follow.length > 0) {
-					// 	await follow[0].tap();
-					// 	console.log('----Followed Private Page: ' + await page.url());
-					// 	await page.waitForTimeout(r12);
+					let follow = await page.$x("//button[contains(text(), 'Follow')]");
+					if (follow.length > 0) {
+						await follow[0].tap();
+						console.log('----Followed Private Page: ' + await page.url());
+						await page.waitForTimeout(r23);
+					}
+					//check if private
+					// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
+					// if (privateAcct) {
+					// 	console.log('--PRIVATE PAGE Do NOTHING: ' + await page.url());
 					// }
 				}
 			}
