@@ -8,7 +8,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize 
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });/*slowMo: 100,*/
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -66,7 +66,7 @@ puppeteer.use(StealthPlugin());
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
 		//----ADJUST THIS AMMOUNT OF PROFILES TO GO TO
-		let y = r(6, 9);
+		let y = r(5, 7);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
 				//----repeat random between 8 to 11 times
