@@ -111,7 +111,6 @@ const targetAccounts = [
     'https://www.instagram.com/smpliving/',
     'https://www.instagram.com/rejuvenation/',
 
-
     ////////////////////////Bloggers/influencers
     'https://www.instagram.com/malloryervin',
     'https://www.instagram.com/champagneandchanel',
