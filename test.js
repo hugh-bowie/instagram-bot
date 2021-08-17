@@ -1,15 +1,14 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/helpers');
+const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
 const r12 = r(1500, 2000);
-let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });//////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 		//console.log('badAccounts: ' + badAccounts);
@@ -33,11 +32,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.IG_USER);
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
 		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
 		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
-		await page.screenshot({ path: process.env.SAVE_PATH + 'flwrs-' + followers + '_flwng-' + following + '.png', fullPage: true });
+		await page.screenshot({ path: process.env.SAVE_PATH + 'flws-' + followers + '-flng-' + following + '_' + timeStamp() + '.png', fullPage: true });
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
@@ -110,7 +109,7 @@ puppeteer.use(StealthPlugin());
 
 						console.log('LikeBtn Not Found here: ' + await page.url());
 					}
-					// THIS USER HAS No Posts, Request to follow				
+					// THIS USER HAS No Posts, Request to follow
 				} else {
 
 					//Else Follow
@@ -143,4 +142,4 @@ const appBtn = await page.$x('//*[@href="/"]');
 if (appBtn.length > 0) {
 await appBtn[0].tap();
 console.log('tapped that Not Now button');
-await page.waitForTimeout(r12);*/
+await page.waitForTimeout(r12)*/

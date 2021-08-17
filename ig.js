@@ -1,15 +1,14 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { device, timeStamp, r, targetAccounts, badAccounts } = require('./src/helpers');
+const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
 const r23 = r(1500, 3000);
-let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
 		//----initialize 
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] });/*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -32,11 +31,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.IG_USER);
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
 		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
 		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
-		await page.screenshot({ path: process.env.SAVE_PATH + 'flwrs-' + followers + '_flwng-' + following + '.png', fullPage: true });
+		await page.screenshot({ path: process.env.SAVE_PATH + 'flws-' + followers + '-flng-' + following + '_' + timeStamp() + '.png', fullPage: true });
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
@@ -67,7 +66,7 @@ puppeteer.use(StealthPlugin());
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
 		//----ADJUST THIS AMMOUNT OF PROFILES TO GO TO
-		let y = r(7, 11);
+		let y = r(6, 9);
 		if (likers.length > 0) {
 			for (x = 0; x < y; x++) {
 				//----repeat random between 8 to 11 times

@@ -1,5 +1,7 @@
-//For Saving screenshots
-const timeStamp = new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(', ', '_').replace(' ', '_');
+//For Saving screenshots 8/17/2021, 7:25:15 AM
+function timeStamp() {
+    return new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(', ', '_').replace(' ', '_').replace('-2021', '').slice(0, -6);
+}
 
 //random number function
 function r(min, max) {
@@ -22,11 +24,11 @@ const device = {
 }
 
 
-const badAccounts = [
+function badAccounts() {
+    return ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
+}
 
-    'https://www.instagram.com/hb.iv',
-    'https://www.instagram.com/lj_brink_',
-]
+
 
 const targetAccounts = [
 
@@ -194,11 +196,15 @@ const targetAccounts = [
     'https://www.instagram.com/liubov_kalish/',
     'https://www.instagram.com/lsdiamonds69/',
     */
-
 ];
 
 
+let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 
 
 
-module.exports = { device, timeStamp, r, targetAccounts, badAccounts };
+
+
+
+
+module.exports = { device, timeStamp, r, targetAccounts, badAccounts, randomAccount };
