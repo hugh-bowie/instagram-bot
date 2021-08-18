@@ -1,16 +1,23 @@
+const fs = require('fs');
+
 //For Saving screenshots   returns this  8-17-2021_1.43.24_PM
-const timeStamp = new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(',', '').replace(/\s/g, '_').trim();
-//console.log(timeStamp);
+const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').replace(/\s/g, '_').trim();
 
 //random number function
 function r(min, max) {
 	return ~~(Math.random() * (max - min + 1) + min);
 }
 
-//pretends this is a phone not a desktop
+//Function that logs timeStamp + data + \n
+function log(data) {
+	fs.appendFile('log.txt', `${timeStamp}  ${data}\n`, () => {});
+	console.log(timeStamp + data);
+}
+
+// pretends this is a phone not a desktop
 const device = {
 	name: 'iPhone 12 Pro Max',
-	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/605.1.15',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1',
 	viewport: {
 		width: 426,
 		height: 926,
@@ -184,7 +191,9 @@ const targetAccounts = [
     */
 ];
 
-module.exports = { device, timeStamp, r, targetAccounts, badAccounts };
+log('shiiiiiiiiiiit');
+
+module.exports = { device, timeStamp, r, targetAccounts, badAccounts, fs, log };
 
 ////// TODO: EXPORT THIS AS AN ASYNC FUNCTION
 // for (let xxx = 0; xxx < badAccounts.length; xxx++) {
