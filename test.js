@@ -1,9 +1,17 @@
 require('dotenv').config();
+const { time } = require('console');
+const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
 const r12 = r(1500, 2000);
 puppeteer.use(StealthPlugin());
+
+function LOG(data) {
+	fs.appendFile('log.txt', data, () => {
+
+	});
+}
 
 (async () => {
 	try {
@@ -34,10 +42,10 @@ puppeteer.use(StealthPlugin());
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
-		const followers = await page.$$eval('a[href$="/followers/"]', follower => follower.map(follow => follow.children[0].innerText));
-		const following = await page.$$eval('a[href$="/following/"]', flwing => flwing.map(fwing => fwing.children[0].innerText));
-		await page.screenshot({ path: process.env.SAVE_PATH + 'flw ' + followers + ' flwng ' + following + ' at ' + timeStamp + '.png', fullPage: true });
-
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wing => wing.map(ing => ing.children[0].innerText));
+		//await page.screenshot({ path: process.env.SAVE_PATH + 'flw ' + followers + ' flwng ' + following + ' at ' + timeStamp + '.png', fullPage: true });
+		LOG('flw ' + flws + ' fwng ' + flwng + ' at ' + timeStamp + '\n');
 		/*
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
