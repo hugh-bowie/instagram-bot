@@ -1,7 +1,7 @@
-//For Saving screenshots 8/17/2021, 7:25:15 AM
-function timeStamp() {
-    return new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(', ', '_').replace(' ', '_').replace('-2021', '').slice(0, -6);
-}
+//For Saving screenshots   returns this  8-17-2021_1.43.24_PM
+const timeStamp = new Date().toLocaleString().replace(/\//g, '-').replace(/:/g, '.').replace(',', '').replace(/\s/g, '_').trim();
+
+//console.log(timeStamp);
 
 //random number function
 function r(min, max) {
@@ -11,8 +11,7 @@ function r(min, max) {
 //pretends this is a phone not a desktop
 const device = {
     name: 'iPhone 12 Pro Max',
-    userAgent:
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/605.1.15',
+    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Mobile/15E148 Safari/605.1.15',
     viewport: {
         width: 426,
         height: 926,
@@ -20,18 +19,12 @@ const device = {
         isMobile: true,
         hasTouch: true,
         isLandscape: false,
-    }
-}
+    },
+};
 
-
-function badAccounts() {
-    return ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
-}
-
-
+const badAccounts = ['https://www.instagram.com/lj_brink_', 'https://www.instagram.com/hb.iv'];
 
 const targetAccounts = [
-
     ////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
     'https://www.instagram.com/downtowndelray/',
@@ -83,11 +76,13 @@ const targetAccounts = [
     'https://www.instagram.com/sandowaydiscovery/',
     'https://www.instagram.com/sundy_house/',
 
-    ///////Valcatch List 
+    ///////Valcatch List
 
     //////////////////////Builders/Designer/Architects:
     'https://www.instagram.com/verandaestatehomes',
+    'https://www.instagram.com/houseofjade',
     'https://www.instagram.com/pikeproperties',
+    'https://www.instagram.com/daileyjanssenarcchitects',
     'https://www.instagram.com/architectanddesign',
     'https://www.instagram.com/momentdesign_architecture',
     'https://www.instagram.com/mansionspageforyou',
@@ -96,20 +91,6 @@ const targetAccounts = [
     'https://www.instagram.com/successowner',
     'https://www.instagram.com/pool.logic',
     'https://www.instagram.com/vivirdesign',
-    'https://www.instagram.com/bedrosianstile',
-    'https://www.instagram.com/designlovesdetail/',
-    //added by hb
-    'https://www.instagram.com/stofferphotographyinteriors/',
-    'https://www.instagram.com/sohohouse/',
-    'https://www.instagram.com/momentdesign_architecture/',
-    'https://www.instagram.com/nicoledavisinteriors/',
-    'https://www.instagram.com/gubiofficial/',
-    'https://www.instagram.com/amyastley/',
-    'https://www.instagram.com/sarahshermansamuel/',
-    'https://www.instagram.com/all.sorts.of/',
-    'https://www.instagram.com/franparente/',
-    'https://www.instagram.com/smpliving/',
-    'https://www.instagram.com/rejuvenation/',
 
     ////////////////////////Bloggers/influencers
     'https://www.instagram.com/malloryervin',
@@ -118,10 +99,11 @@ const targetAccounts = [
     'https://www.instagram.com/letmetakeyourselfie',
     'https://www.instagram.com/itsmadebybeck',
     'https://www.instagram.com/raelynnofficial',
+    'https://www.instagram.com/allexa.anglin ',
 
     ////////////////////////Brands/Builder Source:
     'https://www.instagram.com/fergusonshowrooms',
-    'https://www.instagram.com/subzeroandwolf',
+    'https://www.instagram.com/subzeroandwolf ',
     'https://www.instagram.com/kbis_official',
     'https://www.instagram.com/homebuilders ',
     'https://www.instagram.com/buildingsciencefightclub',
@@ -129,6 +111,7 @@ const targetAccounts = [
     'https://www.instagram.com/carpentry_bymar',
     'https://www.instagram.com/finehomebuilding',
     'https://www.instagram.com/mmlighting',
+    'https://www.instagram.com/bedrosianstile',
 
     //////////////////////////LOCALS
     'https://www.instagram.com/Visitflorida',
@@ -144,6 +127,10 @@ const targetAccounts = [
     'https://www.instagram.com/Visitpalmbeach',
     'https://www.instagram.com/Thebreakers',
     'https://www.instagram.com/Eaupalmbeach',
+
+    //FOR TESTINg badAccounts Array
+    // 'https://www.instagram.com/hb.iv',
+    // 'https://www.instagram.com/lj_brink_',
 
     /*  PAGES WOMEN GO TO
     'https://www.instagram.com/boandtee/',
@@ -174,7 +161,6 @@ const targetAccounts = [
     'https://www.instagram.com/bossbabe.inc/',
     */
 
-
     /*LIST TARGETING MEN - ONLYFANS
     'https://www.instagram.com/mandi_lynn_bbw/',
     'https://www.instagram.com/therealnatashatosini/',
@@ -198,13 +184,13 @@ const targetAccounts = [
     */
 ];
 
+module.exports = { device, timeStamp, r, targetAccounts, badAccounts };
 
-let randomAccount = Math.floor(Math.random() * targetAccounts.length);
-
-
-
-
-
-
-
-module.exports = { device, timeStamp, r, targetAccounts, badAccounts, randomAccount };
+////// TODO: EXPORT THIS AS AN ASYNC FUNCTION
+// for (let xxx = 0; xxx < badAccounts.length; xxx++) {
+// 	if (currentURL.indexOf(badAccounts[xxx]) === -1) {
+// 		console.log(` ❌ DID NOT MATCH the current url: ${currentURL} did not match ${badAccounts[xxx]} \n`);
+// 	} else if (currentURL.indexOf(badAccounts[xxx]) >= 0) {
+// 		console.log(` ✔️ DID MATCH the current url ${currentURL} did match ${badAccounts[xxx]} of the baddies \n`);
+// 	}
+// }

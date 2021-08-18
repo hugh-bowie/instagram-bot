@@ -7,8 +7,8 @@ puppeteer.use(StealthPlugin());
 
 (async () => {
 	try {
-		//----initialize 
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });/*slowMo: 100,*/
+		//----initialize
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); /*slowMo: 100,*/
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -74,7 +74,7 @@ puppeteer.use(StealthPlugin());
 				//----goto first random link
 				await page.goto('https://www.instagram.com' + likers[num]);
 				await page.waitForSelector('#react-root');
-				console.log('visiting this page: ' + await page.url());
+				console.log('visiting this page: ' + (await page.url()));
 				await page.waitForTimeout(r23);
 
 				//----get This users top 24 posts
