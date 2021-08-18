@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-//For Saving screenshots   returns this  8-17-2021_1.43.24_PM
-const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').replace(/\s/g, '_').trim();
+//For Saving screenshots   returns this         8-18-21 5.55.08 PM 
+const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
 //random number function
 function r(min, max) {

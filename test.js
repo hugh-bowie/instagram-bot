@@ -1,30 +1,15 @@
 require('dotenv').config();
-const { time } = require('console');
-const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-<<<<<<< HEAD
-const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
-=======
 const { r, log, fs, device, timeStamp, badAccounts, targetAccounts, randomAccount } = require('./src/helpers');
->>>>>>> ef785adc9f77230ac515cd0a0027d22c33cee72c
 const r12 = r(1500, 2000);
 puppeteer.use(StealthPlugin());
 
-function LOG(data) {
-	fs.appendFile('log.txt', data, () => {
-
-	});
-}
 
 (async () => {
 	try {
 		//----initialize
-<<<<<<< HEAD
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });//////// slowMo: 100,
-=======
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
->>>>>>> ef785adc9f77230ac515cd0a0027d22c33cee72c
 		const page = await browser.newPage();
 		await page.emulate(device);
 		//console.log('badAccounts: ' + badAccounts);
@@ -49,8 +34,9 @@ function LOG(data) {
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wing => wing.map(ing => ing.children[0].innerText));
-		await page.screenshot({ path: process.env.SAVE_PATH + 'flws ' + flws + ' flwng ' + flwng + ' ' + timeStamp + '.png' });
+		//await page.screenshot({ path: process.env.SAVE_PATH + 'flws ' + flws + ' flwng ' + flwng + ' ' + timeStamp + '.png' });
 		log(`flws ${flws} flwng ${flwng} `);
+		await page.waitForTimeout(r12);
 		/*
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
