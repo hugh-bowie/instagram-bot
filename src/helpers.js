@@ -10,8 +10,8 @@ function r(min, max) {
 
 //Function that logs timeStamp + data + \n
 function log(data) {
-	fs.appendFile('log.txt', `${timeStamp}  ${data}\n`, () => {});
-	console.log(timeStamp + data);
+	fs.appendFile('src/log.txt', data + '\n', () => {});
+	console.log(` ${timeStamp} ${data}`);
 }
 
 // pretends this is a phone not a desktop
@@ -190,8 +190,6 @@ const targetAccounts = [
     'https://www.instagram.com/lsdiamonds69/',
     */
 ];
-
-log('shiiiiiiiiiiit');
 
 module.exports = { device, timeStamp, r, targetAccounts, badAccounts, fs, log };
 
