@@ -3,7 +3,11 @@ const { time } = require('console');
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+<<<<<<< HEAD
 const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
+=======
+const { r, log, fs, device, timeStamp, badAccounts, targetAccounts, randomAccount } = require('./src/helpers');
+>>>>>>> ef785adc9f77230ac515cd0a0027d22c33cee72c
 const r12 = r(1500, 2000);
 puppeteer.use(StealthPlugin());
 
@@ -16,14 +20,17 @@ function LOG(data) {
 (async () => {
 	try {
 		//----initialize
+<<<<<<< HEAD
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });//////// slowMo: 100,
+=======
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+>>>>>>> ef785adc9f77230ac515cd0a0027d22c33cee72c
 		const page = await browser.newPage();
 		await page.emulate(device);
 		//console.log('badAccounts: ' + badAccounts);
 
 		//----login
-		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'load' });
-		await page.waitForSelector("[name='username']");
+		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.tap("[name='username']");
 		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
 		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
@@ -35,8 +42,6 @@ function LOG(data) {
 		if (notifyBtn.length > 0) {
 			await notifyBtn[0].tap();
 			await page.waitForTimeout(r12);
-		} else {
-			console.log('wasnt prompted for notifaction buttons to click');
 		}
 
 		//---- got to home and screenshot the follower count
@@ -44,14 +49,13 @@ function LOG(data) {
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wing => wing.map(ing => ing.children[0].innerText));
-		//await page.screenshot({ path: process.env.SAVE_PATH + 'flw ' + followers + ' flwng ' + following + ' at ' + timeStamp + '.png', fullPage: true });
-		LOG('flw ' + flws + ' fwng ' + flwng + ' at ' + timeStamp + '\n');
+		await page.screenshot({ path: process.env.SAVE_PATH + 'flws ' + flws + ' flwng ' + flwng + ' ' + timeStamp + '.png' });
+		log(`flws ${flws} flwng ${flwng} `);
 		/*
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r12);
 		console.log('Random Account to Farm: ' + targetAccounts[randomAccount] + '\n');
-
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
@@ -61,18 +65,15 @@ function LOG(data) {
 		} else {
 			console.log('No Posts found: ' + posts.length);
 		}
-
 		//----click the Likes number on the photo
 		await page.tap('[href$="liked_by/"]');
 		await page.waitForTimeout(r12);
-
 		//----pagedown 5 times to get 90 followers to choose from
 		let i;
 		for (i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r12);
 		}
-
 		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
@@ -131,7 +132,6 @@ function LOG(data) {
 					}
 					// THIS USER HAS No Posts, Request to follow
 				} else {
-
 					//Else Follow
 					let follow = await page.$x("//button[contains(text(), 'Follow')]");
 					if (follow.length > 0) {
