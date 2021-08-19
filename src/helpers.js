@@ -3,6 +3,10 @@ const fs = require('fs');
 //For Saving screenshots   returns this         8-18-21 5.55.08 PM 
 const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
+//setTimeout(() => { console.log(timeStamp + otherT); }, 5000);
+
+
+
 //random number function
 function r(min, max) {
     return ~~(Math.random() * (max - min + 1) + min);
@@ -10,7 +14,7 @@ function r(min, max) {
 
 //Function that logs timeStamp + data + \n
 function log(data) {
-    fs.appendFile('src/log.txt', data + '\n', () => { });
+    fs.appendFile('src/log.txt', `${timeStamp}  ${data}\n`, () => { });
     console.log(` ${timeStamp} ${data}`);
 }
 
@@ -27,6 +31,9 @@ const device = {
         isLandscape: false,
     },
 };
+
+
+
 
 //List of accounts to not engage with
 const badAccounts = ['https://www.instagram.com/lj_brink_', 'https://www.instagram.com/hb.iv'];
@@ -191,6 +198,9 @@ const targetAccounts = [
     'https://www.instagram.com/lsdiamonds69/',
     */
 ];
+
+
+console.log(timeStamp);
 
 module.exports = { device, timeStamp, r, targetAccounts, badAccounts, fs, log };
 
