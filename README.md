@@ -9,7 +9,7 @@
 </p>
 <p align="center">
 <img src="https://img.shields.io/badge/Puppeteer-99ff99"  />
-    <img src="https://img.shields.io/badge/Node-Schedule-orange" />
+    <img src="https://img.shields.io/badge/Node_Schedule-orange" />
     <img src="https://img.shields.io/badge/puppeteer_extra-99ccff"  />
     <img src="https://img.shields.io/badge/puppeteer_extra_stealth-ff4d4d"  />
 </p>
