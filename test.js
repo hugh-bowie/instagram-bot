@@ -1,11 +1,11 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, fs, device, timeStamp, badAccounts, targetAccounts } = require('./src/helpers');
-const r12 = r(1500, 2000);
+const { r, log, fs, device, timeStamp } = require('./src/helpers');
+const { targetAccounts, badAccounts } = require('./src/accountFarm');
+const r23 = r(2000, 3000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
-console.log(timeStamp);
 
 (async () => {
 	try {
@@ -17,17 +17,18 @@ console.log(timeStamp);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
+		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
 		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
 		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
-		await page.waitForTimeout(r12);
+		await page.waitForTimeout(r23);
 
 		//----click notifications
 		const notifyBtn = await page.$x('//button[contains(text(), "Not Now")]');
 		if (notifyBtn.length > 0) {
 			await notifyBtn[0].tap();
-			await page.waitForTimeout(r12);
+			await page.waitForTimeout(r23);
 		}
 
 		//---- got to home and screenshot the follower count
@@ -40,26 +41,25 @@ console.log(timeStamp);
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
-		await page.waitForTimeout(r12);
+		await page.waitForTimeout(r23);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
-
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
-			await posts[r(0, posts.length)].tap();
-			await page.waitForTimeout(r12);
+			await Promise.all([page.waitForNavigation(), posts[r(0, posts.length)].tap()]);
+			await page.waitForTimeout(r23);
 			log(`getting likers from this post: ` + (await page.url()));
 		}
 
 		//----click the Likes number on the photo
-		await page.tap('[href$="liked_by/"]');
-		await page.waitForTimeout(r12);
+		await Promise.all([page.waitForNavigation(), await page.tap('[href$="liked_by/"]')]);
+		await page.waitForTimeout(r23);
 
 		//----pagedown 5 times to get 90 followers to choose from
 		let i;
 		for (i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
-			await page.waitForTimeout(r12);
+			await page.waitForTimeout(r23);
 		}
 
 		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
@@ -72,18 +72,18 @@ console.log(timeStamp);
 			for (let x = 0; x < y; x++) {
 				//---- pick a random account from [y]
 				let num = r(0, likers.length);
-				//log(`${likers[num]}`);
-
+				log(`${likers[num]}`);
 				//----goto first random account
 				await page.goto('https://www.instagram.com' + likers[num], { waitUntil: 'networkidle0' });
 				await page.waitForSelector('#react-root');
-				await page.waitForTimeout(r12);
+				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				log(`visiting this page: ${currentURL}`);
 
 				//----CHECK IF YOURE ON A BAD ACCOUNTS------
 				for (let bb = 0; bb < badAccounts.length; bb++) {
 					if (currentURL.indexOf(badAccounts[bb]) === -1) {
+
 						//----get the top 24 posts
 						let posts = await page.$x('//*[@class="FFVAD"]');
 						if (posts.length > 0) {
@@ -93,33 +93,33 @@ console.log(timeStamp);
 							//----click One random Public post to like
 							await posts[p].tap();
 							await page.waitForSelector('div.MEAGs');
-							await page.waitForTimeout(r12);
+							await page.waitForTimeout(r23);
 
 							//----the Like button to hit
 							let likeBtn = await page.$x('//*[@aria-label="Like"]');
 							if (likeBtn.length > 0) {
 								//----Smash that Like btn
 								await likeBtn[0].tap();
+								await page.waitForTimeout(r23);
 								log('Like btn hit here: ' + (await page.url()));
-								await page.waitForTimeout(r12);
-							} else {
-								//----Follow Btn
-								let follow = await page.$x("//button[contains(text(), 'Follow')]");
-								if (follow.length > 0) {
-									await follow[0].tap();
-									log('Followed Private Account: ' + (await page.url()));
-									await page.waitForTimeout(r12);
-								}
+							}
+
+						} else {//if no posts to like (Account is private)
+							//----Follow Btn
+							let follow = await page.$x("//button[contains(text(), 'Follow')]");
+							if (follow.length > 0) {
+								await follow[0].tap();
+								await page.waitForTimeout(r23);
+								log('Followed Private Account: ' + (await page.url()));
 								//---- if private, go to next one
 								// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
 								// if (privateAcct) {
 								// 	console.log('--PRIVATE PAGE Do NOTHING: ' + (await page.url()));
 								// }
 							}
+
 						}
-					} else {
-						//---- MAtched currentURL to badAccounts -----\\
-						log(` ✔️ MATCHED one from badAccounts: ${badAccounts[bb]}`);
+
 					}
 				}
 			}
@@ -138,4 +138,4 @@ const appBtn = await page.$x('//*[@href="/"]');
 if (appBtn.length > 0) {
 await appBtn[0].tap();
 console.log('tapped that Not Now button');
-await page.waitForTimeout(r12)*/
+await page.waitForTimeout(r23)*/

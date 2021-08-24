@@ -1,8 +1,10 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { device, timeStamp, r, targetAccounts, badAccounts, randomAccount } = require('./src/helpers');
-const r23 = r(1500, 3000);
+const { r, log, fs, device, timeStamp } = require('./src/helpers');
+const { targetAccounts, badAccounts } = require('./src/accountFarm');
+const randomAccount = Math.floor(Math.random() * targetAccounts.length);
+const r23 = r(2000, 3000);
 puppeteer.use(StealthPlugin());
 
 (async () => {
@@ -84,6 +86,7 @@ puppeteer.use(StealthPlugin());
 					let p = r(0, posts.length);
 					//----click One random Public post to like
 					await posts[p].tap();
+					await page.waitForSelector('div.MEAGs');
 					await page.waitForTimeout(r23);
 					console.log(await page.url());
 
@@ -93,7 +96,7 @@ puppeteer.use(StealthPlugin());
 						//----SMASH THAT LIKE BUTTON
 						await likeBtn[0].tap();
 						await page.waitForTimeout(r23);
-						console.log('Like Button Tapped');
+						log('Like btn hit here: ' + (await page.url()));
 					}
 					// THIS USER HAS No Posts, Request to follow
 				} else {
@@ -102,8 +105,8 @@ puppeteer.use(StealthPlugin());
 					let follow = await page.$x("//button[contains(text(), 'Follow')]");
 					if (follow.length > 0) {
 						await follow[0].tap();
-						console.log('----Followed Private Page: ' + await page.url());
 						await page.waitForTimeout(r23);
+						log('Followed Private Account: ' + (await page.url()));
 					}
 					//check if private
 					// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
