@@ -1,153 +1,156 @@
 const fs = require('fs');
 
-//For Saving screenshots   returns this         8-18-21 5.55.08 PM 
+//For Saving screenshots   returns this         8-18-21 5.55.08 PM
 const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
 //setTimeout(() => { console.log(timeStamp + otherT); }, 5000);
 
-
-
 //random number function
 function r(min, max) {
-    return ~~(Math.random() * (max - min + 1) + min);
+	return ~~(Math.random() * (max - min + 1) + min);
 }
 
 //Function that logs timeStamp + data + \n
 function log(data) {
-    fs.appendFile('src/log.txt', `${timeStamp}  ${data}\n`, () => { });
-    console.log(` ${timeStamp} ${data}`);
+	fs.appendFile('src/log.txt', `${timeStamp}  ${data}\n`, () => {});
+	console.log(` ${timeStamp} ${data}`);
 }
 
 // pretends this is a phone not a desktop
 const device = {
-    name: 'iPhone 12 Pro Max',
-    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1',
-    viewport: {
-        width: 426,
-        height: 926,
-        deviceScaleFactor: 3,
-        isMobile: true,
-        hasTouch: true,
-        isLandscape: false,
-    },
+	name: 'iPhone 12 Pro Max',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1',
+	viewport: {
+		width: 426,
+		height: 926,
+		deviceScaleFactor: 3,
+		isMobile: true,
+		hasTouch: true,
+		isLandscape: false,
+	},
 };
-
-
-
 
 //List of accounts to not engage with
 const badAccounts = ['https://www.instagram.com/lj_brink_', 'https://www.instagram.com/hb.iv'];
 
 //List of accounts to farm for followers
 const targetAccounts = [
+	////////////POPULAR BOCA & DELRAY LOCAL PLACES
 
-    ////////////POPULAR BOCA & DELRAY LOCAL PLACES
-    'https://www.instagram.com/downtowndelray/',
-    'https://www.instagram.com/visit_delray_beach/',
-    'https://www.instagram.com/visitbocaraton/',
-    'https://www.instagram.com/bocaratonfl/',
-    'https://www.instagram.com/citybocaraton/',
-    'https://www.instagram.com/bocapolice/',
-    'https://www.instagram.com/delraybeachopen/',
-    'https://www.instagram.com/bluefineart/',
-    'https://www.instagram.com/sandbardelraybeach/',
-    'https://www.instagram.com/new_vegan76/',
-    'https://www.instagram.com/restorationlane/',
-    'https://www.instagram.com/delraymag/',
-    'https://www.instagram.com/renovatewiththeroots/',
-    'https://www.instagram.com/mmwooddesigns/',
-    'https://www.instagram.com/sassafraswpb/',
-    'https://www.instagram.com/realtordotcom/',
-    'https://www.instagram.com/sloans_southflorida/',
-    'https://www.instagram.com/bocalifemag/',
-    'https://www.instagram.com/oldschoolsquaredelray/',
-    'https://www.instagram.com/serenitynowstaging/',
-    'https://www.instagram.com/cerverare',
-    'https://www.instagram.com/livingproof.photography/',
-    'https://www.instagram.com/megangribblehome',
-    'https://www.instagram.com/jillszedergables/',
-    'https://www.instagram.com/flippingahouse/',
-    'https://www.instagram.com/landscapeartinc/',
-    'https://www.instagram.com/rncbuilders/',
-    'https://www.instagram.com/roccostacos/',
-    'https://www.instagram.com/delraybeachmarket/',
-    'https://www.instagram.com/bodegataqueria/',
-    'https://www.instagram.com/thegrovedelrayfl/',
-    'https://www.instagram.com/cut432steakhouse/',
-    'https://www.instagram.com/theheartofdelraygallery/',
-    'https://www.instagram.com/bluefineart/',
-    'https://www.instagram.com/artsgaragedelraybeach/',
-    'https://www.instagram.com/cornellartmuseum/',
-    'https://www.instagram.com/dadadelray/',
-    'https://www.instagram.com/elcaminofla/',
-    'https://www.instagram.com/lesorellerestaurant/',
-    'https://www.instagram.com/deck84_delray/',
-    'https://www.instagram.com/parktavernfl/',
-    'https://www.instagram.com/brule.bistro/',
-    'https://www.instagram.com/habitatforhumanity/',
-    'https://www.instagram.com/bocaratonobserver/',
-    'https://www.instagram.com/delraybeachgolfclub/',
-    'https://www.instagram.com/puttnaround/',
-    'https://www.instagram.com/sandowaydiscovery/',
-    'https://www.instagram.com/sundy_house/',
+	/*'https://www.instagram.com/downtowndelray/',
+	'https://www.instagram.com/visit_delray_beach/',
+	'https://www.instagram.com/visitbocaraton/',
+	'https://www.instagram.com/bocaratonfl/',
+	'https://www.instagram.com/citybocaraton/',
+	'https://www.instagram.com/bocapolice/',
+	'https://www.instagram.com/delraybeachopen/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/sandbardelraybeach/',
+	'https://www.instagram.com/new_vegan76/',
+	'https://www.instagram.com/restorationlane/',
+	'https://www.instagram.com/delraymag/',
+	'https://www.instagram.com/renovatewiththeroots/',
+	'https://www.instagram.com/mmwooddesigns/',
+	'https://www.instagram.com/sassafraswpb/',
+	'https://www.instagram.com/realtordotcom/',
+	'https://www.instagram.com/sloans_southflorida/',
+	'https://www.instagram.com/bocalifemag/',
+	'https://www.instagram.com/oldschoolsquaredelray/',
+	'https://www.instagram.com/serenitynowstaging/',
+	'https://www.instagram.com/cerverare',
+	'https://www.instagram.com/livingproof.photography/',
+	'https://www.instagram.com/megangribblehome',
+	'https://www.instagram.com/jillszedergables/',
+	'https://www.instagram.com/flippingahouse/',
+	'https://www.instagram.com/landscapeartinc/',
+	'https://www.instagram.com/rncbuilders/',
+	'https://www.instagram.com/roccostacos/',
+	'https://www.instagram.com/delraybeachmarket/',
+	'https://www.instagram.com/bodegataqueria/',
+	'https://www.instagram.com/thegrovedelrayfl/',
+	'https://www.instagram.com/cut432steakhouse/',
+	'https://www.instagram.com/theheartofdelraygallery/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/artsgaragedelraybeach/',
+	'https://www.instagram.com/cornellartmuseum/',
+	'https://www.instagram.com/dadadelray/',
+	'https://www.instagram.com/elcaminofla/',
+	'https://www.instagram.com/lesorellerestaurant/',
+	'https://www.instagram.com/deck84_delray/',
+	'https://www.instagram.com/parktavernfl/',
+	'https://www.instagram.com/brule.bistro/',
+	'https://www.instagram.com/habitatforhumanity/',
+	'https://www.instagram.com/bocaratonobserver/',
+	'https://www.instagram.com/delraybeachgolfclub/',
+	'https://www.instagram.com/puttnaround/',
+	'https://www.instagram.com/sandowaydiscovery/',
+	'https://www.instagram.com/sundy_house/',
 
-    ///////Valcatch List
+	///////Valcatch List
 
-    //////////////////////Builders/Designer/Architects:
-    'https://www.instagram.com/verandaestatehomes',
-    'https://www.instagram.com/houseofjade',
-    'https://www.instagram.com/pikeproperties',
-    'https://www.instagram.com/daileyjanssenarcchitects',
-    'https://www.instagram.com/architectanddesign',
-    'https://www.instagram.com/momentdesign_architecture',
-    'https://www.instagram.com/mansionspageforyou',
-    'https://www.instagram.com/lush.homes',
-    'https://www.instagram.com/luxryious',
-    'https://www.instagram.com/successowner',
-    'https://www.instagram.com/pool.logic',
-    'https://www.instagram.com/vivirdesign',
+	//////////////////////Builders/Designer/Architects:
+	'https://www.instagram.com/verandaestatehomes',
+	'https://www.instagram.com/houseofjade',
+	'https://www.instagram.com/pikeproperties',
+	'https://www.instagram.com/daileyjanssenarcchitects',
+	'https://www.instagram.com/architectanddesign',
+	'https://www.instagram.com/momentdesign_architecture',
+	'https://www.instagram.com/mansionspageforyou',
+	'https://www.instagram.com/lush.homes',
+	'https://www.instagram.com/luxryious',
+	'https://www.instagram.com/successowner',
+	'https://www.instagram.com/pool.logic',
+	'https://www.instagram.com/vivirdesign',
 
-    ////////////////////////Bloggers/influencers
-    'https://www.instagram.com/malloryervin',
-    'https://www.instagram.com/champagneandchanel',
-    'https://www.instagram.com/brittanyaldean',
-    'https://www.instagram.com/letmetakeyourselfie',
-    'https://www.instagram.com/itsmadebybeck',
-    'https://www.instagram.com/raelynnofficial',
-    'https://www.instagram.com/allexa.anglin ',
+	////////////////////////Bloggers/influencers
+	'https://www.instagram.com/malloryervin',
+	'https://www.instagram.com/champagneandchanel',
+	'https://www.instagram.com/brittanyaldean',
+	'https://www.instagram.com/letmetakeyourselfie',
+	'https://www.instagram.com/itsmadebybeck',
+	'https://www.instagram.com/raelynnofficial',
+	'https://www.instagram.com/allexa.anglin ',
 
-    ////////////////////////Brands/Builder Source:
-    'https://www.instagram.com/fergusonshowrooms',
-    'https://www.instagram.com/subzeroandwolf ',
-    'https://www.instagram.com/kbis_official',
-    'https://www.instagram.com/homebuilders ',
-    'https://www.instagram.com/buildingsciencefightclub',
-    'https://www.instagram.com/awesomeframers',
-    'https://www.instagram.com/carpentry_bymar',
-    'https://www.instagram.com/finehomebuilding',
-    'https://www.instagram.com/mmlighting',
-    'https://www.instagram.com/bedrosianstile',
+	////////////////////////Brands/Builder Source:
+	'https://www.instagram.com/fergusonshowrooms',
+	'https://www.instagram.com/subzeroandwolf ',
+	'https://www.instagram.com/kbis_official',
+	'https://www.instagram.com/homebuilders ',
+	'https://www.instagram.com/buildingsciencefightclub',
+	'https://www.instagram.com/awesomeframers',
+	'https://www.instagram.com/carpentry_bymar',
+	'https://www.instagram.com/finehomebuilding',
+	'https://www.instagram.com/mmlighting',
+	'https://www.instagram.com/bedrosianstile',
 
-    //////////////////////////LOCALS
-    'https://www.instagram.com/Visitflorida',
-    'https://www.instagram.com/Ftlauderdalesun',
-    'https://www.instagram.com/Visit_delray_beach',
-    'https://www.instagram.com/Visitbocaraton',
-    'https://www.instagram.com/Visitlauderdale',
-    'https://www.instagram.com/Downtowndelray',
-    'https://www.instagram.com/Palmbeachmoms',
-    'https://www.instagram.com/Palmbeachesfl',
-    'https://www.instagram.com/Palmbeachcountyfl',
-    'https://www.instagram.com/Westpalmbeachflorida',
-    'https://www.instagram.com/Visitpalmbeach',
-    'https://www.instagram.com/Thebreakers',
-    'https://www.instagram.com/Eaupalmbeach',
+	//////////////////////////LOCALS
+	'https://www.instagram.com/Visitflorida',
+	'https://www.instagram.com/Ftlauderdalesun',
+	'https://www.instagram.com/Visit_delray_beach',
+	'https://www.instagram.com/Visitbocaraton',
+	'https://www.instagram.com/Visitlauderdale',
+	'https://www.instagram.com/Downtowndelray',
+	'https://www.instagram.com/Palmbeachmoms',
+	'https://www.instagram.com/Palmbeachesfl',
+	'https://www.instagram.com/Palmbeachcountyfl',
+	'https://www.instagram.com/Westpalmbeachflorida',
+	'https://www.instagram.com/Visitpalmbeach',
+	'https://www.instagram.com/Thebreakers',
+	'https://www.instagram.com/Eaupalmbeach',*/
 
-    //FOR TESTINg badAccounts Array
-    // 'https://www.instagram.com/hb.iv',
-    // 'https://www.instagram.com/lj_brink_',
+	//MEME PAGES
+	'https://www.instagram.com/memerplugs/',
+	'https://www.instagram.com/highsocietymeme/',
+	'https://www.instagram.com/memingbible/',
+	'https://www.instagram.com/childshoodpost/',
+	'https://www.instagram.com/creepy.officer/',
+	'https://www.instagram.com/memedog.exe/',
 
-    /*  PAGES WOMEN GO TO
+	//FOR TESTINg badAccounts Array
+	// 'https://www.instagram.com/hb.iv',
+	// 'https://www.instagram.com/lj_brink_',
+
+	/*  PAGES WOMEN GO TO
     'https://www.instagram.com/boandtee/',
     'https://www.instagram.com/revolve/',
     'https://www.instagram.com/revolvebeauty/',
@@ -176,7 +179,7 @@ const targetAccounts = [
     'https://www.instagram.com/bossbabe.inc/',
     */
 
-    /*LIST TARGETING MEN - ONLYFANS
+	/*LIST TARGETING MEN - ONLYFANS
     'https://www.instagram.com/mandi_lynn_bbw/',
     'https://www.instagram.com/therealnatashatosini/',
     'https://www.instagram.com/jaidexoxo_/',
@@ -199,8 +202,7 @@ const targetAccounts = [
     */
 ];
 
-
-console.log(timeStamp);
+//console.log(timeStamp);
 
 module.exports = { device, timeStamp, r, targetAccounts, badAccounts, fs, log };
 

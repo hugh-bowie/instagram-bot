@@ -41,14 +41,14 @@ console.log(timeStamp);
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r12);
-		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`)
+		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
 
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await posts[r(0, posts.length)].tap();
 			await page.waitForTimeout(r12);
-			log(`getting likers from this post: ` + await page.url());
+			log(`getting likers from this post: ` + (await page.url()));
 		}
 
 		//----click the Likes number on the photo
@@ -66,7 +66,7 @@ console.log(timeStamp);
 		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 
 		//----How many accounts to visit?
-		let y = r(3, 4);
+		let y = r(6, 9);
 		if (likers.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
@@ -84,33 +84,30 @@ console.log(timeStamp);
 				//----CHECK IF YOURE ON A BAD ACCOUNTS------
 				for (let bb = 0; bb < badAccounts.length; bb++) {
 					if (currentURL.indexOf(badAccounts[bb]) === -1) {
-
-						//----get the top 24 posts 
+						//----get the top 24 posts
 						let posts = await page.$x('//*[@class="FFVAD"]');
 						if (posts.length > 0) {
-
 							//---- pick a post to like
 							let p = r(0, posts.length);
 
 							//----click One random Public post to like
 							await posts[p].tap();
+							await page.waitForSelector('div.MEAGs');
 							await page.waitForTimeout(r12);
 
 							//----the Like button to hit
 							let likeBtn = await page.$x('//*[@aria-label="Like"]');
 							if (likeBtn.length > 0) {
-
 								//----Smash that Like btn
 								await likeBtn[0].tap();
-								log('Like btn hit here: ' + await page.url());
+								log('Like btn hit here: ' + (await page.url()));
 								await page.waitForTimeout(r12);
-
 							} else {
 								//----Follow Btn
 								let follow = await page.$x("//button[contains(text(), 'Follow')]");
 								if (follow.length > 0) {
 									await follow[0].tap();
-									log('Followed Private Account: ' + await page.url());
+									log('Followed Private Account: ' + (await page.url()));
 									await page.waitForTimeout(r12);
 								}
 								//---- if private, go to next one
@@ -120,7 +117,6 @@ console.log(timeStamp);
 								// }
 							}
 						}
-
 					} else {
 						//---- MAtched currentURL to badAccounts -----\\
 						log(` ✔️ MATCHED one from badAccounts: ${badAccounts[bb]}`);
