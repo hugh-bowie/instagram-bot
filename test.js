@@ -1,9 +1,8 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, fs, device, timeStamp } = require('./src/helpers');
-const { targetAccounts, badAccounts } = require('./src/accountFarm');
-const r23 = r(2000, 3000);
+const { r, log, fs, device, targetAccounts, timeStamp } = require('./src/helpers');
+const r23 = r(3000, 4000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
@@ -39,6 +38,7 @@ puppeteer.use(StealthPlugin());
 		//await page.screenshot({ path: process.env.SAVE_PATH + 'flws ' + flws + ' flwng ' + flwng + ' ' + timeStamp + '.png' });
 		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
+
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r23);
@@ -46,89 +46,84 @@ puppeteer.use(StealthPlugin());
 		//----click one random post
 		const posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
-			await Promise.all([page.waitForNavigation(), posts[r(0, posts.length)].tap()]);
+			await posts[r(0, posts.length)].tap();
 			await page.waitForTimeout(r23);
-			log(`getting likers from this post: ` + (await page.url()));
+			log('getting likers from this post: ' + await page.url());
+		} else {
+			log('no posts to  like');
 		}
-
 		//----click the Likes number on the photo
-		await Promise.all([page.waitForNavigation(), await page.tap('[href$="liked_by/"]')]);
-		await page.waitForTimeout(r23);
-
-		//----pagedown 5 times to get 90 followers to choose from
-		let i;
-		for (i = 0; i < 5; i++) {
-			await page.keyboard.press('PageDown');
+		const likedBy = await page.$('[href$="liked_by/"]');
+		if (likedBy == null) {
+			let currentURL = await page.url();
+			await page.goto(currentURL + 'comments/', { waitUntil: 'networkidle0' });
+			await page.waitForSelector('#react-root');
+			await page.waitForTimeout(r(2000, 3000));
+			let commentLikeBtn = await page.$x('//*[@aria-label="Like"]');
+			if (commentLikeBtn.length > 0) {
+				await commentLikeBtn[r(0, commentLikeBtn.length)].tap();
+				await page.waitForTimeout(r(2000, 3000));
+			}
+		} else {
+			await page.tap('[href$="liked_by/"]');
 			await page.waitForTimeout(r23);
-		}
-
-		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
-		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-
-		//----How many accounts to visit?
-		let y = r(6, 9);
-		if (likers.length > 0) {
-			//---- loop over each profile [y]-times
-			for (let x = 0; x < y; x++) {
-				//---- pick a random account from [y]
-				let num = r(0, likers.length);
-				log(`${likers[num]}`);
-				//----goto first random account
-				await page.goto('https://www.instagram.com' + likers[num], { waitUntil: 'networkidle0' });
-				await page.waitForSelector('#react-root');
-				await page.waitForTimeout(r23);
-				let currentURL = await page.url();
-				log(`visiting this page: ${currentURL}`);
-
-				//----CHECK IF YOURE ON A BAD ACCOUNTS------
-				for (let bb = 0; bb < badAccounts.length; bb++) {
-					if (currentURL.indexOf(badAccounts[bb]) === -1) {
-
-						//----get the top 24 posts
-						let posts = await page.$x('//*[@class="FFVAD"]');
-						if (posts.length > 0) {
-							//---- pick a post to like
-							let p = r(0, posts.length);
-
-							//----click One random Public post to like
-							await posts[p].tap();
-							await page.waitForSelector('div.MEAGs');
+			//----pagedown 5 times to get 90 followers to choose from
+			let i;
+			for (i = 0; i < 5; i++) {
+				await page.keyboard.press('PageDown');
+				await page.waitForTimeout(r(500, 1000));
+			}
+			//----DYNAMICLY CRAWL OVER EACH FOLLOWER
+			let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
+			let y = r(6, 9);
+			if (likers.length > 0) {
+				//---- loop over each profile [y]-times
+				for (let x = 0; x < y; x++) {
+					log(y--);
+					let num = r(0, likers.length);
+					log(`likers[num] = ${likers[num]}`);
+					//----goto first random account
+					await page.goto('https://www.instagram.com' + likers[num], { waitUntil: 'networkidle0' });
+					await waitForSelector('#react-root');
+					await page.waitForTimeout(r23);
+					log('visiting this page: ' + await page.url());
+					//----get the top 24 posts
+					let posts = await page.$x('//*[@class="FFVAD"]');
+					if (posts.length > 0) {
+						//---- pick a post to like
+						let p = r(0, posts.length);
+						//----click One random Public post to like
+						await posts[p].tap();
+						await page.waitForSelector('div.e1e1d');
+						await page.waitForTimeout(r23);
+						//----the Like button to hit
+						let likeBtn = await page.$x('//*[@aria-label="Like"]');
+						if (likeBtn.length > 0) {
+							//----Smash that Like btn
+							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
-
-							//----the Like button to hit
-							let likeBtn = await page.$x('//*[@aria-label="Like"]');
-							if (likeBtn.length > 0) {
-								//----Smash that Like btn
-								await likeBtn[0].tap();
-								await page.waitForTimeout(r23);
-								log('Like btn hit here: ' + (await page.url()));
-							}
-
-						} else {//if no posts to like (Account is private)
-							//----Follow Btn
-							let follow = await page.$x("//button[contains(text(), 'Follow')]");
-							if (follow.length > 0) {
-								await follow[0].tap();
-								await page.waitForTimeout(r23);
-								log('Followed Private Account: ' + (await page.url()));
-								//---- if private, go to next one
-								// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
-								// if (privateAcct) {
-								// 	console.log('--PRIVATE PAGE Do NOTHING: ' + (await page.url()));
-								// }
-							}
-
+							log('Like btn hit here: ' + await page.url());
 						}
-
+					} else {//---- if private, go to next one
+						let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
+						if (privateAcct) {
+							log('--PRIVATE PAGE Do NOTHING:');
+						}
+						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						// if (follow.length > 0) {
+						// 	await follow[0].tap();
+						// 	await page.waitForTimeout(r23);
+						// 	log('Followed Private Account: ' + await page.url());
 					}
 				}
 			}
 		}
+
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
-		console.log('error = ', e);
+		console.log('||||||||||||||>>>>>>>> ', e);
 		//process.exit(1);
 	}
 })();
@@ -138,4 +133,11 @@ const appBtn = await page.$x('//*[@href="/"]');
 if (appBtn.length > 0) {
 await appBtn[0].tap();
 console.log('tapped that Not Now button');
-await page.waitForTimeout(r23)*/
+await page.waitForTimeout(r23)
+else {
+
+					let viewsBtn = await page.$x('//*[@aria-label="Like"]');
+					await viewsBtn.tap();
+				}
+
+*/
