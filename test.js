@@ -44,36 +44,35 @@ puppeteer.use(StealthPlugin());
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r34);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
+
 		//----click one random post
-		//const posts = await page.$x('//*[@class="FFVAD"]');
-		const posts = await page.$x('//*[@class="FFVAD"]');
+		const posts = await page.$x('//img[@class="FFVAD"]');
 		if (posts.length > 0) {
-			await posts[r(0, posts.length)].tap();
-			log(`getting likers from this post: ` + await page.url());
-			await page.waitForTimeout(r34);
+			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
+			await page.waitForTimeout(r(2000, 3000));
+			farmPost = await page.url();
+			log('getting likers from this post: ' + farmPost);
 		}
 		//----click the Likes number on the photo
-		await page.$('a[href$="liked_by/"]');
-		await page.tap('[href$="liked_by/"]');
+		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r34);
-		//----pagedown 5 times to get 90 followers to choose from
+		//----pagedown 5 times = 90 followers
 		for (let i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(500, 1000));
 		}
-		//----DYNAMICLY CRAWL OVER EACH FOLLOWER
-		let likers = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
+		//---- get a few followers hrefs
+		let hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let x;
 		let y = r(6, 9);
-		if (likers.length > 0) {
+		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (x = 0; x < y; x++) {
 				log(y--);
-				let num = r(0, likers.length);
-				await page.goto('https://www.instagram.com' + likers[num], { waitUntil: 'networkidle0' });
-				await waitForSelector('#react-root');
+				let num = r(0, hrefs.length);
+				await page.goto('https://www.instagram.com' + hrefs[num]);
 				await page.waitForTimeout(r34);
-				log('Went Here: ' + await page.url());
+				log('Went Here: ' + (await page.url()));
 				//----get the top 24 posts
 				let posts = await page.$x('//*[@class="FFVAD"]');
 				if (posts.length > 0) {
@@ -88,28 +87,28 @@ puppeteer.use(StealthPlugin());
 						//----Smash that Like btn
 						await likeBtn[0].tap();
 						await page.waitForTimeout(r34);
-						log('Like btn hit here: ' + await page.url());
+						log('Like btn hit here: ' + (await page.url()));
 					}
-				} else {//---- if private, go to next one
-					let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
-					if (privateAcct) {
-						log('--PRIVATE PAGE Do NOTHING:');
-					}
+				} else {
+					//---- if private, go to next one
+					log('--PRIVATE PAGE Do NOTHING:');
+					// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
+					// if (privateAcct) {
+					// }
 					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
 					// if (follow.length > 0) {
 					// 	await follow[0].tap();
 					// 	await page.waitForTimeout(r34);
 					// 	log('Followed Private Account: ' + await page.url());
 				}
-
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
 		console.log('||||||||||||||>>>>>>>> ', e);
-		//process.exit(1);
+		process.exit(1);
 	}
 })();
 
