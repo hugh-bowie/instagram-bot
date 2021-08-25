@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, targetAccounts } = require('./src/helpers');
-const r34 = r(3000, 4000);
+const r23 = r(2000, 3000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
@@ -13,7 +13,6 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
-		//console.log('badAccounts: ' + badAccounts);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
@@ -22,40 +21,38 @@ puppeteer.use(StealthPlugin());
 		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
 		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
-		await page.waitForTimeout(r34);
+		await page.waitForTimeout(r23);
 
 		//----click notifications
 		const notifyBtn = await page.$x('//button[contains(text(), "Not Now")]');
 		if (notifyBtn.length > 0) {
 			await notifyBtn[0].tap();
-			await page.waitForTimeout(r34);
+			await page.waitForTimeout(r23);
 		}
 
-		/*		//---- got to home and screenshot the follower count
-				await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
-				await page.waitForSelector("a[href$='/following/']");
-				const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-				const flwng = await page.$$eval('a[href$="/following/"]', wing => wing.map(ing => ing.children[0].innerText));
-				//await page.screenshot({ path: process.env.SAVE_PATH + 'flws ' + flws + ' flwng ' + flwng + ' ' + timeStamp + '.png' });
-				log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
-		*/
+		//---- got to home and screenshot the follower count
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
+		await page.waitForSelector("a[href$='/following/']");
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
-		await page.waitForTimeout(r34);
+		await page.waitForTimeout(r23);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
 
 		//----click one random post
 		const posts = await page.$x('//img[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
-			await page.waitForTimeout(r(2000, 3000));
+			await page.waitForTimeout(r23);
 			farmPost = await page.url();
 			log('getting likers from this post: ' + farmPost);
 		}
 		//----click the Likes number on the photo
 		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]')]);
-		await page.waitForTimeout(r34);
+		await page.waitForTimeout(r23);
 		//----pagedown 5 times = 90 followers
 		for (let i = 0; i < 5; i++) {
 			await page.keyboard.press('PageDown');
@@ -71,7 +68,7 @@ puppeteer.use(StealthPlugin());
 				log(y--);
 				let num = r(0, hrefs.length);
 				await page.goto('https://www.instagram.com' + hrefs[num]);
-				await page.waitForTimeout(r34);
+				await page.waitForTimeout(r23);
 				log('Went Here: ' + (await page.url()));
 				//----get the top 24 posts
 				let posts = await page.$x('//*[@class="FFVAD"]');
@@ -80,13 +77,13 @@ puppeteer.use(StealthPlugin());
 					let p = r(0, posts.length);
 					//----click One random Public post to like
 					await posts[p].tap();
-					await page.waitForTimeout(r34);
+					await page.waitForTimeout(r23);
 					//----the Like button to hit
 					let likeBtn = await page.$x('//*[@aria-label="Like"]');
 					if (likeBtn.length > 0) {
 						//----Smash that Like btn
 						await likeBtn[0].tap();
-						await page.waitForTimeout(r34);
+						await page.waitForTimeout(r23);
 						log('Like btn hit here: ' + (await page.url()));
 					}
 				} else {
@@ -98,7 +95,7 @@ puppeteer.use(StealthPlugin());
 					// let follow = await page.$x("//button[contains(text(), 'Follow')]");
 					// if (follow.length > 0) {
 					// 	await follow[0].tap();
-					// 	await page.waitForTimeout(r34);
+					// 	await page.waitForTimeout(r23);
 					// 	log('Followed Private Account: ' + await page.url());
 				}
 			}
@@ -117,7 +114,7 @@ const appBtn = await page.$x('//*[@href="/"]');
 if (appBtn.length > 0) {
 await appBtn[0].tap();
 console.log('tapped that Not Now button');
-await page.waitForTimeout(r34)
+await page.waitForTimeout(r23)
 else {
 
 					let viewsBtn = await page.$x('//*[@aria-label="Like"]');
