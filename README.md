@@ -21,7 +21,7 @@ To overcome thier efforts I have added a few Puppeteer plugins to aid in detecti
 
 ## 🎬 Screenshot
 
-![Puppeteer-ig-bot](./assets/ig.gif)
+![Puppeteer-ig-bot](./assets/dinkin-4.gif)
 
 ## 📋 Table of Contents
 
