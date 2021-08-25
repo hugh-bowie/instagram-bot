@@ -12,7 +12,7 @@ function r(min, max) {
 
 //Function that logs timeStamp + data + \n
 function log(data) {
-	fs.appendFile('src/log.txt', `${data}\n`, () => {
+	fs.appendFile('src/log.txt', ` ${data}\n`, () => {
 		console.log(` ${data} `);
 	});
 }
@@ -202,7 +202,7 @@ const targetAccounts = [
 ];
 
 
-module.exports = { targetAccounts, device, timeStamp, r, fs, log };
+module.exports = { targetAccounts, device, timeStamp, r, log };
 
 ////// TODO: EXPORT THIS AS AN ASYNC FUNCTION
 // for (let xxx = 0; xxx < badAccounts.length; xxx++) {
