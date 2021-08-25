@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -76,8 +76,9 @@ puppeteer.use(StealthPlugin());
 					//---- pick a post to like
 					let p = r(0, posts.length);
 					//----click One random Public post to like
-					await posts[p].tap();
+					await Promise.all([page.waitForNavigation(), posts[p].tap()]);
 					await page.waitForTimeout(r23);
+					log('going to this post: ' + await page.url());
 					//----the Like button to hit
 					let likeBtn = await page.$x('//*[@aria-label="Like"]');
 					if (likeBtn.length > 0) {
@@ -104,7 +105,7 @@ puppeteer.use(StealthPlugin());
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		console.log('||||||||||||||>>>>>>>> ', e);
+		log('||||||||||||||>>>>>>>> ', e);
 		process.exit(1);
 	}
 })();
