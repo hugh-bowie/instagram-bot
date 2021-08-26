@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 //For Saving screenshots   returns this         8-18-21 5.55.08 PM
-const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
+let timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
-//setTimeout(() => { console.log(timeStamp + otherT); }, 5000);
+const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
 //random number function
 function r(min, max) {
@@ -145,10 +145,6 @@ const targetAccounts = [
 	'https://www.instagram.com/rainnwilson/',
 	'https://www.instagram.com/bjnovak/',
 
-	//FOR TESTINg badAccounts Array
-	// 'https://www.instagram.com/hb.iv',
-	// 'https://www.instagram.com/lj_brink_',
-
 	//PAGES WOMEN GO TO
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/revolve/',
@@ -177,7 +173,6 @@ const targetAccounts = [
 	'https://www.instagram.com/glossy_zodiac/',
 	'https://www.instagram.com/bossbabe.inc/',
 
-
 	/*LIST TARGETING MEN - ONLYFANS
 	'https://www.instagram.com/mandi_lynn_bbw/',
 	'https://www.instagram.com/therealnatashatosini/',
@@ -201,14 +196,12 @@ const targetAccounts = [
 	*/
 ];
 
+module.exports = { targetAccounts, device, timeStamp, r, log, badAccounts };
 
-module.exports = { targetAccounts, device, timeStamp, r, log };
-
-////// TODO: EXPORT THIS AS AN ASYNC FUNCTION
-// for (let xxx = 0; xxx < badAccounts.length; xxx++) {
-// 	if (currentURL.indexOf(badAccounts[xxx]) === -1) {
-// 		console.log(` ❌ DID NOT MATCH the current url: ${currentURL} did not match ${badAccounts[xxx]} \n`);
-// 	} else if (currentURL.indexOf(badAccounts[xxx]) >= 0) {
-// 		console.log(` ✔️ DID MATCH the current url ${currentURL} did match ${badAccounts[xxx]} of the baddies \n`);
-// 	}
+// let currenturl = 'https://www.instagram.com/hb.iv';
+// let searchResult = badAccounts.includes(currenturl);
+// if (!searchResult) {
+// 	console.log('no bad accoutns found ' + searchResult);
+// } else {
+// 	console.log('badAccounts found ' + searchResult);
 // }
