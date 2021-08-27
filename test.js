@@ -42,10 +42,10 @@ puppeteer.use(StealthPlugin());
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
 		await page.waitForTimeout(r23);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
-		log(await page.title());
+		//log(await page.title());
 
 		//----click one random post
-		const posts = await page.$x('//img[@class="FFVAD"]');
+		let posts = await page.$x('//img[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
 			await page.waitForTimeout(r23);
@@ -61,16 +61,14 @@ puppeteer.use(StealthPlugin());
 			await page.waitForTimeout(r(500, 1000));
 		}
 		//---- get a few followers hrefs
-		let hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let x;
+		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
 		let y = r(8, 12);
-		log(y);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
-			for (x = 0; x < y; x++) {
-				log(y--);
+			for (let x = 0; x < y; x++) {
+				//log(y--);
 				let num = r(0, hrefs.length);
-				await page.goto('https://www.instagram.com' + hrefs[num], { waitUntil: 'networkidle0' });
+				await page.goto('https://www.instagram.com' + hrefs[num], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
@@ -95,15 +93,14 @@ puppeteer.use(StealthPlugin());
 						}
 					} else {
 						//---- if private, go to next one
-						log('--PRIVATE PAGE Do NOTHING:');
-						// let privateAcct = await page.$x("//h2[contains(text(), 'This Account is Private')]");
-						// if (privateAcct) {
-						// }
-						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						// if (follow.length > 0) {
-						// 	await follow[0].tap();
-						// 	await page.waitForTimeout(r23);
-						// 	log('Followed Private Account: ' + await page.url());
+						//log('--PRIVATE PAGE Do NOTHING:');
+
+						let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						if (follow.length > 0) {
+							await follow[0].tap();
+							await page.waitForTimeout(r23);
+							log('Followed Private Account: ' + (await page.url()));
+						}
 					}
 				}
 			}
