@@ -10,6 +10,8 @@ function r(min, max) {
 	return ~~(Math.random() * (max - min + 1) + min);
 }
 
+console.log(r(8, 12));
+
 //Function that logs timeStamp + data + \n
 function log(data) {
 	fs.appendFile('src/log.txt', ` ${data}\n`, () => {
@@ -33,7 +35,7 @@ const device = {
 //List of accounts to farm for followers
 const targetAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
-
+	/*
 	'https://www.instagram.com/downtowndelray/',
 	'https://www.instagram.com/visit_delray_beach/',
 	'https://www.instagram.com/visitbocaraton/',
@@ -82,10 +84,10 @@ const targetAccounts = [
 	'https://www.instagram.com/puttnaround/',
 	'https://www.instagram.com/sandowaydiscovery/',
 	'https://www.instagram.com/sundy_house/',
-
+/*
 	///////Valcatch List
 
-	/*//////////////////////Builders/Designer/Architects:
+	//////////////////////Builders/Designer/Architects:
 		'https://www.instagram.com/verandaestatehomes',
 		'https://www.instagram.com/houseofjade',
 		'https://www.instagram.com/pikeproperties',
@@ -138,14 +140,26 @@ const targetAccounts = [
 
 	//MEME PAGES
 	'https://www.instagram.com/theofficememers/',
+	'https://www.instagram.com/savage_memes_only/',
+	'https://www.instagram.com/dundermifflinfeeds/',
 	'https://www.instagram.com/theoffice/',
+	'https://www.instagram.com/randyvalerio/',
+	'https://www.instagram.com/savagehumorcity_/',
+	'https://www.instagram.com/savage.memes.18/',
+	'https://www.instagram.com/sarcasm_meets_savage/',
+	'https://www.instagram.com/the_savage_brunette/',
+	'https://www.instagram.com/darksavagehumor/',
 	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/dundermifflinclips/',
+	'https://www.instagram.com/savage_dirty_memes/',
 	'https://www.instagram.com/bears.beets.officetherapymemes/',
+	'https://www.instagram.com/svd.memez/',
 	'https://www.instagram.com/pambeesle/',
 	'https://www.instagram.com/rainnwilson/',
+	'https://www.instagram.com/_savage.humor_/',
 	'https://www.instagram.com/bjnovak/',
 
+	/*
 	//PAGES WOMEN GO TO
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/revolve/',
@@ -173,7 +187,7 @@ const targetAccounts = [
 	'https://www.instagram.com/lovetrends.shop/',
 	'https://www.instagram.com/glossy_zodiac/',
 	'https://www.instagram.com/bossbabe.inc/',
-
+*/
 	/*LIST TARGETING MEN - ONLYFANS
 	'https://www.instagram.com/mandi_lynn_bbw/',
 	'https://www.instagram.com/therealnatashatosini/',

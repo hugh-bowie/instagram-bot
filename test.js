@@ -33,27 +33,27 @@ puppeteer.use(StealthPlugin());
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
-		log(await page.title());
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
 		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----go to one of the target accounts
-		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle0' });
+		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r23);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
 		//log(await page.title());
 
 		//----click one random post
-		let posts = await page.$x('//img[@class="FFVAD"]');
+		let posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
 			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
 			await page.waitForTimeout(r23);
 			farmPost = await page.url();
 			log(`getting likers from this post: ${farmPost}`);
 		}
+
 		//----click the Likes number on the photo
-		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]')]);
+		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 5 times = 90 followers
 		for (let i = 0; i < 5; i++) {
@@ -62,13 +62,15 @@ puppeteer.use(StealthPlugin());
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(8, 12);
+		let y = r(9, 15);
+		log(hrefs);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
 				//log(y--);
-				let num = r(0, hrefs.length);
-				await page.goto('https://www.instagram.com' + hrefs[num], { waitUntil: 'networkidle2' });
+				let num = r(1, hrefs.length);
+				log(hrefs[num]);
+				await page.goto('https://www.instagram.com' + hrefs[num] /*{ waitUntil: 'networkidle2' }*/);
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
@@ -93,14 +95,14 @@ puppeteer.use(StealthPlugin());
 						}
 					} else {
 						//---- if private, go to next one
-						//log('--PRIVATE PAGE Do NOTHING:');
+						log('--PRIVATE PAGE Do NOTHING:');
 
-						let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						if (follow.length > 0) {
-							await follow[0].tap();
-							await page.waitForTimeout(r23);
-							log('Followed Private Account: ' + (await page.url()));
-						}
+						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						// if (follow.length > 0) {
+						// 	await follow[0].tap();
+						// 	await page.waitForTimeout(r23);
+						// 	log('Followed Private Account: ' + (await page.url()));
+						// }
 					}
 				}
 			}
