@@ -71,8 +71,8 @@ puppeteer.use(StealthPlugin());
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(8, 15);
-		log(hrefs);
+		let y = r(11, 15);
+		// log(hrefs);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
