@@ -2,8 +2,10 @@ require('dotenv').config();
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, device, targetAccounts, timeStamp, badAccounts } = require('./src/helpers');
+const { r, log, device, targetAccounts, timeStamp, badAccounts, comments, emojis } = require('./src/helpers');
 const r23 = r(2000, 3000);
+const randomComment = Math.floor(Math.random() * comments.length);
+const randomEmoji = Math.floor(Math.random() * emojis.length);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
@@ -36,6 +38,13 @@ puppeteer.use(StealthPlugin());
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
 		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+
+		//----- Close the 'use the App' button
+		const closeBtn = await page.$('button.dCJp8');
+		if (closeBtn) {
+			await page.focus('button.dCJp8');
+			await page.tap('button.dCJp8');
+		}
 
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
@@ -87,22 +96,31 @@ puppeteer.use(StealthPlugin());
 						log('going to this post: ' + (await page.url()));
 						//----the Like button to hit
 						let likeBtn = await page.$x('//*[@aria-label="Like"]');
-						if (likeBtn.length > 0) {
+						if (likeBtn.length > 1) {
 							//----Smash that Like btn
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
 							log('Like btn hit here: ' + (await page.url()));
+						} else if (likeBtn.length === 1) {
+							const commentBtn = await page.$x('//*[@aria-label="Comment"]');
+							if (commentBtn) {
+								await Promise.all([page.waitForNavigation(), commentBtn[0].tap()]);
+								await page.tap('textarea');
+								await page.type(`${randomComment} ${randomEmoji}`);
+								log(`${randomComment} ${randomEmoji}`);
+								await page.type('Enter');
+							}
 						}
 					} else {
-						//---- if private, go to next one
-						log('--PRIVATE PAGE Do NOTHING:');
+						// //---- if private, go to next one
+						// log('--PRIVATE PAGE Do NOTHING:');
 
-						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						// if (follow.length > 0) {
-						// 	await follow[0].tap();
-						// 	await page.waitForTimeout(r23);
-						// 	log('Followed Private Account: ' + (await page.url()));
-						// }
+						let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						if (follow.length > 0) {
+							await follow[0].tap();
+							await page.waitForTimeout(r23);
+							log('Followed Private Account: ' + (await page.url()));
+						}
 					}
 				}
 			}
