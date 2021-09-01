@@ -65,19 +65,19 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 5 times = 90 followers
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 6; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(500, 1000));
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(9, 15);
+		let y = r(8, 15);
 		log(hrefs);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
 				//log(y--);
-				let num = r(1, hrefs.length);
+				let num = r(0, hrefs.length);
 				log(hrefs[num]);
 				await page.goto('https://www.instagram.com' + hrefs[num] /*{ waitUntil: 'networkidle2' }*/);
 				await page.waitForTimeout(r23);
@@ -101,7 +101,7 @@ puppeteer.use(StealthPlugin());
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
 							log('Like btn hit here: ' + (await page.url()));
-						} else if (likeBtn.length === 1) {
+						} else if (likeBtn.length == 1) {
 							const commentBtn = await page.$x('//*[@aria-label="Comment"]');
 							if (commentBtn) {
 								await Promise.all([page.waitForNavigation(), commentBtn[0].tap()]);
@@ -112,15 +112,15 @@ puppeteer.use(StealthPlugin());
 							}
 						}
 					} else {
-						// //---- if private, go to next one
-						// log('--PRIVATE PAGE Do NOTHING:');
-
-						let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						if (follow.length > 0) {
-							await follow[0].tap();
-							await page.waitForTimeout(r23);
-							log('Followed Private Account: ' + (await page.url()));
-						}
+						//---- if private, go to next one
+						log('--PRIVATE PAGE Do NOTHING:');
+						log(`${randomComment} ${randomEmoji}`);
+						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						// if (follow.length > 0) {
+						// 	await follow[0].tap();
+						// 	await page.waitForTimeout(r23);
+						// 	log('Followed Private Account: ' + (await page.url()));
+						// }
 					}
 				}
 			}

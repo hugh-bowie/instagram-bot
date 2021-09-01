@@ -10,8 +10,6 @@ function r(min, max) {
 	return ~~(Math.random() * (max - min + 1) + min);
 }
 
-console.log(r(8, 12));
-
 //Function that logs timeStamp + data + \n
 function log(data) {
 	fs.appendFile('src/log.txt', ` ${data}\n`, () => {
@@ -153,7 +151,6 @@ const targetAccounts = [
 	'https://www.instagram.com/dundermifflinclips/',
 	'https://www.instagram.com/savage_dirty_memes/',
 	'https://www.instagram.com/bears.beets.officetherapymemes/',
-	'https://www.instagram.com/svd.memez/',
 	'https://www.instagram.com/pambeesle/',
 	'https://www.instagram.com/rainnwilson/',
 	'https://www.instagram.com/_savage.humor_/',
