@@ -7,11 +7,10 @@ const r23 = r(2000, 3000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
-
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -32,11 +31,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		// await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
-		// await page.waitForSelector("a[href$='/following/']");
-		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		// log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
+		await page.waitForSelector("a[href$='/following/']");
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -70,7 +69,7 @@ puppeteer.use(StealthPlugin());
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(11, 15);
+		let y = r(10, 15);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
@@ -112,14 +111,14 @@ puppeteer.use(StealthPlugin());
 						}
 					} else {
 						//---- if private, go to next one
-						log('--PRIVATE PAGE Do NOTHING:');
-						log(comment[r(0, comment.length)]);
-						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						// if (follow.length > 0) {
-						// 	await follow[0].tap();
-						// 	await page.waitForTimeout(r23);
-						// 	log('Followed Private Account: ' + (await page.url()));
-						// }
+						// log('--PRIVATE PAGE Do NOTHING:');
+						// log(comment[r(0, comment.length)]);
+						let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						if (follow.length > 0) {
+							await follow[0].tap();
+							await page.waitForTimeout(r23);
+							log('Followed Private Account: ' + (await page.url()));
+						}
 					}
 				}
 			}
