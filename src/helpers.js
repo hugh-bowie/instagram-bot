@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 //For Saving screenshots   returns this         8-18-21 5.55.08 PM
-const timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
+let timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
-//setTimeout(() => { console.log(timeStamp + otherT); }, 5000);
+const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
 //random number function
 function r(min, max) {
@@ -34,58 +34,57 @@ const device = {
 const targetAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
 	/*
-		'https://www.instagram.com/downtowndelray/',
-		'https://www.instagram.com/visit_delray_beach/',
-		'https://www.instagram.com/visitbocaraton/',
-		'https://www.instagram.com/bocaratonfl/',
-		'https://www.instagram.com/citybocaraton/',
-		'https://www.instagram.com/bocapolice/',
-		'https://www.instagram.com/delraybeachopen/',
-		'https://www.instagram.com/bluefineart/',
-		'https://www.instagram.com/sandbardelraybeach/',
-		'https://www.instagram.com/new_vegan76/',
-		'https://www.instagram.com/restorationlane/',
-		'https://www.instagram.com/delraymag/',
-		'https://www.instagram.com/renovatewiththeroots/',
-		'https://www.instagram.com/mmwooddesigns/',
-		'https://www.instagram.com/sassafraswpb/',
-		'https://www.instagram.com/realtordotcom/',
-		'https://www.instagram.com/sloans_southflorida/',
-		'https://www.instagram.com/bocalifemag/',
-		'https://www.instagram.com/oldschoolsquaredelray/',
-		'https://www.instagram.com/serenitynowstaging/',
-		'https://www.instagram.com/cerverare',
-		'https://www.instagram.com/livingproof.photography/',
-		'https://www.instagram.com/megangribblehome',
-		'https://www.instagram.com/jillszedergables/',
-		'https://www.instagram.com/flippingahouse/',
-		'https://www.instagram.com/landscapeartinc/',
-		'https://www.instagram.com/rncbuilders/',
-		'https://www.instagram.com/roccostacos/',
-		'https://www.instagram.com/delraybeachmarket/',
-		'https://www.instagram.com/bodegataqueria/',
-		'https://www.instagram.com/thegrovedelrayfl/',
-		'https://www.instagram.com/cut432steakhouse/',
-		'https://www.instagram.com/theheartofdelraygallery/',
-		'https://www.instagram.com/bluefineart/',
-		'https://www.instagram.com/artsgaragedelraybeach/',
-		'https://www.instagram.com/cornellartmuseum/',
-		'https://www.instagram.com/dadadelray/',
-		'https://www.instagram.com/elcaminofla/',
-		'https://www.instagram.com/lesorellerestaurant/',
-		'https://www.instagram.com/deck84_delray/',
-		'https://www.instagram.com/parktavernfl/',
-		'https://www.instagram.com/brule.bistro/',
-		'https://www.instagram.com/habitatforhumanity/',
-		'https://www.instagram.com/bocaratonobserver/',
-		'https://www.instagram.com/delraybeachgolfclub/',
-		'https://www.instagram.com/puttnaround/',
-		'https://www.instagram.com/sandowaydiscovery/',
-		'https://www.instagram.com/sundy_house/',
-    
-		///////Valcatch List
-    
-		//////////////////////Builders/Designer/Architects:
+	'https://www.instagram.com/downtowndelray/',
+	'https://www.instagram.com/visit_delray_beach/',
+	'https://www.instagram.com/visitbocaraton/',
+	'https://www.instagram.com/bocaratonfl/',
+	'https://www.instagram.com/citybocaraton/',
+	'https://www.instagram.com/bocapolice/',
+	'https://www.instagram.com/delraybeachopen/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/sandbardelraybeach/',
+	'https://www.instagram.com/new_vegan76/',
+	'https://www.instagram.com/restorationlane/',
+	'https://www.instagram.com/delraymag/',
+	'https://www.instagram.com/renovatewiththeroots/',
+	'https://www.instagram.com/mmwooddesigns/',
+	'https://www.instagram.com/sassafraswpb/',
+	'https://www.instagram.com/realtordotcom/',
+	'https://www.instagram.com/sloans_southflorida/',
+	'https://www.instagram.com/bocalifemag/',
+	'https://www.instagram.com/oldschoolsquaredelray/',
+	'https://www.instagram.com/serenitynowstaging/',
+	'https://www.instagram.com/cerverare',
+	'https://www.instagram.com/livingproof.photography/',
+	'https://www.instagram.com/megangribblehome',
+	'https://www.instagram.com/jillszedergables/',
+	'https://www.instagram.com/flippingahouse/',
+	'https://www.instagram.com/landscapeartinc/',
+	'https://www.instagram.com/rncbuilders/',
+	'https://www.instagram.com/roccostacos/',
+	'https://www.instagram.com/delraybeachmarket/',
+	'https://www.instagram.com/bodegataqueria/',
+	'https://www.instagram.com/thegrovedelrayfl/',
+	'https://www.instagram.com/cut432steakhouse/',
+	'https://www.instagram.com/theheartofdelraygallery/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/artsgaragedelraybeach/',
+	'https://www.instagram.com/cornellartmuseum/',
+	'https://www.instagram.com/dadadelray/',
+	'https://www.instagram.com/elcaminofla/',
+	'https://www.instagram.com/lesorellerestaurant/',
+	'https://www.instagram.com/deck84_delray/',
+	'https://www.instagram.com/parktavernfl/',
+	'https://www.instagram.com/brule.bistro/',
+	'https://www.instagram.com/habitatforhumanity/',
+	'https://www.instagram.com/bocaratonobserver/',
+	'https://www.instagram.com/delraybeachgolfclub/',
+	'https://www.instagram.com/puttnaround/',
+	'https://www.instagram.com/sandowaydiscovery/',
+	'https://www.instagram.com/sundy_house/',
+/*
+	///////Valcatch List
+	//////////////////////Builders/Designer/Architects:
 		'https://www.instagram.com/verandaestatehomes',
 		'https://www.instagram.com/houseofjade',
 		'https://www.instagram.com/pikeproperties',
@@ -134,21 +133,35 @@ const targetAccounts = [
 		'https://www.instagram.com/Visitpalmbeach',
 		'https://www.instagram.com/Thebreakers',
 		'https://www.instagram.com/Eaupalmbeach',
-	*/
+		*/
+
 	//MEME PAGES
 	'https://www.instagram.com/theofficememers/',
+	'https://www.instagram.com/savage_memes_only/',
+	'https://www.instagram.com/goodgirl_badtimes/',
+	'https://www.instagram.com/dundermifflinfeeds/',
 	'https://www.instagram.com/theoffice/',
+	'https://www.instagram.com/adult_humors/',
+	'https://www.instagram.com/randyvalerio/',
+	'https://www.instagram.com/worstigaccount/',
+	'https://www.instagram.com/queen.catto/',
+	'https://www.instagram.com/wholesometroll/',
+	'https://www.instagram.com/memetheme1/',
+	'https://www.instagram.com/imajokemaker/',
+	'https://www.instagram.com/tequilashots/',
+	'https://www.instagram.com/memes_quantum/',
+	'https://www.instagram.com/textpostgiant/',
+	'https://www.instagram.com/cumsee_adulthumor_/',
+	'https://www.instagram.com/tumblermemes/',
 	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/dundermifflinclips/',
+	'https://www.instagram.com/savage_dirty_memes/',
 	'https://www.instagram.com/bears.beets.officetherapymemes/',
 	'https://www.instagram.com/pambeesle/',
 	'https://www.instagram.com/rainnwilson/',
 	'https://www.instagram.com/bjnovak/',
 
-	//FOR TESTINg badAccounts Array
-	// 'https://www.instagram.com/hb.iv',
-	// 'https://www.instagram.com/lj_brink_',
-
+	/*
 	//PAGES WOMEN GO TO
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/revolve/',
@@ -176,8 +189,7 @@ const targetAccounts = [
 	'https://www.instagram.com/lovetrends.shop/',
 	'https://www.instagram.com/glossy_zodiac/',
 	'https://www.instagram.com/bossbabe.inc/',
-
-
+*/
 	/*LIST TARGETING MEN - ONLYFANS
 	'https://www.instagram.com/mandi_lynn_bbw/',
 	'https://www.instagram.com/therealnatashatosini/',
@@ -201,14 +213,58 @@ const targetAccounts = [
 	*/
 ];
 
+let comment = [
+	'Astonishing',
+	'Savage',
+	'Ferocious',
+	'Astounding',
+	'Surprising',
+	'Stunning',
+	'Shocking',
+	'Startliing',
+	'Breathtaking',
+	'Shattering',
+	'Awww',
+	'Sensational',
+	'BTFO',
+	'Spectacular',
+	'Stupendous',
+	'Phenomenal',
+	'Extraordinary',
+	'Incredible',
+	'Marvelous',
+	'Thrilling',
+	'Exciting',
+	'Alarming',
+	'Astonishing',
+	'Awe-Inspiring',
+	'Me irl',
+	'Impressive',
+	'Intimidating',
+	'Magnificent',
+	'Overwhelming',
+	'Shocking',
+	'Stunning',
+	'Wonderful',
+	'Wondrous',
+	'Daunting',
+	'Hairy',
+	'Majestic',
+	'Based',
+	'Dead',
+	'Real Gone',
+	'Something Else',
+	'Striking',
+	'Stupefying',
+	'Zero Cool',
+];
 
-module.exports = { targetAccounts, device, timeStamp, r, log };
+module.exports = { targetAccounts, device, timeStamp, r, log, badAccounts, comment };
 
-////// TODO: EXPORT THIS AS AN ASYNC FUNCTION
-// for (let xxx = 0; xxx < badAccounts.length; xxx++) {
-// 	if (currentURL.indexOf(badAccounts[xxx]) === -1) {
-// 		console.log(` ❌ DID NOT MATCH the current url: ${currentURL} did not match ${badAccounts[xxx]} \n`);
-// 	} else if (currentURL.indexOf(badAccounts[xxx]) >= 0) {
-// 		console.log(` ✔️ DID MATCH the current url ${currentURL} did match ${badAccounts[xxx]} of the baddies \n`);
-// 	}
+// let currenturl = 'https://www.instagram.com/hb.iv';
+// let searchResult = badAccounts.includes(currenturl);
+// if (!searchResult) {
+// 	console.log('no bad accoutns found ' + searchResult);
+// } else {
+// 	console.log('badAccounts found ' + searchResult);
 // }
