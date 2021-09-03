@@ -74,7 +74,7 @@ puppeteer.use(StealthPlugin());
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
 				let num = r(0, hrefs.length);
-				await page.goto('https://www.instagram.com' + hrefs[num] /*{ waitUntil: 'networkidle2' }*/);
+				await page.goto('https://www.instagram.com' + hrefs[num], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
@@ -96,11 +96,12 @@ puppeteer.use(StealthPlugin());
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
 							log('Like btn hit here: ' + (await page.url()));
-						} else if (likeBtn.length == 1) {
+						} else {
 							let commentBtn = await page.$x('//*[@aria-label="Comment"]');
 							if (commentBtn) {
 								await Promise.all([page.waitForNavigation(), commentBtn[0].tap()]);
-								await page.tap('textarea');
+								await page.waitForTimeout(r23);
+								await page.type('Tab');
 								await page.type(comment[r(0, comment.length)]);
 								log(comment[r(0, comment.length)]);
 								await page.type('Tab');
@@ -125,10 +126,10 @@ puppeteer.use(StealthPlugin());
 		}
 		//BACK AND CLOSE BROWSER
 		await browser.close();
-		process.exit(1);
+		//process.exit(1);
 	} catch (e) {
 		console.log('error||||||||||||||>>>>>>>> ' + e);
-		process.exit(1);
+		//process.exit(1);
 	}
 })();
 
