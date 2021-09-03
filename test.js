@@ -101,12 +101,9 @@ puppeteer.use(StealthPlugin());
 							if (commentBtn) {
 								await Promise.all([page.waitForNavigation(), commentBtn[0].tap()]);
 								await page.waitForTimeout(r23);
-								await page.type('Tab');
-								await page.type(comment[r(0, comment.length)]);
+								await page.tap('textarea.Ypffh');
+								await page.type('textarea.Ypffh', comment[r(0, comment.length)] + 'Tab' + 'Enter');
 								log(comment[r(0, comment.length)]);
-								await page.type('Tab');
-								await page.waitForTimeout(r23);
-								await page.type('Enter');
 								await page.waitForTimeout(r23);
 							}
 						}
