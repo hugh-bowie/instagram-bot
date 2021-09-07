@@ -13,7 +13,7 @@ function r(min, max) {
 //Function that logs timeStamp + data + \n
 function log(data) {
 	fs.appendFile('src/log.txt', ` ${data}\n`, () => {
-		console.log(`${timeStamp} ${data} `);
+		console.log(`${data}`);
 	});
 }
 

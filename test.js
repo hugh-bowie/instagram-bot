@@ -69,7 +69,7 @@ puppeteer.use(StealthPlugin());
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(10, 15);
+		let y = r(11, 15);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
@@ -109,14 +109,14 @@ puppeteer.use(StealthPlugin());
 						}
 					} else {
 						//---- if private, go to next one
-						log('--PRIVATE PAGE Do NOTHING:');
+						//log('--PRIVATE PAGE Do NOTHING:');
 						// log(comment[r(0, comment.length)]);
-						// let follow = await page.$x("//button[contains(text(), 'Follow')]");
-						// if (follow.length > 0) {
-						// 	await follow[0].tap();
-						// 	await page.waitForTimeout(r23);
-						// 	log('Followed Private Account: ' + (await page.url()));
-						// }
+						let follow = await page.$x("//button[contains(text(), 'Follow')]");
+						if (follow.length > 0) {
+							await follow[0].tap();
+							await page.waitForTimeout(r23);
+							log('Followed Private Account: ' + (await page.url()));
+						}
 					}
 				}
 			}
