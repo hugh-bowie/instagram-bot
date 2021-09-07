@@ -137,6 +137,8 @@ const targetAccounts = [
 
 	//MEME PAGES
 	'https://www.instagram.com/theofficememers/',
+	'https://www.instagram.com/theofficewithmusic/',
+	'https://www.instagram.com/officialnewgirl/',
 	'https://www.instagram.com/savage_memes_only/',
 	'https://www.instagram.com/goodgirl_badtimes/',
 	'https://www.instagram.com/dundermifflinfeeds/',
@@ -144,11 +146,21 @@ const targetAccounts = [
 	'https://www.instagram.com/adult_humors/',
 	'https://www.instagram.com/randyvalerio/',
 	'https://www.instagram.com/worstigaccount/',
+	'https://www.instagram.com/dundermemson/',
+	'https://www.instagram.com/dwightschrutemoments/',
 	'https://www.instagram.com/queen.catto/',
+	'https://www.instagram.com/oscarnunezla/',
+	'https://www.instagram.com/jansdinnerparty/',
+	'https://www.instagram.com/krasinskipics/',
+	'https://www.instagram.com/theofficeusonly/',
 	'https://www.instagram.com/wholesometroll/',
+	'https://www.instagram.com/dundermifflindidyouknow/',
 	'https://www.instagram.com/memetheme1/',
 	'https://www.instagram.com/imajokemaker/',
+	'https://www.instagram.com/dunder_mifflin.munder_difflin/',
+	'https://www.instagram.com/officephotos/',
 	'https://www.instagram.com/tequilashots/',
+	'https://www.instagram.com/the.office.alliance/',
 	'https://www.instagram.com/memes_quantum/',
 	'https://www.instagram.com/textpostgiant/',
 	'https://www.instagram.com/cumsee_adulthumor_/',
@@ -162,7 +174,7 @@ const targetAccounts = [
 	'https://www.instagram.com/bjnovak/',
 
 	/*
-	//PAGES WOMEN GO TO
+	//list Targeting WOMEN 
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/revolve/',
 	'https://www.instagram.com/revolvebeauty/',

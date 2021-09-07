@@ -30,12 +30,12 @@ puppeteer.use(StealthPlugin());
 			await page.waitForTimeout(r23);
 		}
 
-		// // //---- got to home and screenshot the follower count
-		// await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
-		// await page.waitForSelector("a[href$='/following/']");
-		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		// log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		// //---- got to home and screenshot the follower count
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
+		await page.waitForSelector("a[href$='/following/']");
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -69,7 +69,7 @@ puppeteer.use(StealthPlugin());
 		}
 		//---- get a few followers hrefs
 		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(11, 15);
+		let y = r(13, 17);
 		if (hrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
