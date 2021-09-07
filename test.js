@@ -18,7 +18,7 @@ puppeteer.use(StealthPlugin());
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.IG_USER, { delay: r(50, 100) });
+		await page.type("[name='username']", process.env.DINKINNFLICKA, { delay: r(50, 100) });
 		await page.type("[name='password']", process.env.IG_PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r23);
@@ -31,7 +31,7 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle0' });
+		await page.goto('https://www.instagram.com/' + process.env.DINKINNFLICKA, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));

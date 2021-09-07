@@ -144,7 +144,6 @@ const targetAccounts = [
 	'https://www.instagram.com/dundermifflinfeeds/',
 	'https://www.instagram.com/theoffice/',
 	'https://www.instagram.com/adult_humors/',
-	'https://www.instagram.com/randyvalerio/',
 	'https://www.instagram.com/worstigaccount/',
 	'https://www.instagram.com/dundermemson/',
 	'https://www.instagram.com/dwightschrutemoments/',
