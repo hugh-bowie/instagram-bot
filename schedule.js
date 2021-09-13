@@ -1,8 +1,8 @@
 const spawn = require('child_process').spawn;
 const schedule = require('node-schedule');
 
-schedule.scheduleJob('23,44 * * * *', () => {
+schedule.scheduleJob('27,49 * * * *', () => {
 	let now = new Date().toLocaleString();
-	console.log('running ig.js every hour at 35 and :55 ' + now);
-	spawn('node', ['ig.js']);
+	console.log('running ig.js every hour at 27 and 49 ' + now);
+	spawn('node', ['test.js']);
 });
