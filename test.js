@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -31,7 +31,7 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.DINKINNFLICKA, { waitUntil: 'networkidle0' });
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
@@ -63,18 +63,21 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 6 times = 90 followers
-		for (let i = 0; i < 6; i++) {
+		for (let i = 0; i < 9; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(500, 1000));
 		}
+		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
+		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
+		log('publicHrefs: ' + publicHrefs);
 		//---- get a few followers hrefs
-		const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(13, 17);
-		if (hrefs.length > 0) {
+		//const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
+		let y = r(5, 6);
+		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
-				let num = r(0, hrefs.length);
-				await page.goto('https://www.instagram.com' + hrefs[num], { waitUntil: 'networkidle2' });
+				let num = r(0, publicHrefs.length);
+				await page.goto('https://www.instagram.com' + publicHrefs[num], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
@@ -84,7 +87,7 @@ puppeteer.use(StealthPlugin());
 					let posts = await page.$x('//*[@class="FFVAD"]');
 					if (posts.length > 0) {
 						//---- pick a post to like
-						let p = r(1, posts.length);
+						let p = r(0, posts.length);
 						//----click One random Public post to like
 						await Promise.all([page.waitForNavigation(), posts[p].tap()]);
 						await page.waitForTimeout(r23);
@@ -95,15 +98,21 @@ puppeteer.use(StealthPlugin());
 							//----Smash that Like btn
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
+							//add comment method one
 							log('Like btn hit here: ' + (await page.url()));
-						} else {
-							let commentBtn = await page.$x('//*[@aria-label="Comment"]');
-							if (commentBtn) {
-								await Promise.all([page.waitForNavigation(), commentBtn[0].tap()]);
-								await page.waitForTimeout(r23);
-								await page.tap('textarea.Ypffh');
-								await page.type('textarea.Ypffh', comment[r(0, comment.length)] + 'Tab' + 'Enter');
-								log(comment[r(0, comment.length)]);
+							let commentURL = (await page.url()) + 'comments/';
+							log('commentURL: ' + commentURL);
+							await page.goto(commentURL, { waitUntil: 'networkidle2' });
+							await page.waitForTimeout(r23);
+							await page.tap('textarea.Ypffh');
+							await page.waitForTimeout(r23);
+							let thisComment = comment[r(0, comment.length)];
+							log('thisComment: ' + thisComment);
+							await page.type('textarea.Ypffh', thisComment);
+							await page.waitForTimeout(r23);
+							let postBTN = await page.$x('//button[contains(text(), "Post")]');
+							if (postBTN) {
+								await postBTN[0].tap();
 								await page.waitForTimeout(r23);
 							}
 						}
