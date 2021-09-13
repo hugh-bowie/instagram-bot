@@ -17,7 +17,7 @@
 ## 📓 Description
 
 This application uses the Puppeteer Library to Automate Engagement (Like Follow Comment) for the purpose of growing an account. Instagram has extensive AI to detect any Bots and remove those profiles.
-To overcome thier efforts I have added a few Puppeteer plugins to aid in detection avoidance. Test the stealth using this site. [https://bot.sannysoft.com/](https://bot.sannysoft.com/)
+To overcome their efforts I have added a few Puppeteer plugins to aid in detection avoidance. Test the stealth using this site. [https://bot.sannysoft.com/](https://bot.sannysoft.com/)
 
 ## 🎬 Screenshot
 
