@@ -145,7 +145,6 @@ const targetAccounts = [
 	'https://www.instagram.com/officethememes/',
 	'https://www.instagram.com/savage_memes_only/',
 	'https://www.instagram.com/goodgirl_badtimes/',
-	'https://www.instagram.com/dundermifflinfeeds/',
 	'https://www.instagram.com/theoffice/',
 	'https://www.instagram.com/adult_humors/',
 	'https://www.instagram.com/worstigaccount/',

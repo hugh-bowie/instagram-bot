@@ -31,11 +31,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
-		await page.waitForSelector("a[href$='/following/']");
-		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		// await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
+		// await page.waitForSelector("a[href$='/following/']");
+		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		// log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -69,19 +69,21 @@ puppeteer.use(StealthPlugin());
 		}
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log('publicHrefs: ' + publicHrefs.length);
+		log('publicHrefs: ' + publicHrefs.length + '  \n' + publicHrefs);
 		//---- get a few followers hrefs
 		//const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(11, 15);
+		let y = r(11, 13);
+		log(y);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
-				let num = r(0, publicHrefs.length);
+				let num = r(0, publicHrefs[0]);
 				await page.goto('https://www.instagram.com' + publicHrefs[num], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				log('Went Here: ' + currentURL);
+				// await publicHrefs[num]
 				if (!searchBool) {
 					//----get the top 24 posts
 					let posts = await page.$x('//*[@class="FFVAD"]');
