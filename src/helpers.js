@@ -137,6 +137,12 @@ const targetAccounts = [
 
 	//MEME PAGES
 	'https://www.instagram.com/theofficememers/',
+	'https://www.instagram.com/nugget/',
+	'https://www.instagram.com/insta.single/',
+	'https://www.instagram.com/alwayssunnyfxx/',
+	'https://www.instagram.com/thebasicdrunk/',
+	'https://www.instagram.com/wineforwine_/',
+	'https://www.instagram.com/hoegivesnofucks/',
 	'https://www.instagram.com/the.office.alliance/',
 	'https://www.instagram.com/theofficewithmusic/',
 	'https://www.instagram.com/theofficeismycrack/',
