@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -31,11 +31,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		// await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
-		// await page.waitForSelector("a[href$='/following/']");
-		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		// log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
+		await page.waitForSelector("a[href$='/following/']");
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -48,6 +48,10 @@ puppeteer.use(StealthPlugin());
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r23);
 		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
+		for (let pdn = 0; pdn < 5; pdn++) {
+			await page.keyboard.press('PageDown');
+			await page.waitForTimeout(r(400, 500));
+		}
 		//log(await page.title());
 
 		//----click one random post
@@ -63,21 +67,21 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 6 times = 90 followers
-		for (let i = 0; i < 12; i++) {
+		for (let i = 0; i < 15; i++) {
 			await page.keyboard.press('PageDown');
-			await page.waitForTimeout(r(500, 1000));
+			await page.waitForTimeout(r(200, 500));
 		}
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log('publicHrefs: ' + publicHrefs.length + '  \n' + publicHrefs);
 		//---- get a few followers hrefs
 		//const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(11, 13);
-		log(y);
+		let y = r(8, 12);
+		log('y:' + y);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < y; x++) {
-				let num = r(0, publicHrefs[0]);
+				let num = r(0, publicHrefs.length);
 				await page.goto('https://www.instagram.com' + publicHrefs[num], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
@@ -85,7 +89,20 @@ puppeteer.use(StealthPlugin());
 				log('Went Here: ' + currentURL);
 				// await publicHrefs[num]
 				if (!searchBool) {
+					//---- watch their stupid story
+					// let storyBtn = await page.$x('//*[@aria-disabled="false"]');
+					// if (storyBtn) {
+					// 	await storyBtn[0].tap();
+					// 	await waitForTimeout(r(2000, 3000));
+					// 	await page.goBack({ waitUntil: 'networkidle2' });
+
+					// }
+
 					//----get the top 24 posts
+					await page.keyboard.press('PageDown');
+					await page.waitForTimeout(r(200, 500));
+					await page.keyboard.press('PageDown');
+					await page.waitForTimeout(r(200, 500));
 					let posts = await page.$x('//*[@class="FFVAD"]');
 					if (posts.length > 0) {
 						//---- pick a post to like
@@ -93,7 +110,7 @@ puppeteer.use(StealthPlugin());
 						//----click One random Public post to like
 						await Promise.all([page.waitForNavigation(), posts[p].tap()]);
 						await page.waitForTimeout(r23);
-						log('going to this post: ' + (await page.url()));
+						log('Going to this post: ' + (await page.url()));
 						//----the Like button to hit
 						let likeBtn = await page.$x('//*[@aria-label="Like"]');
 						if (likeBtn.length > 1) {
