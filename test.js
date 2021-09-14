@@ -67,7 +67,7 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 6 times = 90 followers
-		for (let i = 0; i < 15; i++) {
+		for (let i = 0; i < 13; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(200, 500));
 		}
@@ -89,18 +89,7 @@ puppeteer.use(StealthPlugin());
 				log('Went Here: ' + currentURL);
 				// await publicHrefs[num]
 				if (!searchBool) {
-					//---- watch their stupid story
-					// let storyBtn = await page.$x('//*[@aria-disabled="false"]');
-					// if (storyBtn) {
-					// 	await storyBtn[0].tap();
-					// 	await waitForTimeout(r(2000, 3000));
-					// 	await page.goBack({ waitUntil: 'networkidle2' });
-
-					// }
-
 					//----get the top 24 posts
-					await page.keyboard.press('PageDown');
-					await page.waitForTimeout(r(200, 500));
 					await page.keyboard.press('PageDown');
 					await page.waitForTimeout(r(200, 500));
 					let posts = await page.$x('//*[@class="FFVAD"]');
