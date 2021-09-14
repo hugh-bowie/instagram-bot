@@ -64,7 +64,7 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//----click the Likes number on the photo
-		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
+		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 6 times = 90 followers
 		for (let i = 0; i < 13; i++) {
