@@ -2,7 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, device, targetAccounts, badAccounts, comment } = require('./src/helpers');
+const { r, log, device, targetAccounts, badAccounts, comment, timeNow } = require('./src/helpers');
 const r23 = r(2000, 3000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
@@ -35,7 +35,7 @@ puppeteer.use(StealthPlugin());
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		log(`${timeNow} ----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -64,10 +64,10 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//----click the Likes number on the photo
-		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]')]);
+		await Promise.all([page.waitForNavigation(), page.tap('[href$="liked_by/"]'), page.focus('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 6 times = 90 followers
-		for (let i = 0; i < 13; i++) {
+		for (let i = 0; i < 15; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(200, 500));
 		}
@@ -76,7 +76,7 @@ puppeteer.use(StealthPlugin());
 		log('publicHrefs: ' + publicHrefs.length + '  \n' + publicHrefs);
 		//---- get a few followers hrefs
 		//const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let y = r(8, 12);
+		let y = r(15, 17);
 		log('y:' + y);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
@@ -89,7 +89,18 @@ puppeteer.use(StealthPlugin());
 				log('Went Here: ' + currentURL);
 				// await publicHrefs[num]
 				if (!searchBool) {
+					//---- watch their stupid story
+					// let storyBtn = await page.$x('//*[@aria-disabled="false"]');
+					// if (storyBtn) {
+					// 	await storyBtn[0].tap();
+					// 	await waitForTimeout(r(2000, 3000));
+					// 	await page.goBack({ waitUntil: 'networkidle2' });
+
+					// }
+
 					//----get the top 24 posts
+					await page.keyboard.press('PageDown');
+					await page.waitForTimeout(r(200, 500));
 					await page.keyboard.press('PageDown');
 					await page.waitForTimeout(r(200, 500));
 					let posts = await page.$x('//*[@class="FFVAD"]');
