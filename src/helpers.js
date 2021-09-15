@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 //For Saving screenshots   returns this         8-18-21 5.55.08 PM
-let timeStamp = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
+let timeNow = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
 
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_', 'https://www.instagram.com/_.iamkyoko._/'];
 
@@ -339,7 +339,7 @@ let comment = [
 	'...And I never got caught neither.',
 ];
 
-module.exports = { targetAccounts, device, timeStamp, r, log, badAccounts, comment };
+module.exports = { targetAccounts, device, timeNow, r, log, badAccounts, comment };
 
 // let currenturl = 'https://www.instagram.com/hb.iv';
 // let searchResult = badAccounts.includes(currenturl);
