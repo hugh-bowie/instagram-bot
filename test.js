@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -73,7 +73,7 @@ puppeteer.use(StealthPlugin());
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log('publicHrefs: ' + publicHrefs.length + '  \n' + publicHrefs);
 
-		let rNum = (7, 9);
+		let rNum = (6, 9);
 		log('rNum ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times

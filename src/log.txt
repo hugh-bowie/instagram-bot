@@ -1,228 +1,355 @@
- 9-15-21 6.21.58 PM Account to Farm followers: https://www.instagram.com/bitch_y_quotes__/
- getting likers from this post: https://www.instagram.com/p/CTs2ckHj3Lp/
- 9-15-21 6.52.25 PM Account to Farm followers: https://www.instagram.com/bears.beets.officetherapymemes/
- getting likers from this post: https://www.instagram.com/p/CTIBuWjrSqU/
- 9-15-21 8.29.31 PM Account to Farm followers: https://www.instagram.com/theofficememers/
- getting likers from this post: https://www.instagram.com/p/CTaScywI4Ov/
- 9-15-21 8.58.15 PM Account to Farm followers: https://www.instagram.com/theofficeismycrack/
- getting likers from this post: https://www.instagram.com/p/CT1CfwqAJo9/
- rNum 15
- publicHrefs: 18  
-/bankroll._.3mily/,/sugarlessfitness88/,/perdefault/,/gonzalezolatz/,/cami_toronjita/,/andrea.uohhh/,/raqueeezy/,/svenhoegger/,/earth2sofiaaa/,/lillian.cd/,/ashleylstricker/,/bettinxsanabria/,/fathershay_/,/g.i.z.a.r.t/,/pink.astro1/,/aidan.86/,/ananthu_bl/,/lucaarianne/
- publicHrefs.length: 18
- 0 Went Here: https://www.instagram.com/bankroll._.3mily/
- publicHrefs.length: 18
- --PRIVATE PAGE Do NOTHING:
- 1 Went Here: https://www.instagram.com/sugarlessfitness88/
- Going to this post: https://www.instagram.com/p/CP5h-6lD8V3/
- publicHrefs.length: 18
- 2 Went Here: https://www.instagram.com/perdefault/
- Going to this post: https://www.instagram.com/p/B_qnfNeFB3w/
- Like btn hit here: https://www.instagram.com/p/B_qnfNeFB3w/
- commentURL: https://www.instagram.com/p/B_qnfNeFB3w/comments/
- thisComment: Bob Vance, Vance Refrigeration.
- publicHrefs.length: 18
- 3 Went Here: https://www.instagram.com/gonzalezolatz/
- Going to this post: https://www.instagram.com/p/B5LOVISK140/
- commentURL: https://www.instagram.com/p/B5LOVISK140/comments/
- Like btn hit here: https://www.instagram.com/p/B5LOVISK140/
- thisComment: 42.7 percent of all statistics are made up on the spot.
- publicHrefs.length: 18
- 4 Went Here: https://www.instagram.com/cami_toronjita/
- Going to this post: https://www.instagram.com/p/CMr9XBiABo3/
- Like btn hit here: https://www.instagram.com/p/CMr9XBiABo3/
- commentURL: https://www.instagram.com/p/CMr9XBiABo3/comments/
- thisComment: Always the Padawan, never the Jedi.
- publicHrefs.length: 18
- 5 Went Here: https://www.instagram.com/andrea.uohhh/
- Going to this post: https://www.instagram.com/p/B-pXdMkCqoO/
- commentURL: https://www.instagram.com/p/B-pXdMkCqoO/comments/
- Like btn hit here: https://www.instagram.com/p/B-pXdMkCqoO/
- thisComment: I’m not usually the butt of the joke. I’m usually the face of the joke.
- publicHrefs.length: 18
- 6 Went Here: https://www.instagram.com/raqueeezy/
- Going to this post: https://www.instagram.com/p/BnXcIawFM9e/
- commentURL: https://www.instagram.com/p/BnXcIawFM9e/comments/
- Like btn hit here: https://www.instagram.com/p/BnXcIawFM9e/
- thisComment: Kept me in the loop
- publicHrefs.length: 18
- 7 Went Here: https://www.instagram.com/svenhoegger/
- 9-15-21 9.19.06 PM Account to Farm followers: https://www.instagram.com/imajokemaker/
- getting likers from this post: https://www.instagram.com/p/B8VIeTYg0EH/
- publicHrefs: 15  
-/laurenldonahue/,/queenbetchmemes/,/iamtayyonce_/,/fuggthefeels/,/hannahmlplanet/,/slatersrevenge_/,/damndsp/,/luke.glinski/,/3_ghost_notes/,/lauanyalvees/,/its_wingardium_levi_o_sa/,/peter.caloyeras/,/aminaa.elsaid/,/happy_pappy23/,/instagoldbergram/
+ 9-15-21 11.46.00 PM ----flws---- 25 -----flwng----- 32 -----
+ 9-15-21 11.46.00 PM Account to Farm followers: https://www.instagram.com/dwightschrutemoments/
+ getting likers from this post: https://www.instagram.com/p/CT2njb3ABiw/
+ publicHrefs.length: 17
+ publicHrefs: 17  
+/izukittyy/,/meaningfultodd/,/jackcaf2412/,/taylor.clark.14/,/buriedkings/,/stifflers_mom1103/,/maddie_is__gone/,/elianysbeatriz/,/po.z.here/,/toriejune/,/lascprez/,/tmj_tssr/,/brookemacquarrie/,/daydream_to_reality/,/_lubby_alexa_/,/oliviasweeneyyy/,/the_hawkamania/
  rNum 9
- publicHrefs.length: 15
- 0 Went Here: https://www.instagram.com/laurenldonahue/
- Going to this post: https://www.instagram.com/p/CScSgqWlYK-/
- Like btn hit here: https://www.instagram.com/p/CScSgqWlYK-/
- commentURL: https://www.instagram.com/p/CScSgqWlYK-/comments/
- thisComment: Friday, my second favorite F word.
- publicHrefs.length: 15
- 1 Went Here: https://www.instagram.com/queenbetchmemes/
- Going to this post: https://www.instagram.com/p/CT2RjwllRlP/
- commentURL: https://www.instagram.com/p/CT2RjwllRlP/comments/
- Like btn hit here: https://www.instagram.com/p/CT2RjwllRlP/
- thisComment: ...And I never got caught neither.
- publicHrefs.length: 15
- 2 Went Here: https://www.instagram.com/iamtayyonce_/
- Going to this post: https://www.instagram.com/p/CToKoO2LmXU/
- Like btn hit here: https://www.instagram.com/p/CToKoO2LmXU/
- commentURL: https://www.instagram.com/p/CToKoO2LmXU/comments/
- thisComment: With great power comes a great electricity bill.
- publicHrefs.length: 15
- 3 Went Here: https://www.instagram.com/fuggthefeels/
- Going to this post: https://www.instagram.com/p/CTOidtQAsq4/
- commentURL: https://www.instagram.com/p/CTOidtQAsq4/comments/
- Like btn hit here: https://www.instagram.com/p/CTOidtQAsq4/
- thisComment: I overslept. Damn rooster didnt crow.
- publicHrefs.length: 15
- 4 Went Here: https://www.instagram.com/hannahmlplanet/
- Going to this post: https://www.instagram.com/p/CTmg2EpL0Vk/
- Like btn hit here: https://www.instagram.com/p/CTmg2EpL0Vk/
- commentURL: https://www.instagram.com/p/CTmg2EpL0Vk/comments/
- thisComment: The eyes are the groin of the face. -Dwight Schrute
- publicHrefs.length: 15
- 5 Went Here: https://www.instagram.com/slatersrevenge_/
- Going to this post: https://www.instagram.com/p/CJzD0fWlxFX/
- commentURL: https://www.instagram.com/p/CJzD0fWlxFX/comments/
- Like btn hit here: https://www.instagram.com/p/CJzD0fWlxFX/
- thisComment: Well, well, well, how the turntables.
- publicHrefs.length: 15
- 6 Went Here: https://www.instagram.com/damndsp/
- Going to this post: https://www.instagram.com/p/CTHllaSND6h/
- commentURL: https://www.instagram.com/p/CTHllaSND6h/comments/
- Like btn hit here: https://www.instagram.com/p/CTHllaSND6h/
- thisComment: ...And I never got caught neither.
- publicHrefs.length: 15
- 7 Went Here: https://www.instagram.com/luke.glinski/
- Going to this post: https://www.instagram.com/p/COnnBMDAR7-/
- Like btn hit here: https://www.instagram.com/p/COnnBMDAR7-/
- commentURL: https://www.instagram.com/p/COnnBMDAR7-/comments/
- thisComment: Team player
- publicHrefs.length: 15
- 8 Went Here: https://www.instagram.com/3_ghost_notes/
- Going to this post: https://www.instagram.com/p/CM834YQFpyB/
- Like btn hit here: https://www.instagram.com/p/CM834YQFpyB/
- commentURL: https://www.instagram.com/p/CM834YQFpyB/comments/
- thisComment: Well, well, well, how the turntables.
- 9-15-21 10.26.37 PM ----flws---- 25 -----flwng----- 32 -----
- 9-15-21 10.26.37 PM Account to Farm followers: https://www.instagram.com/jansdinnerparty/
- getting likers from this post: https://www.instagram.com/p/CTnew7TgCwL/
- 9-15-21 10.30.02 PM ----flws---- 25 -----flwng----- 32 -----
- 9-15-21 10.30.02 PM Account to Farm followers: https://www.instagram.com/tumblermemes/
- getting likers from this post: https://www.instagram.com/p/CTzA_QGAIh7/
+ 0 Went Here: https://www.instagram.com/izukittyy/
+ Going to this post: https://www.instagram.com/p/CTgJkQZNqmp/
+ Like btn hit here: https://www.instagram.com/p/CTgJkQZNqmp/
+ commentURL: https://www.instagram.com/p/CTgJkQZNqmp/comments/
+ thisComment: Bellissimo
+ publicHrefs.length: 17
+ 1 Went Here: https://www.instagram.com/meaningfultodd/
+ Going to this post: https://www.instagram.com/p/CRH8-K1Jwz2/
+ commentURL: https://www.instagram.com/p/CRH8-K1Jwz2/comments/
+ Like btn hit here: https://www.instagram.com/p/CRH8-K1Jwz2/
+ thisComment: That moment when you realize your childhood is over.
+ publicHrefs.length: 17
+ 2 Went Here: https://www.instagram.com/jackcaf2412/
+ 9-16-21 12.23.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 12.23.00 AM Account to Farm followers: https://www.instagram.com/queen.catto/
+ getting likers from this post: https://www.instagram.com/p/COuWdrgjw4w/
  rNum 9
- publicHrefs: 25  
-/pansexual_jonathan/,/schaeferjenna/,/woody.joe20/,/alyxj0/,/chokani_mictlan/,/just_another_human_thing/,/cainingram/,/skim._.draws/,/kay_from_toon_town/,/isagiapprover/,/thatgothmetalhead/,/the.true.saiteru/,/theman.downstairs/,/cryptd_moth/,/local.lover.boy/,/taylor.hat/,/charlie_is_notavailable/,/mendji99/,/dazofdarkness/,/bishop_conway/,/yeetsmeep30/,/raymundouc93/,/thornbanana/,/my_cahk/,/aetrvnk/
- publicHrefs.length: 25
- 0 Went Here: https://www.instagram.com/pansexual_jonathan/
- Going to this post: https://www.instagram.com/p/CThlDOtLN18/
- commentURL: https://www.instagram.com/p/CThlDOtLN18/comments/
- Like btn hit here: https://www.instagram.com/p/CThlDOtLN18/
- thisComment: I woke up like this.
- publicHrefs.length: 25
- 1 Went Here: https://www.instagram.com/schaeferjenna/
- Going to this post: https://www.instagram.com/p/Bym5i51nWPF/
- commentURL: https://www.instagram.com/p/Bym5i51nWPF/comments/
- Like btn hit here: https://www.instagram.com/p/Bym5i51nWPF/
- thisComment: Something Else
- publicHrefs.length: 25
- 2 Went Here: https://www.instagram.com/woody.joe20/
- Going to this post: https://www.instagram.com/p/CLCz28rgWHc/
- commentURL: https://www.instagram.com/p/CLCz28rgWHc/comments/
- Like btn hit here: https://www.instagram.com/p/CLCz28rgWHc/
- thisComment: Me irl
- publicHrefs.length: 25
- 3 Went Here: https://www.instagram.com/alyxj0/
- Going to this post: https://www.instagram.com/p/CPtiXJNB8bB/
- Like btn hit here: https://www.instagram.com/p/CPtiXJNB8bB/
- commentURL: https://www.instagram.com/p/CPtiXJNB8bB/comments/
- thisComment: Keep doing that, yeah.
- publicHrefs.length: 25
- 4 Went Here: https://www.instagram.com/chokani_mictlan/
- Going to this post: https://www.instagram.com/p/CR7mdksnPHB/
- Like btn hit here: https://www.instagram.com/p/CR7mdksnPHB/
- commentURL: https://www.instagram.com/p/CR7mdksnPHB/comments/
- thisComment: With great power comes a great electricity bill.
- publicHrefs.length: 25
- 5 Went Here: https://www.instagram.com/just_another_human_thing/
- Going to this post: https://www.instagram.com/p/CJM0usVHfYq/
- Like btn hit here: https://www.instagram.com/p/CJM0usVHfYq/
- commentURL: https://www.instagram.com/p/CJM0usVHfYq/comments/
- thisComment: Win-win situation
- publicHrefs.length: 25
- 6 Went Here: https://www.instagram.com/cainingram/
- Going to this post: https://www.instagram.com/p/CBt1YRzhE4D/
- Like btn hit here: https://www.instagram.com/p/CBt1YRzhE4D/
- commentURL: https://www.instagram.com/p/CBt1YRzhE4D/comments/
- thisComment: Think outside the box
- publicHrefs.length: 25
- 7 Went Here: https://www.instagram.com/skim._.draws/
- Going to this post: https://www.instagram.com/p/COJWSpHFPnc/
- Like btn hit here: https://www.instagram.com/p/COJWSpHFPnc/
- commentURL: https://www.instagram.com/p/COJWSpHFPnc/comments/
- thisComment: The only time I set the bar low is for limbo.
- publicHrefs.length: 25
- 8 Went Here: https://www.instagram.com/kay_from_toon_town/
- Going to this post: https://www.instagram.com/p/CLTOSCrp4ER/
- commentURL: https://www.instagram.com/p/CLTOSCrp4ER/comments/
- Like btn hit here: https://www.instagram.com/p/CLTOSCrp4ER/
- thisComment: Let’s circle back
- 9-15-21 10.45.21 PM ----flws---- 25 -----flwng----- 32 -----
- 9-15-21 10.45.21 PM Account to Farm followers: https://www.instagram.com/stevecarrelll/
- getting likers from this post: https://www.instagram.com/p/CRywRYZnf0E/
- rNum 9
- publicHrefs: 26  
-/lukes__99/,/lokesh_jkr/,/omaryahia711/,/alineribelli/,/delrosso.giulia/,/b4dgxrl/,/soyunlindopecesin/,/pranav.p.n_15/,/diamoujoyeria/,/neo_silverhand2077/,/chelseabeads_/,/ariadnadavolio/,/_ranveer.06/,/davil.ferreira/,/saraiii870/,/ispoved_nimfetki/,/iamchouette/,/spiffyglobal/,/federico.delgado28/,/gizemyildizofficial1/,/emilykinstle/,/manishachauhan627/,/_banerjee.01/,/pnery_albert/,/_thekeyboardguy/,/michellesuria/
- publicHrefs.length: 26
- 0 Went Here: https://www.instagram.com/lukes__99/
- Going to this post: https://www.instagram.com/p/CNsUJK5H7YF/
- Like btn hit here: https://www.instagram.com/p/CNsUJK5H7YF/
- commentURL: https://www.instagram.com/p/CNsUJK5H7YF/comments/
- thisComment: Well, well, well, how the turntables.
- publicHrefs.length: 26
- 1 Went Here: https://www.instagram.com/lokesh_jkr/
- Going to this post: https://www.instagram.com/p/B5czhmFFoQZ/
- commentURL: https://www.instagram.com/p/B5czhmFFoQZ/comments/
- Like btn hit here: https://www.instagram.com/p/B5czhmFFoQZ/
- thisComment: With great power comes a great electricity bill.
- publicHrefs.length: 26
- 2 Went Here: https://www.instagram.com/omaryahia711/
- Going to this post: https://www.instagram.com/p/CTLJGlNDu4p/
- Like btn hit here: https://www.instagram.com/p/CTLJGlNDu4p/
- commentURL: https://www.instagram.com/p/CTLJGlNDu4p/comments/
+ publicHrefs: 24  
+/xthegeo/,/noirekit/,/anavanhom/,/_marte.e/,/alauddinhelmi/,/nep.h/,/a_broke_smoker/,/magsstutyio25/,/_nervous_rat/,/frownyfreezy/,/lurdessalome/,/vera.semmoloni/,/shebedizzyy/,/_daniellaisabel_/,/laurafm18/,/deadxstop/,/no_tengo_redes_sociales_/,/dorian_almu/,/qj42_/,/scrappydogbones/,/elenaadecu/,/majancl/,/large_nuts_haver/,/anna_chiesa/
+ publicHrefs.length: 24
+ 0 Went Here: https://www.instagram.com/xthegeo/
+ Going to this post: https://www.instagram.com/p/CRTxcOZHU98/
+ Like btn hit here: https://www.instagram.com/p/CRTxcOZHU98/
+ commentURL: https://www.instagram.com/p/CRTxcOZHU98/comments/
+ thisComment: I love my employees even though I hit one of you with my car.
+ publicHrefs.length: 24
+ 1 Went Here: https://www.instagram.com/noirekit/
+ Going to this post: https://www.instagram.com/p/CSL2PXxluGm/
+ Like btn hit here: https://www.instagram.com/p/CSL2PXxluGm/
+ commentURL: https://www.instagram.com/p/CSL2PXxluGm/comments/
+ thisComment: I have a lot of questions. Number one, how dare you? –Kelly Kapoor
+ publicHrefs.length: 24
+ 2 Went Here: https://www.instagram.com/anavanhom/
+ Going to this post: https://www.instagram.com/p/CENNRjFFpwm/
+ Like btn hit here: https://www.instagram.com/p/CENNRjFFpwm/
+ commentURL: https://www.instagram.com/p/CENNRjFFpwm/comments/
  thisComment: When I discovered YouTube, I didn’t work for five days.
- publicHrefs.length: 26
- 3 Went Here: https://www.instagram.com/alineribelli/
- Going to this post: https://www.instagram.com/p/CCuldD-Bjq3/
- Like btn hit here: https://www.instagram.com/p/CCuldD-Bjq3/
- commentURL: https://www.instagram.com/p/CCuldD-Bjq3/comments/
- thisComment: I am fast. I’m somewhere between a snake and a mongoose and a panther. -Dwight Schrute
- publicHrefs.length: 26
- 4 Went Here: https://www.instagram.com/delrosso.giulia/
- Going to this post: https://www.instagram.com/p/CS9zcumDXCx/
- commentURL: https://www.instagram.com/p/CS9zcumDXCx/comments/
- Like btn hit here: https://www.instagram.com/p/CS9zcumDXCx/
- thisComment: Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.
- publicHrefs.length: 26
- 5 Went Here: https://www.instagram.com/b4dgxrl/
- Going to this post: https://www.instagram.com/p/CH9en_Gj7Df/
- Like btn hit here: https://www.instagram.com/p/CH9en_Gj7Df/
- commentURL: https://www.instagram.com/p/CH9en_Gj7Df/comments/
- thisComment: Throw them under the bus
- publicHrefs.length: 26
- 6 Went Here: https://www.instagram.com/soyunlindopecesin/
- Going to this post: https://www.instagram.com/p/CSZxf-HHW0y/
- commentURL: https://www.instagram.com/p/CSZxf-HHW0y/comments/
- Like btn hit here: https://www.instagram.com/p/CSZxf-HHW0y/
- thisComment: BTFO
- publicHrefs.length: 26
- 7 Went Here: https://www.instagram.com/pranav.p.n_15/
+ publicHrefs.length: 24
+ 3 Went Here: https://www.instagram.com/_marte.e/
+ Going to this post: https://www.instagram.com/p/B_VMQ9wJ43L/
+ commentURL: https://www.instagram.com/p/B_VMQ9wJ43L/comments/
+ Like btn hit here: https://www.instagram.com/p/B_VMQ9wJ43L/
+ thisComment: Alright, bet.
+ publicHrefs.length: 24
+ 4 Went Here: https://www.instagram.com/alauddinhelmi/
+ Going to this post: https://www.instagram.com/p/CQ5urcgr0P1/
+ Like btn hit here: https://www.instagram.com/p/CQ5urcgr0P1/
+ commentURL: https://www.instagram.com/p/CQ5urcgr0P1/comments/
+ thisComment: Thats Something Else
+ publicHrefs.length: 24
+ 5 Went Here: https://www.instagram.com/nep.h/
+ Going to this post: https://www.instagram.com/p/COp7NdDlrl1/
+ commentURL: https://www.instagram.com/p/COp7NdDlrl1/comments/
+ Like btn hit here: https://www.instagram.com/p/COp7NdDlrl1/
+ thisComment: I love my employees even though I hit one of you with my car.
+ publicHrefs.length: 24
+ 6 Went Here: https://www.instagram.com/a_broke_smoker/
  --PRIVATE PAGE Do NOTHING:
- publicHrefs.length: 26
- 8 Went Here: https://www.instagram.com/diamoujoyeria/
- Going to this post: https://www.instagram.com/p/CShR4F-FwmN/
- Like btn hit here: https://www.instagram.com/p/CShR4F-FwmN/
- commentURL: https://www.instagram.com/p/CShR4F-FwmN/comments/
+ publicHrefs.length: 24
+ 7 Went Here: https://www.instagram.com/magsstutyio25/
+ Going to this post: https://www.instagram.com/p/CR4dr1oAwVA/
+ commentURL: https://www.instagram.com/p/CR4dr1oAwVA/comments/
+ Like btn hit here: https://www.instagram.com/p/CR4dr1oAwVA/
+ thisComment: When Pam gets Michaels old chair, I get Pams old chair. Then I'll have two chairs.
+ publicHrefs.length: 24
+ 8 Went Here: https://www.instagram.com/_nervous_rat/
+ Going to this post: https://www.instagram.com/p/CIEZ1oGJebg/
+ Like btn hit here: https://www.instagram.com/p/CIEZ1oGJebg/
+ commentURL: https://www.instagram.com/p/CIEZ1oGJebg/comments/
+ thisComment: When the king of Nigeria emails you directly, asking for help, you help.
+ 9-16-21 12.46.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 12.46.00 AM Account to Farm followers: https://www.instagram.com/dundermifflin.bloopers/
+ getting likers from this post: https://www.instagram.com/p/CRe7S3HHxgi/
+ 9-16-21 1.23.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 1.23.00 AM Account to Farm followers: https://www.instagram.com/officethememes/
+ getting likers from this post: https://www.instagram.com/p/CTP8212HctW/
+ rNum 9
+ publicHrefs: 21  
+/yeettrivia/,/dundermifflindidyouknow/,/wjleonard2003/,/official_sekani/,/thee.chaka.bee/,/amoghical/,/sytflll/,/pupp_boki/,/ellebi_benessereebellezza/,/shray_ks/,/aman_mahapatra/,/jiechong23/,/lil.rambi/,/caitimarieofficial/,/carellphoto/,/redau.hayat/,/danknuz/,/who_saiditwasme/,/hayleigh_bug_/,/malaynakiel/,/corinne.elainee/
+ publicHrefs.length: 21
+ 0 Went Here: https://www.instagram.com/yeettrivia/
+ Going to this post: https://www.instagram.com/p/CTK09XyFLPy/
+ commentURL: https://www.instagram.com/p/CTK09XyFLPy/comments/
+ Like btn hit here: https://www.instagram.com/p/CTK09XyFLPy/
+ thisComment: ASAP
+ publicHrefs.length: 21
+ 1 Went Here: https://www.instagram.com/dundermifflindidyouknow/
+ Going to this post: https://www.instagram.com/p/CTfHl-UHxxq/
+ commentURL: https://www.instagram.com/p/CTfHl-UHxxq/comments/
+ Like btn hit here: https://www.instagram.com/p/CTfHl-UHxxq/
+ thisComment: Thats Something Else
+ publicHrefs.length: 21
+ 2 Went Here: https://www.instagram.com/wjleonard2003/
+ Going to this post: https://www.instagram.com/p/CGlpZeeHne4/
+ Like btn hit here: https://www.instagram.com/p/CGlpZeeHne4/
+ commentURL: https://www.instagram.com/p/CGlpZeeHne4/comments/
+ thisComment: I talk a lot, so I’ve learned to tune myself out.
+ publicHrefs.length: 21
+ 3 Went Here: https://www.instagram.com/official_sekani/
+ Going to this post: https://www.instagram.com/p/CMWqo17nOqD/
+ Like btn hit here: https://www.instagram.com/p/CMWqo17nOqD/
+ commentURL: https://www.instagram.com/p/CMWqo17nOqD/comments/
  thisComment: ...Battlestar Galactica
+ publicHrefs.length: 21
+ 4 Went Here: https://www.instagram.com/thee.chaka.bee/
+ Going to this post: https://www.instagram.com/p/BnRiclsFWyj/
+ Like btn hit here: https://www.instagram.com/p/BnRiclsFWyj/
+ commentURL: https://www.instagram.com/p/BnRiclsFWyj/comments/
+ thisComment: Which Bear is Best?
+ publicHrefs.length: 21
+ 5 Went Here: https://www.instagram.com/amoghical/
+ Going to this post: https://www.instagram.com/p/CRoCvH0LHLC/
+ Like btn hit here: https://www.instagram.com/p/CRoCvH0LHLC/
+ commentURL: https://www.instagram.com/p/CRoCvH0LHLC/comments/
+ thisComment: And I will travel to New Zealand. And walk the Lord of the Rings trail to Mordor
+ publicHrefs.length: 21
+ 6 Went Here: https://www.instagram.com/sytflll/
+ Going to this post: https://www.instagram.com/p/CJAN4lcFHrr/
+ Like btn hit here: https://www.instagram.com/p/CJAN4lcFHrr/
+ commentURL: https://www.instagram.com/p/CJAN4lcFHrr/comments/
+ thisComment: How is it possible that in five years, I’ve had two engagements and only one chair?
+ publicHrefs.length: 21
+ 7 Went Here: https://www.instagram.com/pupp_boki/
+ Going to this post: https://www.instagram.com/p/CRiGCxhlHpa/
+ Like btn hit here: https://www.instagram.com/p/CRiGCxhlHpa/
+ commentURL: https://www.instagram.com/p/CRiGCxhlHpa/comments/
+ thisComment: Think outside the box
+ publicHrefs.length: 21
+ 8 Went Here: https://www.instagram.com/ellebi_benessereebellezza/
+ Going to this post: https://www.instagram.com/p/CTl33ETgp_a/
+ Like btn hit here: https://www.instagram.com/p/CTl33ETgp_a/
+ commentURL: https://www.instagram.com/p/CTl33ETgp_a/comments/
+ thisComment: Raise the bar
+ 9-16-21 1.46.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 1.46.00 AM Account to Farm followers: https://www.instagram.com/creedbratton1/
+ getting likers from this post: https://www.instagram.com/p/CTF-3f2nutb/
+ publicHrefs: 10  
+/am_i_elliot/,/theofficereviews/,/vedusings/,/nakosyachu/,/18_paras/,/_bubblegum.art__/,/mixedgoddesss/,/pedro.henriqueprea/,/halseyfore/,/eli4prez2k777/
+ publicHrefs.length: 10
+ rNum 9
+ 0 Went Here: https://www.instagram.com/am_i_elliot/
+ Going to this post: https://www.instagram.com/p/BwPfk8fgsh4/
+ Like btn hit here: https://www.instagram.com/p/BwPfk8fgsh4/
+ commentURL: https://www.instagram.com/p/BwPfk8fgsh4/comments/
+ thisComment: Raise the bar
+ publicHrefs.length: 10
+ 1 Went Here: https://www.instagram.com/theofficereviews/
+ Going to this post: https://www.instagram.com/p/CSq66mUj3WG/
+ commentURL: https://www.instagram.com/p/CSq66mUj3WG/comments/
+ Like btn hit here: https://www.instagram.com/p/CSq66mUj3WG/
+ thisComment: Occasionally, I’ll hit someone with my car. So sue me.
+ publicHrefs.length: 10
+ 2 Went Here: https://www.instagram.com/vedusings/
+ Going to this post: https://www.instagram.com/p/CJeONWRps9w/
+ Like btn hit here: https://www.instagram.com/p/CJeONWRps9w/
+ commentURL: https://www.instagram.com/p/CJeONWRps9w/comments/
+ thisComment: I’ll loop you in
+ publicHrefs.length: 10
+ 3 Went Here: https://www.instagram.com/nakosyachu/
+ Going to this post: https://www.instagram.com/p/BdfPd1ZDppe/
+ Like btn hit here: https://www.instagram.com/p/BdfPd1ZDppe/
+ commentURL: https://www.instagram.com/p/BdfPd1ZDppe/comments/
+ thisComment: I love catching people in the act. That’s why I always whip open doors.
+ publicHrefs.length: 10
+ 4 Went Here: https://www.instagram.com/18_paras/
+ Going to this post: https://www.instagram.com/p/CTWAyVqPEw6/
+ Like btn hit here: https://www.instagram.com/p/CTWAyVqPEw6/
+ commentURL: https://www.instagram.com/p/CTWAyVqPEw6/comments/
+ thisComment: You miss 100% of the shots you don’t take. Wayne Gretzky.
+ publicHrefs.length: 10
+ 5 Went Here: https://www.instagram.com/_bubblegum.art__/
+ Going to this post: https://www.instagram.com/p/CRUTRvRFeEN/
+ commentURL: https://www.instagram.com/p/CRUTRvRFeEN/comments/
+ Like btn hit here: https://www.instagram.com/p/CRUTRvRFeEN/
+ thisComment: And I will travel to New Zealand. And walk the Lord of the Rings trail to Mordor
+ publicHrefs.length: 10
+ 6 Went Here: https://www.instagram.com/mixedgoddesss/
+ Going to this post: https://www.instagram.com/p/CHTfXahMVju/
+ commentURL: https://www.instagram.com/p/CHTfXahMVju/comments/
+ Like btn hit here: https://www.instagram.com/p/CHTfXahMVju/
+ thisComment: Think outside the box
+ publicHrefs.length: 10
+ 7 Went Here: https://www.instagram.com/pedro.henriqueprea/
+ Going to this post: https://www.instagram.com/p/CJ4gh8fFvFo/
+ Like btn hit here: https://www.instagram.com/p/CJ4gh8fFvFo/
+ commentURL: https://www.instagram.com/p/CJ4gh8fFvFo/comments/
+ thisComment: I… declare…. bankruptcy!
+ publicHrefs.length: 10
+ 8 Went Here: https://www.instagram.com/halseyfore/
+ Going to this post: https://www.instagram.com/p/CTBQPJBI46f/
+ commentURL: https://www.instagram.com/p/CTBQPJBI46f/comments/
+ Like btn hit here: https://www.instagram.com/p/CTBQPJBI46f/
+ thisComment: There’s no such thing as an appropriate joke. That’s why it’s called a joke.
+ 9-16-21 2.23.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 2.23.00 AM Account to Farm followers: https://www.instagram.com/theofficeismycrack/
+ getting likers from this post: https://www.instagram.com/p/CTx98_SrrRi/
+ 9-16-21 2.46.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 2.46.00 AM Account to Farm followers: https://www.instagram.com/oscarnunezla/
+ getting likers from this post: https://www.instagram.com/p/CKUoYJvHpDN/
+ publicHrefs.length: 28
+ rNum 9
+ publicHrefs: 28  
+/ladyzhynskaya/,/c.benjumea.93/,/caramelodecoca/,/midgetalex/,/julilbiagi/,/mister.jhay/,/_bidishaadass._/,/wurzleer/,/jrodkey1/,/luxraujo/,/uttej_barri/,/meechyiseeu/,/isabel_davies15/,/alessiadeysi/,/ali_mack_lionheart/,/paigeedison8/,/anml.adhikari/,/_lxtvs/,/hclips__/,/soumita_sircar3000/,/_jshowtime/,/bolmoan/,/andreaa.g.v/,/dianeeunkim/,/jacobmz97/,/blameitonmygeminisoul/,/simsim.ph/,/sickluverr/
+ 0 Went Here: https://www.instagram.com/ladyzhynskaya/
+ Going to this post: https://www.instagram.com/p/CO2BTjVHtge/
+ commentURL: https://www.instagram.com/p/CO2BTjVHtge/comments/
+ Like btn hit here: https://www.instagram.com/p/CO2BTjVHtge/
+ thisComment: Skin in the game
+ publicHrefs.length: 28
+ 1 Went Here: https://www.instagram.com/c.benjumea.93/
+ Going to this post: https://www.instagram.com/p/CNZOnayCcsm/
+ commentURL: https://www.instagram.com/p/CNZOnayCcsm/comments/
+ Like btn hit here: https://www.instagram.com/p/CNZOnayCcsm/
+ thisComment: I love my employees even though I hit one of you with my car.
+ publicHrefs.length: 28
+ 2 Went Here: https://www.instagram.com/caramelodecoca/
+ --PRIVATE PAGE Do NOTHING:
+ publicHrefs.length: 28
+ 3 Went Here: https://www.instagram.com/midgetalex/
+ Going to this post: https://www.instagram.com/p/CPJPBEyMLrj/
+ Like btn hit here: https://www.instagram.com/p/CPJPBEyMLrj/
+ commentURL: https://www.instagram.com/p/CPJPBEyMLrj/comments/
+ thisComment: I need a six-month holiday, twice a year.
+ publicHrefs.length: 28
+ 4 Went Here: https://www.instagram.com/julilbiagi/
+ Going to this post: https://www.instagram.com/p/CR0GmauLddm/
+ commentURL: https://www.instagram.com/p/CR0GmauLddm/comments/
+ Like btn hit here: https://www.instagram.com/p/CR0GmauLddm/
+ thisComment: The eyes are the groin of the face. -Dwight Schrute
+ publicHrefs.length: 28
+ 5 Went Here: https://www.instagram.com/mister.jhay/
+ publicHrefs.length: 28
+ --PRIVATE PAGE Do NOTHING:
+ 6 Went Here: https://www.instagram.com/_bidishaadass._/
+ Going to this post: https://www.instagram.com/p/CTRQgpIsTJj/
+ commentURL: https://www.instagram.com/p/CTRQgpIsTJj/comments/
+ Like btn hit here: https://www.instagram.com/p/CTRQgpIsTJj/
+ thisComment: You miss 100% of the shots you don’t take. Wayne Gretzky.
+ publicHrefs.length: 28
+ 7 Went Here: https://www.instagram.com/wurzleer/
+ Going to this post: https://www.instagram.com/p/Bpu-k2QHjfU/
+ commentURL: https://www.instagram.com/p/Bpu-k2QHjfU/comments/
+ Like btn hit here: https://www.instagram.com/p/Bpu-k2QHjfU/
+ thisComment: I say dance, they say, ‘How high?
+ publicHrefs.length: 28
+ 8 Went Here: https://www.instagram.com/jrodkey1/
+ 9-16-21 3.23.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 3.23.00 AM Account to Farm followers: https://www.instagram.com/dundermifflintattoos/
+ getting likers from this post: https://www.instagram.com/p/CTXoHTkrS4p/
+ rNum 9
+ publicHrefs.length: 67
+ publicHrefs: 67  
+/danilagrimas/,/deerxhound/,/madisonlyssa/,/liv1ngd3ad/,/rafo9412/,/nyda___13/,/amyelizabethiscool/,/tattoozach/,/nick_santoro2611/,/pickle.dork/,/ssssparks/,/grey_224/,/sam_chapman36/,/n_a_g_s_u_p_r_a_07/,/professional_sloth/,/jordotattooer/,/heather_hall_curlwhisperer/,/4mariealayna/,/elgal4ctico/,/misspockets22/,/willvought/,/mixtapesideb/,/beautifulgal821/,/fryelock__/,/tristan_rock/,/chrishaletattoos/,/knittedwhatknot/,/pandoravonlillian/,/xomisskyra/,/juliozucca/,/megcash21/,/jpv.666/,/raerae_as_skulldozer/,/maroon_moons/,/juaukiss/,/solostarska/,/unclemerce/,/ledandinkarttattoos/,/catalina.bellezze/,/etiennemore/,/robbwild/,/mynameismemo1997/,/karson.kom/,/distantjuna/,/ricks_forge/,/katestevens25/,/xenostreet/,/kristan_nicolee/,/christian_domingo/,/furiotattoos/,/simplysignedleigh/,/_lonely.scorpio_/,/chiara_pall/,/e.m.m.a.carena/,/ni_tattooink/,/beanerscott/,/claramcmurphy/,/layvond/,/see_britt_lift/,/shawnix_/,/sophieekohler/,/catherinethehuman/,/dodagger/,/wait_ninegar24/,/deathstartattoos/,/gramp2/,/imagine.abel.fate/
+ 0 Went Here: https://www.instagram.com/danilagrimas/
+ Going to this post: https://www.instagram.com/p/CSDBy3dKo6U/
+ commentURL: https://www.instagram.com/p/CSDBy3dKo6U/comments/
+ Like btn hit here: https://www.instagram.com/p/CSDBy3dKo6U/
+ thisComment: Would I rather be feared or loved? I want people to be afraid of how much they love me.
+ publicHrefs.length: 67
+ 1 Went Here: https://www.instagram.com/deerxhound/
+ Going to this post: https://www.instagram.com/p/CSr5nTiFCGd/
+ commentURL: https://www.instagram.com/p/CSr5nTiFCGd/comments/
+ Like btn hit here: https://www.instagram.com/p/CSr5nTiFCGd/
+ thisComment: Fool me once, strike one. Fool me twice, strike three.
+ publicHrefs.length: 67
+ 2 Went Here: https://www.instagram.com/madisonlyssa/
+ Going to this post: https://www.instagram.com/p/Bryl6l8A3yW/
+ Like btn hit here: https://www.instagram.com/p/Bryl6l8A3yW/
+ commentURL: https://www.instagram.com/p/Bryl6l8A3yW/comments/
+ thisComment: ...Bears
+ publicHrefs.length: 67
+ 3 Went Here: https://www.instagram.com/liv1ngd3ad/
+ Going to this post: https://www.instagram.com/p/CP0qZqFAqAe/
+ commentURL: https://www.instagram.com/p/CP0qZqFAqAe/comments/
+ Like btn hit here: https://www.instagram.com/p/CP0qZqFAqAe/
+ thisComment: Reach out
+ publicHrefs.length: 67
+ 4 Went Here: https://www.instagram.com/rafo9412/
+ Going to this post: https://www.instagram.com/p/BxobkAwH8m3/
+ commentURL: https://www.instagram.com/p/BxobkAwH8m3/comments/
+ Like btn hit here: https://www.instagram.com/p/BxobkAwH8m3/
+ thisComment: How is it possible that in five years, I’ve had two engagements and only one chair?
+ publicHrefs.length: 67
+ 5 Went Here: https://www.instagram.com/nyda___13/
+ Going to this post: https://www.instagram.com/p/CTiblxkFZDx/
+ commentURL: https://www.instagram.com/p/CTiblxkFZDx/comments/
+ Like btn hit here: https://www.instagram.com/p/CTiblxkFZDx/
+ thisComment: Bellissimo
+ publicHrefs.length: 67
+ 6 Went Here: https://www.instagram.com/amyelizabethiscool/
+ Going to this post: https://www.instagram.com/p/B_A6PFsl_Ci/
+ commentURL: https://www.instagram.com/p/B_A6PFsl_Ci/comments/
+ Like btn hit here: https://www.instagram.com/p/B_A6PFsl_Ci/
+ thisComment: Thats Something Else
+ publicHrefs.length: 67
+ 7 Went Here: https://www.instagram.com/tattoozach/
+ Going to this post: https://www.instagram.com/p/CO_gnN3BGYD/
+ commentURL: https://www.instagram.com/p/CO_gnN3BGYD/comments/
+ Like btn hit here: https://www.instagram.com/p/CO_gnN3BGYD/
+ thisComment: Best thing since sliced bread
+ publicHrefs.length: 67
+ 8 Went Here: https://www.instagram.com/nick_santoro2611/
+ Going to this post: https://www.instagram.com/p/CSjeY9xLvRe/
+ commentURL: https://www.instagram.com/p/CSjeY9xLvRe/comments/
+ Like btn hit here: https://www.instagram.com/p/CSjeY9xLvRe/
+ thisComment: I’m not superstitious, but I am a little stitious.
+ 9-16-21 3.46.00 AM ----flws---- 25 -----flwng----- 32 -----
+ 9-16-21 3.46.00 AM Account to Farm followers: https://www.instagram.com/imajokemaker/
+ getting likers from this post: https://www.instagram.com/p/CKLKl2nAeRN/
+ publicHrefs.length: 23
+ rNum 9
+ publicHrefs: 23  
+/beautynhype/,/rajanayyy/,/brattysu/,/susie_1020/,/aidan_mcaverage/,/prblymary/,/theradicalrachel/,/nanne_kleefstra/,/luke.glinski/,/ct_fish_nerd/,/leahcbeaudoin/,/amar.i.am/,/frank56ol/,/caznith/,/instagoldbergram/,/damndsp/,/sabry.beryls/,/micmou/,/tamale_gooch/,/jooooosiah/,/ponderthefearless/,/udityanpillai/,/its_wingardium_levi_o_sa/
+ 0 Went Here: https://www.instagram.com/beautynhype/
+ Going to this post: https://www.instagram.com/p/CPsRFoUnkFH/
+ commentURL: https://www.instagram.com/p/CPsRFoUnkFH/comments/
+ Like btn hit here: https://www.instagram.com/p/CPsRFoUnkFH/
+ thisComment: Thats Something Else
+ publicHrefs.length: 23
+ 1 Went Here: https://www.instagram.com/rajanayyy/
+ Going to this post: https://www.instagram.com/p/BqDLz8CFLLm/
+ commentURL: https://www.instagram.com/p/BqDLz8CFLLm/comments/
+ Like btn hit here: https://www.instagram.com/p/BqDLz8CFLLm/
+ thisComment: Webster’s Dictionary defines wedding as ‘the fusing of two metals with a hot torch.
+ publicHrefs.length: 23
+ 2 Went Here: https://www.instagram.com/brattysu/
+ Going to this post: https://www.instagram.com/p/CQR6aEhp0I5/
+ Like btn hit here: https://www.instagram.com/p/CQR6aEhp0I5/
+ commentURL: https://www.instagram.com/p/CQR6aEhp0I5/comments/
+ thisComment: Based
+ publicHrefs.length: 23
+ 3 Went Here: https://www.instagram.com/susie_1020/
+ Going to this post: https://www.instagram.com/p/B87_a-1hpsJ/
+ Like btn hit here: https://www.instagram.com/p/B87_a-1hpsJ/
+ commentURL: https://www.instagram.com/p/B87_a-1hpsJ/comments/
+ thisComment: White-collar and blue-collar. I don’t see it that way... Cause I'm collar blind
+ publicHrefs.length: 23
+ 4 Went Here: https://www.instagram.com/aidan_mcaverage/
+ Going to this post: https://www.instagram.com/p/CStBoIJBwL0/
+ commentURL: https://www.instagram.com/p/CStBoIJBwL0/comments/
+ Like btn hit here: https://www.instagram.com/p/CStBoIJBwL0/
+ thisComment: Zero Cool
+ publicHrefs.length: 23
+ 5 Went Here: https://www.instagram.com/prblymary/
+ Going to this post: https://www.instagram.com/p/CHA0sfjB_b5/
+ commentURL: https://www.instagram.com/p/CHA0sfjB_b5/comments/
+ Like btn hit here: https://www.instagram.com/p/CHA0sfjB_b5/
+ thisComment: undefined
