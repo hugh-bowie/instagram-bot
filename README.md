@@ -16,22 +16,25 @@
 
 ## 📓 Description
 
-This application uses the Puppeteer Library to Automate Engagement (Like Follow Comment) for the purpose of growing an account. Instagram has extensive AI to detect any Bots and remove those profiles.
-To overcome their efforts I have added a few Puppeteer plugins to aid in detection avoidance. Test the stealth using this site. [https://bot.sannysoft.com/](https://bot.sannysoft.com/)
+This application uses the Puppeteer Library to Automate Engagement (Like Follow
+Comment) for the purpose of growing an account. Instagram has extensive AI to
+detect any Bots and remove those profiles. To overcome their efforts I have
+added a few Puppeteer plugins to aid in detection avoidance. Test the stealth
+using this site. [https://bot.sannysoft.com/](https://bot.sannysoft.com/)
 
 ## 🎬 Screenshot
 
-![Puppeteer-ig-bot](./assets/dinkin-4.gif)
+![Puppeteer-ig-bot](./assets/onlyDwight.gif)
 
 ## 📋 Table of Contents
 
--   [Description](#description)
--   [Screenshot](#Screenshot)
--   [Table of Contents](#table-of-contents)
--   [Installation](#installation)
--   [Usage](#usage)
--   [Contributing](#contributing)
--   [Questions](#questions)
+- [Description](#description)
+- [Screenshot](#Screenshot)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Questions](#questions)
 
 ## 🛠 Installation
 
@@ -39,7 +42,8 @@ To overcome their efforts I have added a few Puppeteer plugins to aid in detecti
 
 ## ▶️ Useage
 
-You must give this Bot Accounts to engage with. Add them or remove them to the targetAccounts.js Array.
+You must give this Bot Accounts to engage with. Add them or remove them to the
+targetAccounts.js Array.
 
 `node ig.js`
 
@@ -49,4 +53,5 @@ You must give this Bot Accounts to engage with. Add them or remove them to the t
 
 ## ⁉️ Questions
 
-Contact me with any questions: [hughbowie@me.com](mailto:hughbowie@me.com)<br />[GitHub](https://github.com/hugh-bowie)<br />
+Contact me with any questions:
+[hughbowie@me.com](mailto:hughbowie@me.com)<br />[GitHub](https://github.com/hugh-bowie)<br />
