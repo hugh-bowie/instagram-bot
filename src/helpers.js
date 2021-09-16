@@ -247,7 +247,6 @@ const targetAccounts = [
 ];
 
 let comment = [
-
 	'Savage',
 	'It’s a good thing Russia doesn’t exist anymore.',
 	'Well, well, well, how the turntables.',
@@ -288,11 +287,7 @@ let comment = [
 	'Just Perfect',
 	'Its all about my bonus.',
 	'42.7 percent of all statistics are made up on the spot.',
-
 	'I need a six-month holiday, twice a year.',
-
-
-
 	'If I was funny, I would have a good Instagram caption.',
 	'Get back to me ASAP as possible.',
 	'Need an ark? I Noah guy.',
@@ -316,9 +311,6 @@ let comment = [
 	'This is a dream that I’ve had since lunch… and I’m not giving it up now. –Michael Scott',
 	'Throw them under the bus',
 	'I have a lot of questions. Number one, how dare you? –Kelly Kapoor',
-
-
-
 	'Win-win situation',
 	'Would I rather be feared or loved? I want people to be afraid of how much they love me.',
 	'Identity theft is not a joke, Jim!',
@@ -340,20 +332,14 @@ let comment = [
 	'The worst thing about prison was the dementors.',
 	'Skin in the game',
 	'Reach out',
-
-
-
-
 	'The bottom line',
 	'When someone smiles at me, all I see is a chimpanzee begging for its life.',
 	'I’ll loop you in',
-
+	'What was the Dentists name Dwight? - Crentist.',
 	'ASAP',
 	'I talk a lot, so I’ve learned to tune myself out.',
-	'Team player',
 	'Keep doing that, yeah.',
-
-
+	'The Michael Scott Paper Company.',
 	'That moment when you realize your childhood is over.',
 	'With great power comes a great electricity bill.',
 	'You cheated on me? When I specifically asked you not to?',
