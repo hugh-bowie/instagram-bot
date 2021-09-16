@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, targetAccounts, badAccounts, comment, timeNow } = require('./src/helpers');
-const r23 = r(2000, 3000);
+const r23 = r(1000, 2000);
 const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
@@ -31,11 +31,11 @@ puppeteer.use(StealthPlugin());
 		}
 
 		// //---- got to home and screenshot the follower count
-		// await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
-		// await page.waitForSelector("a[href$='/following/']");
-		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		// log(`${timeNow} ----flws---- ${flws} -----flwng----- ${flwng} -----`);
+		await page.goto('https://www.instagram.com/' + process.env.IG_USER, { waitUntil: 'networkidle2' });
+		await page.waitForSelector("a[href$='/following/']");
+		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		log(`${timeNow} ----flws---- ${flws} -----flwng----- ${flwng} -----`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -47,7 +47,7 @@ puppeteer.use(StealthPlugin());
 		//----go to one of the target accounts
 		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r23);
-		log(`Account to Farm followers: ${targetAccounts[randomAccount]}`);
+		log(`${timeNow} Account to Farm followers: ${targetAccounts[randomAccount]}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r(400, 500));
 
@@ -68,13 +68,12 @@ puppeteer.use(StealthPlugin());
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(200, 500));
 		}
+
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-
 		log('publicHrefs: ' + publicHrefs.length + '  \n' + publicHrefs);
-		//---- get a few followers hrefs
-		//const hrefs = await page.$$eval('a[title]', lis => lis.map(li => li.getAttribute('href')));
-		let rNum = (13, 15);
+
+		let rNum = (7, 9);
 		log('rNum ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
@@ -85,25 +84,24 @@ puppeteer.use(StealthPlugin());
 				await page.waitForTimeout(r23);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
-				log('Went Here: ' + currentURL + '\n ' + x);
-				// await publicHrefs[num]
+				log(x + ' Went Here: ' + currentURL);
 				if (!searchBool) {
 					await page.keyboard.press('PageDown');
 					await page.waitForTimeout(r(200, 500));
 					//----- get top 28 posts
 					// ------- potentital alternative selector = $('[href^="/p/"]');
-					let posts = await page.$x('//div[@class="KL4Bh"]');
-					//let posts = await page.$x('//img[@class="FFVAD"]');
+
+					let posts = await page.$x('//img[@class="FFVAD"]');
 					if (posts.length > 0) {
 						//---- pick a post to like
-						let p = r(1, posts.length);
+						let p = r(0, posts.length);
 						//----click One random Public post to like
 						await Promise.all([page.waitForNavigation(), posts[p].tap()]);
 						await page.waitForTimeout(r23);
 						log('Going to this post: ' + (await page.url()));
 						//----the Like button to hit
 						let likeBtn = await page.$x('//*[@aria-label="Like"]');
-						if (likeBtn.length > 1) {
+						if (likeBtn) {
 							//----Smash that Like btn
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r23);
@@ -139,12 +137,13 @@ puppeteer.use(StealthPlugin());
 				}
 			}
 		}
+
 		//BACK AND CLOSE BROWSER
 		await browser.close();
-		//process.exit(1);
+		process.exit(1);
 	} catch (e) {
 		console.log('error||||||||||||||>>>>>>>> ' + e);
-		//process.exit(1);
+		process.exit(1);
 	}
 })();
 
