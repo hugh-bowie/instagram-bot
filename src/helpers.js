@@ -1,9 +1,16 @@
 const fs = require('fs');
 
-//For Saving screenshots   returns this         8-18-21 5.55.08 PM
-let timeNow = new Date().toLocaleString().replace('2021', '21').replace(/\//g, '-').replace(/:/g, '.').replace(',', '').trim();
+async function timeNow() {
+	let date = new Date();
+	let t = date.toLocaleTimeString(); // 2:22:09 PM
+	let d = date.toLocaleDateString(); // 01/03/1984
+	let timeNow = `${d}  ${t}`;
+}
 
-const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_', 'https://www.instagram.com/_.iamkyoko._/'];
+console.log(timeNow());
+console.log('timeNow' + timeNow);
+
+const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
 //random number function
 function r(min, max) {
@@ -247,33 +254,35 @@ const targetAccounts = [
 ];
 
 let comment = [
-	'Savage',
-	"You know, stuff like.. 'Fleece it out' and 'Going mach five'",
+	'Nailed it!',
+	"You know, stuff like.. 'Fleece it out' and 'Going mach five.'",
 	'Well, well, well, how the turntables.',
 	'Webster’s Dictionary defines wedding as ‘the fusing of two metals with a hot torch.',
 	'Who is Justice Beaver?',
 	'I am faster than 80 percent of all snakes.',
 	'Beats...',
 	'...Bears',
-	'...Battlestar Galactica',
+	'...Battlestar Galactica.',
 	'Hi, I’m Date Mike. Nice to meet me.',
 	'Alright, bet.',
 	'Which Bear is Best?',
 	'Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.',
 	'Bread is the paper of the food industry. You write your sandwich on it.',
-	'Bellissimo',
 	'Ain’t no party like a Scranton party cause a Scranton party don’t stop!',
 	'Bob Vance, Vance Refrigeration.',
-	'Break me off a piece of that app-le-sauce',
-	'Threat Level Midnight',
-	'Namaste',
+	'Break me off a piece of that app-le-sauce.',
+	"Now, let's say you and I go toe-to-toe on bird law... and see who comes out the victor.",
+	'Threat Level Midnight.',
+	'Cause... Science is a liar, sometimes.',
 	'I love my employees even though I hit one of you with my car.',
 	'When the king of Nigeria emails you directly, asking for help, you help.',
-	'Rit-dit-dit-doooo',
-	'Savaged',
-	'Hardcore Parkor!',
+	'Rit-dit-dit-doooo!',
+	'This is ham, soaked in rum... RUM-HAM!',
+	"Shadynasty's\nJazz Club",
+	'Fight Milk! The first alcoholic dairy based protein drink for bodyguards!',
+	'Parkor... Hardcore Parkor!',
 	'Jim and I are great friends. We hang out a ton, mostly at work.',
-	"White-collar and blue-collar. I don’t see it that way... Cause I'm collar blind",
+	"White-collar and blue-collar. I don’t see it that way... Cause I'm collar blind.",
 	'I’m an early bird and a night owl. So I’m wise and have worms.',
 	'I love inside jokes. I’d love to be a part of one someday.',
 	'I really should have a tweeter account. -Dwight',
@@ -282,7 +291,7 @@ let comment = [
 	'Don’t ever, for any reason, do anything to anyone, for any reason, ever, no matter what.',
 	'The only time I set the bar low is for limbo.',
 	'I… declare…. bankruptcy!',
-	'You miss 100% of the shots you don’t take. Wayne Gretzky.',
+	'You miss 100% of the shots you don’t take. -Wayne Gretzky --Michael Scott',
 	'Occasionally, I’ll hit someone with my car. So sue me.',
 	'Why waste time say lot word when few word do trick?',
 	'Its all about my bonus.',
@@ -294,14 +303,14 @@ let comment = [
 	'I’m not usually the butt of the joke. I’m usually the face of the joke.',
 	'I am Beyonce, always.',
 	'And I will travel to New Zealand. And walk the Lord of the Rings trail to Mordor',
-	'BTFO',
+	'CharDee MacDennis 2: Electric Boogaloo.',
 	'RUM-HAMMM!',
 	'When I discovered YouTube, I didn’t work for five days.',
 	'I love catching people in the act. That’s why I always whip open doors.',
 	'Always the Padawan, never the Jedi.',
 	'Three words: hardworking, alpha male, jackhammer, merciless, insatiable.',
-	'Gave 110%',
-	'Me irl',
+	"I'm not fat... I'm cultivating mass. -Fat Mac",
+	"You're a master of karate and friendship for everyone. -The Dayman",
 	'I say dance, they say, ‘How high?',
 	'The eyes are the groin of the face. -Dwight Schrute',
 	'Hey Goldenface! – Michael Scarn',
@@ -320,8 +329,8 @@ let comment = [
 	'Bears. Beets. Battlestar Galactica. -Jim Halpert',
 	'That’s what she said.',
 	"I opened this place after I came back from Vietnam... Ooh, Vietnam. I hear it's lovely.",
-	'There’s no I in team',
-	'Back to the drawing board',
+	'Fight Milk! The first alcoholic dairy based protein drink for bodyguards!',
+	'The D.E.N.N.I.S. system.',
 	"When Pam gets Michaels old chair, I get Pams old chair. Then I'll have two chairs.",
 	"Your department's just you, right? Yes, Jim, but I am not easy to manage.",
 	'bipity bopity, gimmie the zopity',
