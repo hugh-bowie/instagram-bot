@@ -36,10 +36,10 @@ puppeteer.use(StealthPlugin());
 
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
-		await page.waitForSelector("a[href$='/following/']");
-		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\n----${flws}----${flwng}--------${timeNow}`);
+		// await page.waitForSelector("a[href$='/following/']");
+		// const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
+		// const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
+		// log(`\n----${flws}----${flwng}--------${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -68,7 +68,7 @@ puppeteer.use(StealthPlugin());
 		await Promise.all([page.waitForNavigation(), await page.tap('[href$="liked_by/"]')]);
 		await page.waitForTimeout(r23);
 		//----pagedown 15 times = 90 followers
-		for (let i = 0; i < 15; i++) {
+		for (let i = 0; i < 20; i++) {
 			await page.keyboard.press('PageDown');
 			await page.waitForTimeout(r(200, 500));
 		}
@@ -76,7 +76,7 @@ puppeteer.use(StealthPlugin());
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs + '\n');
-		let rNum = (9, 11);
+		let rNum = (15, 17);
 		log('number of loops ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
@@ -114,20 +114,20 @@ puppeteer.use(StealthPlugin());
 							await page.waitForTimeout(r15);
 							//add comment method one
 							log('			♥ Liked');
-							let commentURL = (await page.url()) + 'comments/';
-							await page.goto(commentURL, { waitUntil: 'networkidle2' });
-							await page.waitForTimeout(r15);
-							await page.tap('textarea.Ypffh');
-							await page.waitForTimeout(r15);
-							let thisComment = comment[r(0, comment.length)];
-							log(`			✎ Comment: ${thisComment}\n`);
-							await page.type('textarea.Ypffh', thisComment);
-							await page.waitForTimeout(r15);
-							let postBTN = await page.$x('//button[contains(text(), "Post")]');
-							if (postBTN) {
-								await postBTN[0].tap();
-								await page.waitForTimeout(r15);
-							}
+							// let commentURL = (await page.url()) + 'comments/';
+							// await page.goto(commentURL, { waitUntil: 'networkidle2' });
+							// await page.waitForTimeout(r15);
+							// await page.tap('textarea.Ypffh');
+							// await page.waitForTimeout(r15);
+							// let thisComment = comment[r(0, comment.length)];
+							// log(`			✎ Comment: ${thisComment}\n`);
+							// await page.type('textarea.Ypffh', thisComment);
+							// await page.waitForTimeout(r15);
+							// let postBTN = await page.$x('//button[contains(text(), "Post")]');
+							// if (postBTN) {
+							// 	await postBTN[0].tap();
+							// 	await page.waitForTimeout(r15);
+							// }
 						}
 					}
 				}

@@ -103,8 +103,8 @@ let comment = [
 	"In the end, the greatest snowball isn't a snowball at all. It's fear. Merry Christmas.  -DwightSchrute",
 	"Beef! It's what's for dinner... Who wants some man meat?   -MichaelScott",
 	'I overslept. Damn rooster didnt crow.  -DwightSchrute',
-	'That is quite the rap sheet, Prison Mike. -And I never got caught neither!  -PrisonMike',
-	'Gruel Sandwiches, Gruel Omletes, plus you can eat-cha own hair.  -PrisonMike',
+	'That is quite the rap sheet Prison Mike. And I never got caught neither. -PrisonMike',
+	'Gruel Sandwiches, Gruel Omletes, plus you can eat ya own hair. -PrisonMike',
 ];
 
 module.exports = comment;

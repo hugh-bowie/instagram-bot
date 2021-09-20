@@ -150,24 +150,26 @@ let targetAccounts = [
 	'https://www.instagram.com/tumblermemes/',
 	'https://www.instagram.com/wholesometroll/',
 	'https://www.instagram.com/worstigaccount/',
+	'https://www.instagram.com/fuckologyofficial/',
+	'https://www.instagram.com/bipolar_girlfriend_/',
+	'https://www.instagram.com/glossy_zodiac/',
+	'https://www.instagram.com/betchwithnolife/',
+	'https://www.instagram.com/basic/',
 
 	// Pages mostly women Visit
+	/*
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/revolve/',
 	'https://www.instagram.com/revolvebeauty/',
 	'https://www.instagram.com/maccosmetics/',
 	'https://www.instagram.com/ohpolly/',
 	'https://www.instagram.com/seduction_la/',
-	'https://www.instagram.com/fuckologyofficial/',
-	'https://www.instagram.com/betchwithnolife/',
-	'https://www.instagram.com/basic/',
-	'https://www.instagram.com/bipolar_girlfriend_/',
 	'https://www.instagram.com/ohmboutique/',
 	'https://www.instagram.com/sahirajewelrydesign/',
 	'https://www.instagram.com/cottononbody/',
 	'https://www.instagram.com/bangn.body/',
 	'https://www.instagram.com/lovetrends.shop/',
-	'https://www.instagram.com/glossy_zodiac/',
+	*/
 
 	/*LIST TARGETING MEN - ONLYFANS
 	'https://www.instagram.com/mandi_lynn_bbw/',
