@@ -2,10 +2,13 @@ require('dotenv').config();
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, device, targetAccounts, badAccounts, comment, timeNow } = require('./src/helpers');
+const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
+const tags = require('./src/tags.js');
+const targetAccounts = require('./src/accounts.js');
+const comment = require('./src/comment.js');
+const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
-const randomAccount = Math.floor(Math.random() * targetAccounts.length);
 puppeteer.use(StealthPlugin());
 
 (async () => {
@@ -31,7 +34,7 @@ puppeteer.use(StealthPlugin());
 			await page.waitForTimeout(r23);
 		}
 
-		// //---- got to home and screenshot the follower count
+		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
@@ -73,7 +76,7 @@ puppeteer.use(StealthPlugin());
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs + '\n');
-		let rNum = (13, 15);
+		let rNum = (9, 11);
 		log('number of loops ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
@@ -87,7 +90,6 @@ puppeteer.use(StealthPlugin());
 					// view their story
 					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
 					if (viewStoryBtn.length > 0) {
-
 						await viewStoryBtn[0].tap();
 						await page.waitForTimeout(3000);
 						await page.goBack({ waitUntil: 'networkidle0' });
@@ -111,21 +113,21 @@ puppeteer.use(StealthPlugin());
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r15);
 							//add comment method one
-							log('			Liked ♥');
-							// let commentURL = (await page.url()) + 'comments/';
-							// await page.goto(commentURL, { waitUntil: 'networkidle2' });
-							// await page.waitForTimeout(r15);
-							// await page.tap('textarea.Ypffh');
-							// await page.waitForTimeout(r15);
-							// let thisComment = comment[r(0, comment.length)];
-							// log(`			Commented:  ${thisComment} \n`);
-							// await page.type('textarea.Ypffh', thisComment);
-							// await page.waitForTimeout(r15);
-							// let postBTN = await page.$x('//button[contains(text(), "Post")]');
-							// if (postBTN) {
-							// 	await postBTN[0].tap();
-							// 	await page.waitForTimeout(r15);
-							// }
+							log('			♥ Liked');
+							let commentURL = (await page.url()) + 'comments/';
+							await page.goto(commentURL, { waitUntil: 'networkidle2' });
+							await page.waitForTimeout(r15);
+							await page.tap('textarea.Ypffh');
+							await page.waitForTimeout(r15);
+							let thisComment = comment[r(0, comment.length)];
+							log(`			💬Comment: ${thisComment}\n`);
+							await page.type('textarea.Ypffh', thisComment);
+							await page.waitForTimeout(r15);
+							let postBTN = await page.$x('//button[contains(text(), "Post")]');
+							if (postBTN) {
+								await postBTN[0].tap();
+								await page.waitForTimeout(r15);
+							}
 						}
 					}
 				}
