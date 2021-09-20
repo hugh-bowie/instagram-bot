@@ -1,4 +1,4 @@
-const targetAccounts = [
+let targetAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
 	/*
 	'https://www.instagram.com/downtowndelray/',
@@ -192,4 +192,4 @@ const targetAccounts = [
 	*/
 ];
 
-module.exports = { targetAccounts };
+module.exports = targetAccounts;
