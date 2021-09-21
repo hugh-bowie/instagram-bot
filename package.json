@@ -1,8 +1,8 @@
 {
-	"name": "pptr",
+	"name": "instagram-bot",
 	"version": "1.2.13",
 	"description": "puppeteer",
-	"main": "ig.js",
+	"main": "test.js",
 	"scripts": {
 		"test": "node test.js",
 		"schedule": "node schedule.js",
@@ -15,7 +15,7 @@
 		"dotenv": "^10.0.0",
 		"node-schedule": "^1.3.3",
 		"puppeteer": "^5.5.0",
-		"puppeteer-extra": "^3.1.18",
-		"puppeteer-extra-plugin-stealth": "^2.7.8"
+		"puppeteer-extra": "^3.2.0",
+		"puppeteer-extra-plugin-stealth": "^2.8.0"
 	}
 }

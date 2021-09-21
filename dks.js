@@ -35,9 +35,10 @@ puppeteer.use(StealthPlugin());
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
 		await page.waitForSelector("a[href$='/following/']");
+		const user = await page.$eval('h1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\n----${flws}----${flwng}--------${timeNow}`);
+		log(`\n${user}--followers: ${flws}--following: ${flwng}--------${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');

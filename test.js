@@ -10,7 +10,7 @@ let randomAccount = Math.floor(Math.random() * targetAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
 puppeteer.use(StealthPlugin());
-
+//$x('//*[@aria-label="New Post"]')
 (async () => {
 	try {
 		//----initialize

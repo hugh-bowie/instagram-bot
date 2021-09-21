@@ -3,8 +3,8 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
-let { realtorAccounts, realtorTags } = require('./src/realtor');
-let randomAccount = Math.floor(Math.random() * realtorAccounts.length);
+let { memeAccounts, memeComments, memeTags, tags30 } = require('./src/meme');
+let randomAccount = Math.floor(Math.random() * memeAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
 puppeteer.use(StealthPlugin());
@@ -20,8 +20,8 @@ puppeteer.use(StealthPlugin());
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.SBJ, { delay: r(15, 50) });
-		await page.type("[name='password']", process.env.SBJPW, { delay: r(15, 50) });
+		await page.type("[name='username']", process.env.HB, { delay: r(15, 50) });
+		await page.type("[name='password']", process.env.HBPW, { delay: r(15, 50) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r23);
 
@@ -33,23 +33,43 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.SBJ, { waitUntil: 'networkidle2' });
+		await page.goto('https://www.instagram.com/' + process.env.HB, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
-		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
+		const user = await page.$eval('h1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
 		log(`\n${user}--followers: ${flws}--following: ${flwng}--------${timeNow}`);
-		/*
+
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
 		if (closeBtn) {
 			await page.tap('button.dCJp8');
 		}
+		//---- Make NEw Post
+		let postNew = await page.$x('//*[@aria-label="New Post"]');
+		if (postNew) {
+			const [fileChooser] = await Promise.all([page.waitForFileChooser(), postNew[0].tap()]);
+			await fileChooser.accept(['./img/aaron.jpeg']);
+			await page.waitForTimeout(2000);
+			let nextBtn = await page.$x('//button[contains(text(), "Next")]');
+			if (nextBtn) {
+				await Promise.all([page.waitForNavigation(), await nextBtn[0].tap()]);
+			}
 
+			let textArea = await page.$x('//textarea[contains(text(), "Write a caption…")]');
+			if (textArea) {
+				let caption =
+					'This post was made by a bot, will be deleted shortly .\n.\n.\n #officelighting #stolenmemes #funnyface #memesfunny #kpopmemes #officeassistant #michaelscottedits #dwightschrutememes #indianjokes #officedesigns #savethepostoffice #officelooks #officeouting #michaelscottfanclub #officepants #lol #blocked #michaelscottmemes #memesbrasil #laughoutloud';
+				await page.type('textarea', caption);
+				await page.waitForTimeout(2000);
+				await page.tap('button.UP43G');
+			}
+		}
+		/*
 		//----go to one of the target accounts
-		await page.goto(realtorAccounts[randomAccount], { waitUntil: 'networkidle2' });
+		await page.goto(memeAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r15);
-		log(`Farming this Account: ${realtorAccounts[randomAccount]}`);
+		log(`Farming this Account: ${memeAccounts[randomAccount]}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r(400, 500));
 		await page.keyboard.press('PageDown');
@@ -118,14 +138,14 @@ puppeteer.use(StealthPlugin());
 							// await page.waitForTimeout(r15);
 							// await page.tap('textarea.Ypffh');
 							// await page.waitForTimeout(r15);
-							// let thisComment = comment[r(0, comment.length)];
+							// let thisComment = memeComments[r(0, memeComments.length)];
 							// log(`			✎ Comment: ${thisComment}\n`);
 							// await page.type('textarea.Ypffh', thisComment);
 							// await page.waitForTimeout(r15);
 							// let postBTN = await page.$x('//button[contains(text(), "Post")]');
 							// if (postBTN) {
 							// 	await postBTN[0].tap();
-							// 	await page.waitForTimeout(r15);
+							// 	await page.waitForTimeout(r23);
 							// }
 						}
 					}
