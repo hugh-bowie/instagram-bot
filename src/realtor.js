@@ -25,7 +25,7 @@ let realtorAccounts = [
 	'https://www.instagram.com/rncbuilders/',
 	'https://www.instagram.com/thegrovedelrayfl/',
 	'https://www.instagram.com/cut432steakhouse/',
-	'https://www.instagram.com/theheartofdelraygallery/',
+
 	'https://www.instagram.com/bluefineart/',
 	'https://www.instagram.com/artsgaragedelraybeach/',
 	'https://www.instagram.com/dadadelray/',
