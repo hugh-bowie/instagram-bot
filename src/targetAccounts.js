@@ -143,7 +143,6 @@ let targetAccounts = [
 	'https://www.instagram.com/textpostgiant/',
 	'https://www.instagram.com/the.office.alliance/',
 	'https://www.instagram.com/phatmemer/',
-	'https://www.instagram.com/thegainz/',
 	'https://www.instagram.com/theoffice/',
 	'https://www.instagram.com/theofficeismycrack/',
 	'https://www.instagram.com/theofficememers/',
