@@ -3,10 +3,8 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
-const tags = require('./src/tags.js');
-let targetAccounts = require('./src/targetAccounts.js');
-let comment = require('./src/comment.js');
-let randomAccount = Math.floor(Math.random() * targetAccounts.length);
+let { memeAccounts, memeComments, memeTags } = require('./src/meme');
+let randomAccount = Math.floor(Math.random() * memeAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
 puppeteer.use(StealthPlugin());
@@ -14,7 +12,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -48,9 +46,9 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//----go to one of the target accounts
-		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
+		await page.goto(memeAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r15);
-		log(`Farming this Account: ${targetAccounts[randomAccount]}`);
+		log(`Farming this Account: ${memeAccounts[randomAccount]}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r(400, 500));
 		await page.keyboard.press('PageDown');
@@ -119,14 +117,14 @@ puppeteer.use(StealthPlugin());
 							// await page.waitForTimeout(r15);
 							// await page.tap('textarea.Ypffh');
 							// await page.waitForTimeout(r15);
-							// let thisComment = comment[r(0, comment.length)];
+							// let thisComment = memeComments[r(0, memeComments.length)];
 							// log(`			✎ Comment: ${thisComment}\n`);
 							// await page.type('textarea.Ypffh', thisComment);
 							// await page.waitForTimeout(r15);
 							// let postBTN = await page.$x('//button[contains(text(), "Post")]');
 							// if (postBTN) {
 							// 	await postBTN[0].tap();
-							// 	await page.waitForTimeout(r15);
+							// 	await page.waitForTimeout(r23);
 							// }
 						}
 					}

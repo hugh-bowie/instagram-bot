@@ -3,10 +3,8 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
-const tags = require('./src/tags.js');
-let targetAccounts = require('./src/targetAccounts.js');
-let comment = require('./src/comment.js');
-let randomAccount = Math.floor(Math.random() * targetAccounts.length);
+let { realtorAccounts, realtorTags } = require('./src/realtor');
+let randomAccount = Math.floor(Math.random() * realtorAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
 puppeteer.use(StealthPlugin());
@@ -22,8 +20,8 @@ puppeteer.use(StealthPlugin());
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.DKS, { delay: r(15, 50) });
-		await page.type("[name='password']", process.env.DKSPW, { delay: r(15, 50) });
+		await page.type("[name='username']", process.env.SBJ, { delay: r(15, 50) });
+		await page.type("[name='password']", process.env.SBJPW, { delay: r(15, 50) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r23);
 
@@ -35,7 +33,7 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
+		await page.goto('https://www.instagram.com/' + process.env.SBJ, { waitUntil: 'networkidle2' });
 		await page.waitForSelector("a[href$='/following/']");
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
@@ -48,9 +46,9 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//----go to one of the target accounts
-		await page.goto(targetAccounts[randomAccount], { waitUntil: 'networkidle2' });
+		await page.goto(realtorAccounts[randomAccount], { waitUntil: 'networkidle2' });
 		await page.waitForTimeout(r15);
-		log(`Farming this Account: ${targetAccounts[randomAccount]}`);
+		log(`Farming this Account: ${realtorAccounts[randomAccount]}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r(400, 500));
 		await page.keyboard.press('PageDown');
