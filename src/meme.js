@@ -712,8 +712,6 @@ let postComments = [
 	'Schmooze',
 	'Finifugal',
 	'Smaze',
-	'Skirl',
-	'Adorbs',
 	'Waesucks',
 	'Widdershins',
 	'Blubber',
