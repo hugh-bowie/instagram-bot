@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
-let { memeAccounts, memeComments, memeTags } = require('./src/meme');
+let { memeAccounts, memeComments, tags30 } = require('./src/meme');
 let randomAccount = Math.floor(Math.random() * memeAccounts.length);
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
@@ -12,7 +12,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
