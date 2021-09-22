@@ -12,7 +12,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -60,7 +60,7 @@ puppeteer.use(StealthPlugin());
 			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
 			await page.waitForTimeout(r23);
 			farmPost = await page.url();
-			log(`Engaging Users who liked this post: ${farmPost}`);
+			log(`Getting Public Users from this post: ${farmPost}`);
 		}
 
 		//----click the Likes number on the photo
@@ -74,9 +74,9 @@ puppeteer.use(StealthPlugin());
 
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs + '\n');
+		log('Found ' + publicHrefs.length + ' Public accounts to engage \n' + publicHrefs);
 		let rNum = (11, 13);
-		log('number of loops ' + rNum);
+		log('  number of loops ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < rNum; x++) {
@@ -84,7 +84,7 @@ puppeteer.use(StealthPlugin());
 				await page.waitForTimeout(r15);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
-				log('	Account Number: ' + x + ' URL: ' + currentURL);
+				log('    Account Number: ' + x + ' viewing this story ' + currentURL);
 				if (!searchBool) {
 					// view their story
 					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
@@ -98,13 +98,13 @@ puppeteer.use(StealthPlugin());
 					//----- get top 28 posts
 					// ------- potentital alternative selector = $('[href^="/p/"]');
 					let posts = await page.$x('//*[@class="FFVAD"]');
-					if (posts.length > 2) {
+					if (posts.length > 3) {
 						//---- pick a post to like
 						let p = r(0, posts.length);
 						//----click One random Public post to like
 						await Promise.all([page.waitForNavigation(), await posts[p].tap()]);
 						await page.waitForTimeout(r23);
-						log('		Engaging this Post: ' + (await page.url()));
+						log('      ♥ Liked this post' + (await page.url()));
 						//----the Like button to hit
 						let likeBtn = await page.$x('//*[@aria-label="Like"]');
 						if (likeBtn) {
@@ -112,7 +112,7 @@ puppeteer.use(StealthPlugin());
 							await likeBtn[0].tap();
 							await page.waitForTimeout(r15);
 							//add comment method one
-							log('			♥ Liked');
+							//log('			♥ Liked');
 							// let commentURL = (await page.url()) + 'comments/';
 							// await page.goto(commentURL, { waitUntil: 'networkidle2' });
 							// await page.waitForTimeout(r15);
