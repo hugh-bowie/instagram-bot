@@ -682,5 +682,5 @@ let memeComments = [
 
 let tags30 = memeTags.sort(() => Math.random() - Math.random()).slice(0, 30).toString().replace(/\,/g, ' ');
 
-
+console.log(tags30);
 module.exports = { memeAccounts, memeComments, tags30 };
