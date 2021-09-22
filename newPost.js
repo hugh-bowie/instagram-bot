@@ -2,9 +2,12 @@ require('dotenv').config();
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { r, log, device, badAccounts, timeNow } = require('./src/helpers');
-let { memeAccounts, memeComments, memeTags, tags30 } = require('./src/meme');
-let randomAccount = Math.floor(Math.random() * memeAccounts.length);
+const { r, log, device, timeNow } = require('./src/helpers');
+let { fullCaption } = require('./src/meme');
+let photos = fs.readdirSync('./img/new/');
+let photoPost = photos[Math.floor(Math.random() * photos.length)];
+const oldPath = './img/new/' + photoPost; //IMG_4875.jpg
+const newPath = './img/used/' + photoPost; //IMG_4875.jpg
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
 puppeteer.use(StealthPlugin());
@@ -20,8 +23,8 @@ puppeteer.use(StealthPlugin());
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.HB, { delay: r(15, 50) });
-		await page.type("[name='password']", process.env.HBPW, { delay: r(15, 50) });
+		await page.type("[name='username']", process.env.DKS, { delay: r(15, 50) });
+		await page.type("[name='password']", process.env.DKSPW, { delay: r(15, 50) });
 		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
 		await page.waitForTimeout(r23);
 
@@ -33,131 +36,49 @@ puppeteer.use(StealthPlugin());
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.HB, { waitUntil: 'networkidle0' });
+		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle0' });
 		await page.waitForSelector("a[href$='/following/']");
 		const user = await page.$eval('h1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\n${user}--followers: ${flws}--following: ${flwng}--------${timeNow}`);
+		log(`\n ${user} ${timeNow}\nFlwrs: ${flws} Flwng: ${flwng} `);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
 		if (closeBtn) {
 			await page.tap('button.dCJp8');
 		}
-		//---- Make NEw Post
+		//---- Make New Post
 		let postNew = await page.$x('//*[@aria-label="New Post"]');
 		if (postNew) {
 			const [fileChooser] = await Promise.all([page.waitForFileChooser(), postNew[0].tap()]);
-			await fileChooser.accept(['./img/aaron.jpeg']);
+			await fileChooser.accept([`${oldPath}`]);
 			await page.waitForTimeout(2000);
+			//---- Push Next button
 			let nextBtn = await page.$x('//button[contains(text(), "Next")]');
 			if (nextBtn) {
 				await Promise.all([page.waitForNavigation(), await nextBtn[0].tap()]);
 			}
-
+			//---- Type the caption
 			let textArea = await page.$x('//textarea[contains(text(), "Write a caption…")]');
 			if (textArea) {
-				let caption =
-					'This post was made by a bot, will be deleted shortly .\n.\n.\n #officelighting #stolenmemes #funnyface #memesfunny #kpopmemes #officeassistant #michaelscottedits #dwightschrutememes #indianjokes #officedesigns #savethepostoffice #officelooks #officeouting #michaelscottfanclub #officepants #lol #blocked #michaelscottmemes #memesbrasil #laughoutloud';
+				let caption = `${fullCaption}`;
+
 				await page.type('textarea', caption);
 				await page.waitForTimeout(2000);
 				await page.tap('button.UP43G');
 			}
 		}
-		/*
-		//----go to one of the target accounts
-		await page.goto(memeAccounts[randomAccount], { waitUntil: 'networkidle2' });
-		await page.waitForTimeout(r15);
-		log(`Farming this Account: ${memeAccounts[randomAccount]}`);
-		await page.keyboard.press('PageDown');
-		await page.waitForTimeout(r(400, 500));
-		await page.keyboard.press('PageDown');
-
-		//----click one random post
-		let posts = await page.$x('//*[@class="FFVAD"]');
-		if (posts.length > 0) {
-			await Promise.all([page.waitForNavigation(), await posts[r(0, posts.length)].tap()]);
-			await page.waitForTimeout(r23);
-			farmPost = await page.url();
-			log(`Engaging Users who liked this post: ${farmPost}`);
-		}
-
-		//----click the Likes number on the photo
-		await Promise.all([page.waitForNavigation(), await page.tap('[href$="liked_by/"]')]);
-		await page.waitForTimeout(r23);
-		//----pagedown 15 times = 90 followers
-		for (let i = 0; i < 20; i++) {
-			await page.keyboard.press('PageDown');
-			await page.waitForTimeout(r(200, 500));
-		}
-
-		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
-		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs + '\n');
-		let rNum = (11, 13);
-		log('number of loops ' + rNum);
-		if (publicHrefs.length > 0) {
-			//---- loop over each profile [y]-times
-			for (let x = 0; x < rNum; x++) {
-				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' });
-				await page.waitForTimeout(r15);
-				let currentURL = await page.url();
-				let searchBool = badAccounts.includes(currentURL);
-				log('	Account Number: ' + x + ' URL: ' + currentURL);
-				if (!searchBool) {
-					// view their story
-					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
-					if (viewStoryBtn.length > 0) {
-						await viewStoryBtn[0].tap();
-						await page.waitForTimeout(3000);
-						await page.goBack({ waitUntil: 'networkidle0' });
-					}
-					await page.waitForTimeout(1000);
-					await page.keyboard.press('PageDown');
-					//----- get top 28 posts
-					// ------- potentital alternative selector = $('[href^="/p/"]');
-					let posts = await page.$x('//*[@class="FFVAD"]');
-					if (posts.length > 2) {
-						//---- pick a post to like
-						let p = r(0, posts.length);
-						//----click One random Public post to like
-						await Promise.all([page.waitForNavigation(), await posts[p].tap()]);
-						await page.waitForTimeout(r23);
-						log('		Engaging this Post: ' + (await page.url()));
-						//----the Like button to hit
-						let likeBtn = await page.$x('//*[@aria-label="Like"]');
-						if (likeBtn) {
-							//----Smash that Like btn
-							await likeBtn[0].tap();
-							await page.waitForTimeout(r15);
-							//add comment method one
-							log('			♥ Liked');
-							// let commentURL = (await page.url()) + 'comments/';
-							// await page.goto(commentURL, { waitUntil: 'networkidle2' });
-							// await page.waitForTimeout(r15);
-							// await page.tap('textarea.Ypffh');
-							// await page.waitForTimeout(r15);
-							// let thisComment = memeComments[r(0, memeComments.length)];
-							// log(`			✎ Comment: ${thisComment}\n`);
-							// await page.type('textarea.Ypffh', thisComment);
-							// await page.waitForTimeout(r15);
-							// let postBTN = await page.$x('//button[contains(text(), "Post")]');
-							// if (postBTN) {
-							// 	await postBTN[0].tap();
-							// 	await page.waitForTimeout(r23);
-							// }
-						}
-					}
-				}
-			}
-		}*/
+		await fs.rename(oldPath, newPath, function (err) {
+			if (err) throw err;
+			console.log(`Moved file ${oldPath} into ${newPath}`);
+		});
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
 		console.log('error||||||||||||||>>>>>>>> ' + e);
-		//process.exit(1);
+		process.exit(1);
 	}
 })();
 

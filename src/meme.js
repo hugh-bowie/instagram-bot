@@ -1,3 +1,6 @@
+const { r } = require('./helpers');
+const fs = require('fs');
+
 let memeAccounts = [
 	// Office & MEME PAGES
 	'https://www.instagram.com/stevecarrelll/',
@@ -680,7 +683,115 @@ let memeComments = [
 	'Gruel Sandwiches, Gruel Omletes, plus you can eat ya own hair. -PrisonMike',
 ];
 
-let tags30 = memeTags.sort(() => Math.random() - Math.random()).slice(0, 30).toString().replace(/\,/g, ' ');
+let postComments = [
+	'Bumfuzzle',
+	'Fartlek',
+	'Everywhen',
+	'Erf',
+	'Hullaballoo',
+	'Meldrop',
+	'Obelus',
+	'Sozzled',
+	'Bumbershoot',
+	'Titter',
+	'Smicker',
+	'Cleek',
+	'Whippersnapper',
+	'Salopettes',
+	'Bibliokept',
+	'Accubation',
+	'Lollygag',
+	'Abecedarian',
+	'Bamboozled',
+	'Cutesypoo',
+	'Flabbergast',
+	'Foppish',
+	'Cattywampus',
+	'Noob',
+	'Octothorpe',
+	'Schmooze',
+	'Finifugal',
+	'Smaze',
+	'Skirl',
+	'Adorbs',
+	'Waesucks',
+	'Widdershins',
+	'Blubber',
+	'Dollop',
+	'Festooned',
+	'duddy',
+	'Gobbledygook',
+	'Popple',
+	'Hodgepodge',
+	'Ramshackle',
+	'washy',
+	'Flummoxed',
+	'Gardyloo',
+	'Collywobbles',
+	'Billingsgate',
+	'split',
+	'Slumgullion',
+	'willie',
+	'Conjubilant ',
+	'Futz',
+	'Bunghole',
+	'Flibbertigibbet',
+	'Hoecake',
+	'Frippery',
+	'pamby',
+	'Gibbons',
+	'Diphthong',
+	'Wamble',
+	'Geebung',
+	'Teazel',
+	'Kibitzer',
+	'Phablet',
+	'Mollycoddle',
+	'Ragamuffin',
+	'Snickersnee',
+	'Piffle',
+	'Puggle',
+	'Rubaboo',
+	'Scallywag',
+	'Teetotaler',
+	'Skedaddle',
+	'Wampum',
+	'Sleenwort',
+	'Hullabaloo',
+	'Taradiddle',
+	'Whirligig',
+	'Yitten',
+	'Ratoon',
+	'Dingus',
+	'Flibbertigibbet',
+	'Pronk',
+	'Hogwash',
+	'Bupkis',
+	'Fipple',
+	'Aloof',
+	'Williwaw',
+	'Yooper',
+	'Squeegee',
+	'Doohickey',
+	'Cabotage',
+	'Deckled',
+	'frou',
+	'Ballyhoo',
+	'Abear',
+	'Whiffler',
+	'Hoodwink',
+	'Stumblebum',
+	'Unperson',
+	'Doozy',
+];
 
-console.log(tags30);
-module.exports = { memeAccounts, memeComments, tags30 };
+let tags30 = memeTags
+	.sort(() => Math.random() - Math.random())
+	.slice(0, 30)
+	.toString()
+	.replace(/\,/g, ' ');
+let fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
+
+console.log(fullCaption);
+
+module.exports = { memeAccounts, fullCaption };

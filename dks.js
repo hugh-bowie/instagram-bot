@@ -38,7 +38,7 @@ puppeteer.use(StealthPlugin());
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\nUser: ${user}	Followers: ${flws}	Following: ${flwng}	${timeNow}`);
+		log(`\n ${user} ${timeNow}\nFlwrs: ${flws} Flwng: ${flwng} `);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -74,9 +74,9 @@ puppeteer.use(StealthPlugin());
 
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log('Found ' + publicHrefs.length + ' Public accounts to engage    ' + publicHrefs);
-		let rNum = (7, 11);
-		log('	number of loops ' + rNum);
+		log(`Found ${publicHrefs.length} Public accounts to engage ${publicHrefs}`);
+		let rNum = (11, 13);
+		log(`number of loops ${rNum}`);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < rNum; x++) {
@@ -84,7 +84,7 @@ puppeteer.use(StealthPlugin());
 				await page.waitForTimeout(r15);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
-				log('		' + x + ' ☑︎ viewing this story ' + currentURL);
+				log(`	${x} ★ viewing this story ${currentURL}`);
 				if (!searchBool) {
 					// view their story
 					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
@@ -104,7 +104,7 @@ puppeteer.use(StealthPlugin());
 						//----click One random Public post to like
 						await Promise.all([page.waitForNavigation(), await posts[p].tap()]);
 						await page.waitForTimeout(r23);
-						log('			♥ Liked this post ' + (await page.url()));
+						log(`		♥ Liked this post ` + (await page.url()));
 						//----the Like button to hit
 						let likeBtn = await page.$x('//*[@aria-label="Like"]');
 						if (likeBtn) {

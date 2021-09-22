@@ -1,6 +1,4 @@
-function r(min, max) {
-	return ~~(Math.random() * (max - min + 1) + min);
-}
+const { r } = require('./helpers');
 
 let realtorAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
