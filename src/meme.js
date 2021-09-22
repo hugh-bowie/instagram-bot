@@ -97,7 +97,7 @@ let memeTags = [
 	'#memes',
 	'#dankmemes',
 	'#offensivememes',
-	'#lit',
+	'#danker',
 	'#epic',
 	'#jokes',
 	'#memelord',
@@ -159,7 +159,6 @@ let memeTags = [
 	'#thuglife',
 	'#funnymemesdaily',
 	'#memedaily',
-	'#memevideo',
 	'#memeaccount',
 	'#memetime',
 	'#deepfriedmemes',
@@ -253,7 +252,7 @@ let memeTags = [
 	'#naturephotography',
 	'#sunset',
 	'#memesespañol',
-	'#mlbbindonesia',
+
 	'#savage',
 	'#edgymemesforedgyteens',
 	'#dankbar',
@@ -263,11 +262,11 @@ let memeTags = [
 	'#danke',
 	'#21savage',
 	'#tiwasavage',
-	'#mamas',
+
 	'#memesbrasil',
 	'#animememes',
 	'#fortnitememes',
-	'#mamasboy',
+	'#memeblr',
 	'#btsmemes',
 	'#memesgraciosos',
 	'#memesbrasileiros',
@@ -299,7 +298,7 @@ let memeTags = [
 	'#cancermemes',
 	'#memeschilenos',
 	'#twittermemes',
-	'#coronamemes',
+
 	'#memesita',
 	'#gymmemes',
 	'#ramadankareem',
@@ -349,15 +348,15 @@ let memeTags = [
 	'#relationshipmemes',
 	'#weirdmemes',
 	'#codmemes',
-	'#trumpmemes',
+
 	'#deadmemes',
 	'#marvelmemes',
 	'#dark',
-	'#darkart',
-	'#darkartists',
+	'#darker',
+	'#darkest',
 	'#darkaesthetic',
 	'#funnyquotes',
-	'#glowinthedark',
+
 	'#funnycats',
 	'#darkgrunge',
 	'#funnydogs',
@@ -393,7 +392,6 @@ let memeTags = [
 	'#funnytumblr',
 	'#darkknight',
 	'#ifunny',
-	'#pubgfunnymoments',
 	'#funnyday',
 	'#funnystuff',
 	'#fortnitefunny',
@@ -693,7 +691,7 @@ let postComments = [
 	'Obelus',
 	'Sozzled',
 	'Bumbershoot',
-	'Titter',
+
 	'Smicker',
 	'Cleek',
 	'Whippersnapper',
@@ -737,7 +735,6 @@ let postComments = [
 	'Hoecake',
 	'Frippery',
 	'pamby',
-	'Gibbons',
 	'Diphthong',
 	'Wamble',
 	'Geebung',
@@ -784,7 +781,7 @@ let postComments = [
 
 let tags30 = memeTags
 	.sort(() => Math.random() - Math.random())
-	.slice(0, 30)
+	.slice(0, 27)
 	.toString()
 	.replace(/\,/g, ' ');
 let fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
