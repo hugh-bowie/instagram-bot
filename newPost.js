@@ -54,6 +54,12 @@ puppeteer.use(StealthPlugin());
 			const [fileChooser] = await Promise.all([page.waitForFileChooser(), postNew[0].tap()]);
 			await fileChooser.accept([`${oldPath}`]);
 			await page.waitForTimeout(2000);
+			//---- resize image
+			let expandBtn = await page.$x('//span[contains(text(), "Expand")]');
+			if (expandBtn) {
+				await expandBtn[0].tap();
+				await page.waitForTimeout(2000);
+			}
 			//---- Push Next button
 			let nextBtn = await page.$x('//button[contains(text(), "Next")]');
 			if (nextBtn) {
@@ -63,10 +69,9 @@ puppeteer.use(StealthPlugin());
 			let textArea = await page.$x('//textarea[contains(text(), "Write a caption…")]');
 			if (textArea) {
 				let caption = `${fullCaption}`;
-
 				await page.type('textarea', caption);
 				await page.waitForTimeout(2000);
-				await page.tap('button.UP43G');
+				await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('button.UP43G')]);
 			}
 		}
 		await fs.rename(oldPath, newPath, function (err) {
