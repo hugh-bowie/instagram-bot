@@ -3,7 +3,7 @@ const fs = require('fs');
 let date = new Date();
 let t = date.toLocaleTimeString(); // 2:22:09 PM
 let d = date.toLocaleDateString(); // 01/03/1984
-let timeNow = `${d}  ${t}`;
+let timeNow = `${d} ${t}`;
 
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 

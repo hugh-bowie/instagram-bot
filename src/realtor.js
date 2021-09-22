@@ -257,9 +257,5 @@ const realtorTags = [
 	'#luxuryrealestate',
 ];
 
-for (let rn = 0; rn < 30; rn++) {
-	let realtorTag = new Array(realtorTags[r(0, realtorTags.length)]);
-	console.log(realtorTag.toString());
-}
 
 module.exports = { realtorAccounts, realtorTags };

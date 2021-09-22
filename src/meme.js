@@ -976,13 +976,7 @@ let memeComments = [
 	'Gruel Sandwiches, Gruel Omletes, plus you can eat ya own hair. -PrisonMike',
 ];
 
-let result = memeTags.forEach(tagBundle);
 
-function tagBundle() {
-	for (let m = 0; m < 30; m++) {
-		let tags30;
-		tags30 += memeTags[r(0, memeTags.length)];
-	}
-}
-console.log(result);
+
+
 module.exports = { memeAccounts, memeComments, memeTags };

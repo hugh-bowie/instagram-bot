@@ -29,16 +29,16 @@ puppeteer.use(StealthPlugin());
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
 		if (notifyBtn) {
 			await notifyBtn[0].tap();
-			await page.waitForTimeout(r23);
+			await page.waitForTimeout(r15);
 		}
 
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
 		await page.waitForSelector("a[href$='/following/']");
-		const user = await page.$eval('h1', use => use.innerText);
+		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\n${user}--followers: ${flws}--following: ${flwng}--------${timeNow}`);
+		log(`\nUser: ${user} Followers: ${flws} Following: ${flwng} ${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -74,8 +74,8 @@ puppeteer.use(StealthPlugin());
 
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs + '\n');
-		let rNum = (11, 13);
+		log('Found ' + publicHrefs.length + ' Public accounts to engage ' + publicHrefs);
+		let rNum = (7, 11);
 		log('number of loops ' + rNum);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
