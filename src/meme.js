@@ -1,7 +1,13 @@
 const { r } = require('./helpers');
 const fs = require('fs');
 
-let memeAccounts = [
+function logD(data) {
+	fs.appendFile('K:/My Drive/dks.txt', `${data}\n`, () => {
+		console.log(`${data}`);
+	});
+}
+
+const memeAccounts = [
 	// Office & MEME PAGES
 	'https://www.instagram.com/stevecarrelll/',
 	'https://www.instagram.com/dwightsdiary/',
@@ -22,7 +28,6 @@ let memeAccounts = [
 	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/dwightschrutemoments/',
 	'https://www.instagram.com/goodgirl_badtimes/',
-	'https://www.instagram.com/hoegivesnofucks/',
 	'https://www.instagram.com/imajokemaker/',
 	'https://www.instagram.com/insta.single/',
 	'https://www.instagram.com/JimHalpirt/',
@@ -90,7 +95,7 @@ let memeAccounts = [
 	*/
 ];
 
-let memeTags = [
+const memeTags = [
 	'#funny',
 	'#lol',
 	'#meme',
@@ -572,7 +577,7 @@ let memeTags = [
 	'#theusoffice',
 ];
 
-let memeComments = [
+const memeComments = [
 	'I underestimated you Michael. Yea, well maybe next time, you better estimate me.  -MichaelScott',
 	'Live and let live. Im not familiar with that expression. Its a James Bond.  -MichaelScott',
 	'I like this chair, it offers good support and is ErckleNomickly correct.  -MichaelScott',
@@ -681,7 +686,21 @@ let memeComments = [
 	'Gruel Sandwiches, Gruel Omletes, plus you can eat ya own hair. -PrisonMike',
 ];
 
-let postComments = [
+const postComments = [
+	'Wanker',
+	'Porker',
+	'Geezer',
+	'Spastic',
+	'Doorknob',
+	'Lickspittle',
+	'Pillock',
+	'Ninnyhammer',
+	'Mumpsimus',
+	'Milksop',
+	'Hobbledehoy',
+	'Pettifogger',
+	'Mooncalf',
+	'Saltimbanco',
 	'Bumfuzzle',
 	'Fartlek',
 	'Everywhen',
@@ -691,7 +710,6 @@ let postComments = [
 	'Obelus',
 	'Sozzled',
 	'Bumbershoot',
-
 	'Smicker',
 	'Cleek',
 	'Whippersnapper',
@@ -701,40 +719,33 @@ let postComments = [
 	'Lollygag',
 	'Abecedarian',
 	'Bamboozled',
-	'Cutesypoo',
 	'Flabbergast',
-	'Foppish',
+	'Fappish',
 	'Cattywampus',
 	'Noob',
 	'Octothorpe',
-	'Schmooze',
-	'Finifugal',
+	'Schmoozed',
 	'Smaze',
 	'Waesucks',
 	'Widdershins',
 	'Blubber',
 	'Dollop',
 	'Festooned',
-	'duddy',
+	'Duddish',
 	'Gobbledygook',
-	'Popple',
 	'Hodgepodge',
 	'Ramshackle',
-	'Washy',
 	'Flummoxed',
 	'Gardyloo',
 	'Collywobbles',
 	'Billingsgate',
-	'Split',
 	'Slumgullion',
-	'willie',
+	'Willie',
 	'Conjubilant ',
 	'Futz',
-	'Bunghole',
 	'Flibbertigibbet',
-	'Hoecake',
 	'Frippery',
-	'pamby',
+	'Pamby',
 	'Diphthong',
 	'Wamble',
 	'Geebung',
@@ -745,20 +756,17 @@ let postComments = [
 	'Ragamuffin',
 	'Snickersnee',
 	'Piffle',
-	'Puggle',
-	'Rubaboo',
+	'Bugaboo',
 	'Scallywag',
 	'Teetotaler',
 	'Skedaddle',
 	'Wampum',
 	'Sleenwort',
-	'Hullabaloo',
 	'Taradiddle',
 	'Whirligig',
 	'Yitten',
 	'Ratoon',
 	'Dingus',
-	'Flibbertigibbet',
 	'Pronk',
 	'Hogwash',
 	'Bupkis',
@@ -769,7 +777,7 @@ let postComments = [
 	'Doohickey',
 	'Cabotage',
 	'Deckled',
-	'frou',
+	'Frou',
 	'Ballyhoo',
 	'Abear',
 	'Whiffler',
@@ -777,15 +785,32 @@ let postComments = [
 	'Stumblebum',
 	'Unperson',
 	'Doozy',
+	'Nearly',
+	'Fairly',
+	'Kind Of',
+	'Kindly ',
+	'Moderately',
+	'More Or Less',
+	'Quite',
+	'Rather',
+	'Relatively',
+	'Somewhat',
+	'Auxiliary',
+	'Inessential',
+	'Nonessential',
+	'Secondary',
+	'Unnecessary',
+	'Extra',
+	'Peripheral',
 ];
 
-let tags30 = memeTags
+const tags30 = memeTags
 	.sort(() => Math.random() - Math.random())
 	.slice(0, 27)
 	.toString()
 	.replace(/\,/g, ' ');
-let fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
+const fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
 
 console.log(fullCaption);
 
-module.exports = { memeAccounts, fullCaption };
+module.exports = { memeAccounts, fullCaption, logD };

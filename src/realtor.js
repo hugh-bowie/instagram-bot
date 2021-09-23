@@ -1,6 +1,13 @@
 const { r } = require('./helpers');
+const fs = require('fs');
 
-let realtorAccounts = [
+function logS(data) {
+	fs.appendFile(`K:/My Drive/sbj.txt`, `${data}\n`, () => {
+		console.log(`${data}`);
+	});
+}
+
+const realtorAccounts = [
 	////////////POPULAR BOCA & DELRAY LOCAL PLACES
 	'https://www.instagram.com/downtowndelray/',
 	'https://www.instagram.com/visit_delray_beach/',
@@ -268,4 +275,4 @@ let tags30 = realtorTags
 	.replace(/\,/g, ' ');
 
 console.log(tags30);
-module.exports = { realtorAccounts, realtorTags };
+module.exports = { realtorAccounts, realtorTags, logS };

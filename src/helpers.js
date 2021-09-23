@@ -1,11 +1,10 @@
 const fs = require('fs');
-
+const r23 = r(2000, 3000);
+const r15 = r(1000, 1500);
 let date = new Date();
 let t = date.toLocaleTimeString(); // 2:22:09 PM
 let d = date.toLocaleDateString(); // 01/03/1984
 let timeNow = `${d} ${t}`;
-
-const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
 //random number function
 function r(min, max) {
@@ -13,8 +12,8 @@ function r(min, max) {
 }
 
 //Function that logs timeStamp + data + \n
-function log(data) {
-	fs.appendFile('src/log.txt', ` ${data}\n`, () => {
+function log(data, path) {
+	fs.appendFile(`${path}`, `${data}\n`, () => {
 		console.log(`${data}`);
 	});
 }
@@ -33,12 +32,8 @@ const device = {
 	},
 };
 
-module.exports = { device, timeNow, r, log, badAccounts };
+// Accounts not to engage
+const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-// let currenturl = 'https://www.instagram.com/hb.iv';
-// let searchResult = badAccounts.includes(currenturl);
-// if (!searchResult) {
-// 	console.log('no bad accoutns found ' + searchResult);
-// } else {
-// 	console.log('badAccounts found ' + searchResult);
-// }
+module.exports = { device, timeNow, r, log, badAccounts, r15, r23 };
+
