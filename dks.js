@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -55,9 +55,9 @@ puppeteer.use(StealthPlugin());
 		//----click one random post
 		let posts = await page.$x('//*[@class="FFVAD"]');
 		if (posts.length > 0) {
-			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), await posts[r(0, posts.length)].tap()]);
+			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[r(0, posts.length)].tap()]);
 			await page.waitForTimeout(r23);
-			farmPost = await page.url();
+			let farmPost = await page.url();
 			logD(`Get Users from this post: ${farmPost}`);
 		}
 
@@ -73,7 +73,7 @@ puppeteer.use(StealthPlugin());
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logD(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = (5, 7);
+		let rNum = (13, 16);
 		logD(`number of loops ${rNum}`);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
@@ -92,7 +92,6 @@ puppeteer.use(StealthPlugin());
 						await page.goBack({ waitUntil: 'networkidle0' });
 					}
 					await page.waitForTimeout(r15);
-					await page.keyboard.press('PageDown');
 					//----- get top 28 posts
 					const posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
 					if (posts.length > 3) {

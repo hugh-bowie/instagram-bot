@@ -21,12 +21,10 @@ const realtorAccounts = [
 	'https://www.instagram.com/restorationlane/',
 	'https://www.instagram.com/delraymag/',
 	'https://www.instagram.com/renovatewiththeroots/',
-	'https://www.instagram.com/mmwooddesigns/',
 	'https://www.instagram.com/sassafraswpb/',
 	'https://www.instagram.com/bocalifemag/',
 	'https://www.instagram.com/oldschoolsquaredelray/',
-	'https://www.instagram.com/cerverare',
-	'https://www.instagram.com/livingproof.photography/',
+
 	'https://www.instagram.com/rncbuilders/',
 	'https://www.instagram.com/thegrovedelrayfl/',
 	'https://www.instagram.com/cut432steakhouse/',
