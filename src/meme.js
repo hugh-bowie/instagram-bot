@@ -9,9 +9,6 @@ function logD(data) {
 
 const memeAccounts = [
 	// Office
-
-
-
 	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/stevecarrelll/',
 	'https://www.instagram.com/dwightsdiary/',
@@ -67,22 +64,8 @@ const memeAccounts = [
 		'https://www.instagram.com/theme_of_the_memes/',
 	*/
 
-	// Pages mostly women Visit
-
-
 	/*
-	'https://www.instagram.com/boandtee/',
-	'https://www.instagram.com/shoesbyohpolly/',
-	'https://www.instagram.com/revolve/',
-	'https://www.instagram.com/revolvebeauty/',
-	
-	'https://www.instagram.com/ohpolly/',
-	'https://www.instagram.com/seduction_la/',
-	'https://www.instagram.com/ohmboutique/',
-	'https://www.instagram.com/sahirajewelrydesign/',
-	'https://www.instagram.com/cottononbody/',
-	'https://www.instagram.com/bangn.body/',
-	'https://www.instagram.com/lovetrends.shop/',	
+		
 	//LIST TARGETING MEN - ONLYFANS
 	'https://www.instagram.com/mandi_lynn_bbw/',
 	'https://www.instagram.com/therealnatashatosini/',
