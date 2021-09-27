@@ -1,8 +1,7 @@
 require('dotenv').config();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const device = require('./src/device');
-let r = require('./src/rndm');
+const { device, r } = require('./helpers');
 const r35 = r(3000, 5000);
 const now = new Date().toLocaleString().replace(/\//g, '.').replace(/:/g, '.').replace(', ', '_').replace(' ', '.');
 
@@ -23,10 +22,10 @@ puppeteer.use(StealthPlugin());
 		await page.waitForTimeout(r35);
 
 		//BACK AND CLOSE BROWSER*/
-		await browser.close();
-		process.exit(1);
+		//await browser.close();
+		//process.exit(1);
 	} catch (e) {
 		console.log('error = ', e);
-		process.exit(1);
+		//process.exit(1);
 	}
 })();

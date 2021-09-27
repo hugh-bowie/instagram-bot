@@ -94,8 +94,7 @@ puppeteer.use(StealthPlugin());
 						await page.waitForTimeout(r15);
 					}
 					//----- get top 28 posts
-					// ------- potentital alternative selector = $('[href^="/p/"]');
-					let posts = await page.$x('//*[@class="FFVAD"]');
+					let posts = await page.$x('//*[@class="FFVAD"]');// ------- potentital alternative selector = $('[href^="/p/"]');
 					if (posts.length > 5) {
 						//---- pick a post to like
 						let p = r(0, posts.length);
@@ -162,6 +161,6 @@ else {
 		if (posts.length > 0) {
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[r(0, posts.length)].tap()]);
 
-			
+
 		}
 		/////////////////////////////*/

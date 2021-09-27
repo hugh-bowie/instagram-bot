@@ -36,7 +36,7 @@ puppeteer.use(StealthPlugin());
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`\n${user}  Flwrs:${flws}  Flwng:${flwng}\n${timeNow}`);
+		logD(`\n${user}  Flwrs:${flws}  Flwng:${flwng}    ${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -73,36 +73,37 @@ puppeteer.use(StealthPlugin());
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		const publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logD(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = (13, 16);
+		let rNum = (9, 11);
 		logD(`number of loops ${rNum}`);
 		if (publicHrefs.length > 0) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < rNum; x++) {
 				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' });
 				await page.waitForTimeout(r15);
-				const currentURL = await page.url();
-				const searchBool = badAccounts.includes(currentURL);
+				let currentURL = await page.url();
+				let searchBool = badAccounts.includes(currentURL);
 				logD(`	★ viewing this story ${currentURL}`);
 				if (!searchBool) {
 					// view their story
-					const viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
-					if (viewStoryBtn.length > 0) {
+					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
+					if (viewStoryBtn) {
 						await viewStoryBtn[0].tap();
 						await page.waitForTimeout(r(3000, 4000));
 						await page.goBack({ waitUntil: 'networkidle0' });
+						await page.waitForTimeout(r15);
 					}
-					await page.waitForTimeout(r15);
+
 					//----- get top 28 posts
-					const posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
-					if (posts.length > 3) {
+					let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
+					if (posts.length > 5) {
 						//---- pick a post to like
-						const p = r(0, posts.length);
+						let p = r(0, posts.length);
 						//----click One random Public post to like
-						await Promise.all([page.waitForNavigation(), await posts[p].tap()]);
+						await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
 						await page.waitForTimeout(r23);
 						logD(`		♥ Liked this post ` + (await page.url()));
 						//----the Like button to hit
-						const likeBtn = await page.$x('//*[@aria-label="Like"]');
+						let likeBtn = await page.$x('//*[@aria-label="Like"]');
 						if (likeBtn) {
 							//----Smash that Like btn
 							await likeBtn[0].tap();
