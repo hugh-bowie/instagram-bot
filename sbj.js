@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, device, badAccounts, timeNow, r15 } = require('./src/helpers');
+const { r, device, badAccounts, timeNow, timeFin, r15 } = require('./src/helpers');
 const { realtorAccounts, logS } = require('./src/realtor');
 
 (async () => {
@@ -34,7 +34,7 @@ const { realtorAccounts, logS } = require('./src/realtor');
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logS(`\n${user}  Flwrs:${flws}  Flwng:${flwng}  ${timeNow}`);
+		logS(`\n${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -43,8 +43,9 @@ const { realtorAccounts, logS } = require('./src/realtor');
 		}
 
 		//----go to one of the target accounts
-		await page.goto(realtorAccounts[r(0, realtorAccounts.length)], { waitUntil: 'networkidle2' });
-		logS(`Farming this Account: ${realtorAccounts[r(0, realtorAccounts.length)]}`);
+		let farmAccount = await realtorAccounts[r(0, realtorAccounts.length)];
+		await page.goto(farmAccount, { waitUntil: 'networkidle0' });
+		logS(`Farming Account: ${farmAccount}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r15);
 
@@ -130,9 +131,11 @@ const { realtorAccounts, logS } = require('./src/realtor');
 			}
 		}
 		//BACK AND CLOSE BROWSER
+		logS(`Fin  ${timeFin}`);
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
+		logS(`Fin  ${timeFin}`);
 		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
 		process.exit(1);
 	}

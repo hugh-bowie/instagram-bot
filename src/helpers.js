@@ -5,6 +5,7 @@ let date = new Date();
 let t = date.toLocaleTimeString(); // 2:22:09 PM
 let d = date.toLocaleDateString(); // 01/03/1984
 let timeNow = `${d} ${t}`;
+let timeFin = `${d} ${t}`;
 
 //random number function
 function r(min, max) {
@@ -35,4 +36,4 @@ const device = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, timeNow, r, log, badAccounts, r15, r23 };
+module.exports = { device, timeNow, timeFin, r, log, badAccounts, r15, r23 };

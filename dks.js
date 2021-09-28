@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, device, badAccounts, timeNow, r15 } = require('./src/helpers');
+const { r, device, badAccounts, timeNow, timeFin, r15 } = require('./src/helpers');
 const { memeAccounts, logD } = require('./src/meme');
 
 (async () => {
@@ -34,7 +34,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`\n${user}  Flwrs:${flws}  Flwng:${flwng}  ${timeNow}`);
+		logD(`\n${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -43,9 +43,9 @@ const { memeAccounts, logD } = require('./src/meme');
 		}
 
 		//----go to one of the target accounts
-		let farmAccount = r(1, memeAccounts.length);
+		let farmAccount = await memeAccounts[r(1, memeAccounts.length)];
 		await page.goto(farmAccount, { waitUntil: 'networkidle0' });
-		logD(`Farming this Account: ${memeAccounts[r(0, memeAccounts.length)]}`);
+		logD(`Farming this Account: ${farmAccount}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r15);
 
@@ -89,7 +89,7 @@ const { memeAccounts, logD } = require('./src/meme');
 					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
 					if (viewStoryBtn) {
 						await viewStoryBtn[0].tap();
-						await page.waitForTimeout(r(3000, 4000));
+						await page.waitForTimeout(r(2000, 4000));
 						await page.goBack({ waitUntil: 'networkidle2' });
 						await page.waitForTimeout(r15);
 					}
@@ -131,9 +131,11 @@ const { memeAccounts, logD } = require('./src/meme');
 			}
 		}
 		//BACK AND CLOSE BROWSER
+		logD(`Fin  ${timeFin}`);
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
+		logD(`Fin  ${timeFin}`);
 		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
 		process.exit(1);
 	}
