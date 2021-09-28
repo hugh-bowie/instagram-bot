@@ -9,11 +9,8 @@ function logD(data) {
 
 const memeAccounts = [
 	// Office
-	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/stevecarrelll/',
 	'https://www.instagram.com/dwightsdiary/',
-	'https://www.instagram.com/dwightschrutee/',
-	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/theofficeisthebestshowever/',
 	'https://www.instagram.com/dundersplifflininc/',
 	'https://www.instagram.com/theofficeismycrack/',
@@ -30,13 +27,10 @@ const memeAccounts = [
 	'https://www.instagram.com/JimHalpirt/',
 	'https://www.instagram.com/michaelsmanymoods/',
 	'https://www.instagram.com/stevecarrelll/',
-	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/office.obsession/',
 	'https://www.instagram.com/officephotos/',
 	'https://www.instagram.com/officethememes/',
-	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/pambeesle/',
-	'https://www.instagram.com/dwightschrutee/',
 	'https://www.instagram.com/the.office.alliance/',
 
 	/*

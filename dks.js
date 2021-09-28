@@ -94,7 +94,6 @@ const { memeAccounts, logD } = require('./src/meme');
 						await page.keyboard.press('PageDown');
 						await page.waitForTimeout(r15);
 					}
-
 					//----- get top 28 posts
 					let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
 					if (posts) {
