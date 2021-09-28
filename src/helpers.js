@@ -8,7 +8,7 @@ let timeNow = `${d} ${t}`;
 
 //random number function
 function r(min, max) {
-	return ~~(Math.random() * (max - min + 1) + min);
+	return ~~(Math.random() * (max - min) + min);
 }
 
 //Function that logs timeStamp + data + \n
