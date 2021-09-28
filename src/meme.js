@@ -9,6 +9,7 @@ function logD(data) {
 
 const memeAccounts = [
 	// Office
+	'https://www.instagram.com/dwightsdiary/',
 	'https://www.instagram.com/stevecarrelll/',
 	'https://www.instagram.com/dwightsdiary/',
 	'https://www.instagram.com/theofficeisthebestshowever/',
@@ -32,32 +33,22 @@ const memeAccounts = [
 	'https://www.instagram.com/officethememes/',
 	'https://www.instagram.com/pambeesle/',
 	'https://www.instagram.com/the.office.alliance/',
-
-	/*
-		// Meme pages
-		'https://www.instagram.com/memes_quantum/',
-		'https://www.instagram.com/memetheme1/',
-		'https://www.instagram.com/queen.catto/',
-		'https://www.instagram.com/savage_memes_only/',
-		'https://www.instagram.com/tequilashots/',
-		'https://www.instagram.com/textpostgiant/',
-		'https://www.instagram.com/phatmemer/',
-		'https://www.instagram.com/goodgirl_badtimes/',
-		'https://www.instagram.com/imajokemaker/',
-		'https://www.instagram.com/insta.single/',
-		'https://www.instagram.com/ratingthememe/',
-		'https://www.instagram.com/tumblermemes/',
-		'https://www.instagram.com/wholesometroll/',
-		'https://www.instagram.com/worstigaccount/',
-		'https://www.instagram.com/fuckologyofficial/',
-		'https://www.instagram.com/bipolar_girlfriend_/',
-		'https://www.instagram.com/glossy_zodiac/',
-		'https://www.instagram.com/betchwithnolife/',
-		'https://www.instagram.com/basic/',
-		'https://www.instagram.com/cumsee_adulthumor_/',
-		'https://www.instagram.com/theme_of_the_memes/',
-	*/
-
+	// Meme pages
+	'https://www.instagram.com/memetheme1/',
+	'https://www.instagram.com/queen.catto/',
+	'https://www.instagram.com/savage_memes_only/',
+	'https://www.instagram.com/tequilashots/',
+	'https://www.instagram.com/textpostgiant/',
+	'https://www.instagram.com/phatmemer/',
+	'https://www.instagram.com/imajokemaker/',
+	'https://www.instagram.com/insta.single/',
+	'https://www.instagram.com/ratingthememe/',
+	'https://www.instagram.com/tumblermemes/',
+	'https://www.instagram.com/wholesometroll/',
+	'https://www.instagram.com/worstigaccount/',
+	'https://www.instagram.com/fuckologyofficial/',
+	'https://www.instagram.com/glossy_zodiac/',
+	'https://www.instagram.com/cumsee_adulthumor_/',
 	/*
 		
 	//LIST TARGETING MEN - ONLYFANS
@@ -798,5 +789,8 @@ const tags30 = memeTags
 	.toString()
 	.replace(/\,/g, ' ');
 const fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
+
+// let farmAccount = r(1, memeAccounts.length);
+// console.log(farmAccount);
 
 module.exports = { memeAccounts, fullCaption, logD };

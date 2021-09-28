@@ -9,6 +9,7 @@ function logH(data) {
 
 const hbAccounts = [
 	// Pages mostly women Visit
+	'https://www.instagram.com/glossy_zodiac',
 	'https://www.instagram.com/downtowndelray/',
 	'https://www.instagram.com/visit_delray_beach/',
 	'https://www.instagram.com/visitbocaraton/',

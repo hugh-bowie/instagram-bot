@@ -91,9 +91,9 @@ const { realtorAccounts, logS } = require('./src/realtor');
 						await page.waitForTimeout(r(3000, 4000));
 						await page.goBack({ waitUntil: 'networkidle2' });
 						await page.waitForTimeout(r15);
-						await page.keyboard.press('PageDown');
-						await page.waitForTimeout(r15);
 					}
+					await page.keyboard.press('PageDown');
+					await page.waitForTimeout(r15);
 					//----- get top 28 posts
 					let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
 					if (posts) {
@@ -134,7 +134,6 @@ const { realtorAccounts, logS } = require('./src/realtor');
 		process.exit(1);
 	} catch (e) {
 		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
-		logS(`EEEEEEEEEE ${e}\nEEEEEE`);
 		process.exit(1);
 	}
 })();

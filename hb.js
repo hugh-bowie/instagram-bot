@@ -91,10 +91,9 @@ const { hbAccounts, logH } = require('./src/hbiv');
 						await page.waitForTimeout(r(3000, 4000));
 						await page.goBack({ waitUntil: 'networkidle2' });
 						await page.waitForTimeout(r15);
-						await page.keyboard.press('PageDown');
-						await page.waitForTimeout(r15);
 					}
-
+					await page.keyboard.press('PageDown');
+					await page.waitForTimeout(r15);
 					//----- get top 28 posts
 					let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
 					if (posts) {
@@ -134,8 +133,7 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
-		logH(`EEEEEEEEEE ${e}\nEEEEEE`);
+		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);		
 		process.exit(1);
 	}
 })();
