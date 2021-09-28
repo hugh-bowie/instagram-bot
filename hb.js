@@ -131,11 +131,11 @@ const { hbAccounts, logH } = require('./src/hbiv');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		logH(`Fin  ${timeFin}`);
+		// logH(`Fin  ${timeFin}`);
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		logH(`Fin  ${timeFin}`);
+		// logH(`Fin  ${timeFin}`);
 		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
 		process.exit(1);
 	}

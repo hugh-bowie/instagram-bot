@@ -131,11 +131,11 @@ const { realtorAccounts, logS } = require('./src/realtor');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		logS(`Fin  ${timeFin}`);
+		// logS(`Fin  ${timeFin}`);
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		logS(`Fin  ${timeFin}`);
+		// logS(`Fin  ${timeFin}`);
 		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
 		process.exit(1);
 	}
