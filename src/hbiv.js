@@ -9,6 +9,21 @@ function logH(data) {
 
 const hbAccounts = [
 	// Pages mostly women Visit
+	'https://www.instagram.com/downtowndelray/',
+	'https://www.instagram.com/visit_delray_beach/',
+	'https://www.instagram.com/visitbocaraton/',
+	'https://www.instagram.com/bocaratonfl/',
+	'https://www.instagram.com/citybocaraton/',
+	'https://www.instagram.com/delraybeachopen/',
+	'https://www.instagram.com/bluefineart/',
+	'https://www.instagram.com/sandbardelraybeach/',
+	'https://www.instagram.com/new_vegan76/',
+	'https://www.instagram.com/restorationlane/',
+	'https://www.instagram.com/delraymag/',
+	'https://www.instagram.com/renovatewiththeroots/',
+	'https://www.instagram.com/sassafraswpb/',
+	'https://www.instagram.com/bocalifemag/',
+	'https://www.instagram.com/oldschoolsquaredelray/',
 	'https://www.instagram.com/boandtee/',
 	'https://www.instagram.com/shoesbyohpolly/',
 	'https://www.instagram.com/revolve/',

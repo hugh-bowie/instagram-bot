@@ -805,6 +805,4 @@ const tags30 = memeTags
 	.replace(/\,/g, ' ');
 const fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags30}`;
 
-console.log(fullCaption);
-
 module.exports = { memeAccounts, fullCaption, logD };

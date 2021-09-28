@@ -15,7 +15,6 @@ const realtorAccounts = [
 	'https://www.instagram.com/bocaratonfl/',
 	'https://www.instagram.com/citybocaraton/',
 	'https://www.instagram.com/delraybeachopen/',
-	'https://www.instagram.com/bluefineart/',
 	'https://www.instagram.com/sandbardelraybeach/',
 	'https://www.instagram.com/new_vegan76/',
 	'https://www.instagram.com/restorationlane/',
@@ -24,12 +23,8 @@ const realtorAccounts = [
 	'https://www.instagram.com/sassafraswpb/',
 	'https://www.instagram.com/bocalifemag/',
 	'https://www.instagram.com/oldschoolsquaredelray/',
-
 	'https://www.instagram.com/rncbuilders/',
 	'https://www.instagram.com/thegrovedelrayfl/',
-	'https://www.instagram.com/cut432steakhouse/',
-
-	'https://www.instagram.com/bluefineart/',
 	'https://www.instagram.com/artsgaragedelraybeach/',
 	'https://www.instagram.com/dadadelray/',
 	'https://www.instagram.com/lesorellerestaurant/',
@@ -272,5 +267,5 @@ let tags30 = realtorTags
 	.toString()
 	.replace(/\,/g, ' ');
 
-console.log(tags30);
+//console.log(tags30);
 module.exports = { realtorAccounts, realtorTags, logS };
