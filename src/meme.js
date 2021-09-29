@@ -39,7 +39,6 @@ const memeAccounts = [
 	'https://www.instagram.com/tequilashots/',
 	'https://www.instagram.com/textpostgiant/',
 	'https://www.instagram.com/phatmemer/',
-	'https://www.instagram.com/imajokemaker/',
 	'https://www.instagram.com/insta.single/',
 	'https://www.instagram.com/ratingthememe/',
 	'https://www.instagram.com/tumblermemes/',
