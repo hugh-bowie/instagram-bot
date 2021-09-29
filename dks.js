@@ -9,7 +9,7 @@ const { memeAccounts, logD } = require('./src/meme');
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -74,7 +74,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logD(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(15, 19);
+		let rNum = r(17, 21);
 		logD(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times

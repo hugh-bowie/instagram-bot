@@ -74,7 +74,7 @@ const { realtorAccounts, logS } = require('./src/realtor');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logS(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(11, 15);
+		let rNum = r(15, 19);
 		logS(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
