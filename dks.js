@@ -3,13 +3,13 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, device, badAccounts, timeNow, timeFin, r15 } = require('./src/helpers');
+const { r, device, badAccounts, timeNow, r15 } = require('./src/helpers');
 const { memeAccounts, logD } = require('./src/meme');
 
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -126,17 +126,19 @@ const { memeAccounts, logD } = require('./src/meme');
 							// 	await page.waitForTimeout(r23);
 							// }
 						}
-					}
+					} else {
+                        logD(`No Posts Found to Like`);
+                        await page.goBack({ waitUntil: 'networkidle2' });
+                    }
 				}
 			}
 		}
-		//BACK AND CLOSE BROWSER
-		logD(`Fin  ${timeFin}`);
+		//BACK AND CLOSE BROWSER		
 		await browser.close();
 		process.exit(1);
-	} catch (e) {
-		logD(`Fin  ${timeFin}`);
-		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
+	} catch (e) {	
+        logD(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)	
+		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
 		process.exit(1);
 	}
 })();

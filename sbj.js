@@ -126,17 +126,19 @@ const { realtorAccounts, logS } = require('./src/realtor');
 							// 	await page.waitForTimeout(r15);
 							// }
 						}
-					}
+					} else {
+                        logS(`No Posts Found to Like`);
+                        await page.goBack({ waitUntil: 'networkidle2' });
+                    }
 				}
 			}
 		}
-		//BACK AND CLOSE BROWSER
-		// logS(`Fin  ${timeFin}`);
+		//BACK AND CLOSE BROWSER		
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		// logS(`Fin  ${timeFin}`);
-		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
+        logS(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)	
+		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
 		process.exit(1);
 	}
 })();

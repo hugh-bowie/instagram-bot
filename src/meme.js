@@ -20,7 +20,6 @@ const memeAccounts = [
 	'https://www.instagram.com/dunder_mifflin.munder_difflin/',
 	'https://www.instagram.com/dundersplifflininc/',
 	'https://www.instagram.com/dwightschrutee/',
-	'https://www.instagram.com/dundermifflinfeeds/',
 	'https://www.instagram.com/dundermifflinpaperco/',
 	'https://www.instagram.com/dundermifflintattoos/',
 	'https://www.instagram.com/dundersplifflininc/',

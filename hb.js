@@ -74,7 +74,7 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logH(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(11, 15);
+		let rNum = r(15, 19);
 		logH(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
@@ -126,17 +126,19 @@ const { hbAccounts, logH } = require('./src/hbiv');
 							// 	await page.waitForTimeout(r23);
 							// }
 						}
-					}
+					} else {
+                        logD(`No Posts Found to Like`);
+                        await page.goBack({ waitUntil: 'networkidle2' });
+                    }
 				}
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		// logH(`Fin  ${timeFin}`);
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		// logH(`Fin  ${timeFin}`);
-		console.log(`EEEEEEEEEE ${e}\nEEEEEE`);
+        logH(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)	
+		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
 		process.exit(1);
 	}
 })();
