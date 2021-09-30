@@ -32,7 +32,7 @@ const memeAccounts = [
 	'https://www.instagram.com/officethememes/',
 	'https://www.instagram.com/pambeesle/',
 	'https://www.instagram.com/the.office.alliance/',
-	// Meme pages
+	/*// Meme pages
 	'https://www.instagram.com/memetheme1/',
 	'https://www.instagram.com/queen.catto/',
 	'https://www.instagram.com/savage_memes_only/',

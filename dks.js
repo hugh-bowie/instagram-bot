@@ -9,7 +9,7 @@ const { memeAccounts, logD } = require('./src/meme');
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -74,70 +74,70 @@ const { memeAccounts, logD } = require('./src/meme');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logD(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(17, 21);
+		let rNum = r(21, 29);
 		logD(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < rNum; x++) {
-				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' });
+				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 				await page.waitForTimeout(r15);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
-				logD(`	★ ${x} viewing this story ${currentURL}`);
-				if (!searchBool) {
-					// view their story
-					let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
-					if (viewStoryBtn) {
-						await viewStoryBtn[0].tap();
-						await page.waitForTimeout(r(2000, 4000));
-						await page.goBack({ waitUntil: 'networkidle2' });
-						await page.waitForTimeout(r15);
-					}
-					await page.keyboard.press('PageDown');
-					await page.waitForTimeout(r15);
-					//----- get top 28 posts
-					let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
-					if (posts) {
-						//---- pick a post to like
-						let p = r(0, posts.length);
-						//----click One random Public post to like
-						await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
-						await page.waitForTimeout(r15);
-						logD(`		♥ Liked post number ${p} ` + (await page.url()));
-						//----the Like button to hit
-						let likeBtn = await page.$x('//*[@aria-label="Like"]');
-						if (likeBtn) {
-							//----Smash that Like btn
-							await likeBtn[0].tap();
+				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
+				if (postCount.length == 0) {
+					if (!searchBool) {
+						// view their story
+						logD(`	★ ${x} viewing this story ${currentURL}`);
+						let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
+						if (viewStoryBtn) {
+							await viewStoryBtn[0].tap();
+							await page.waitForTimeout(r(2000, 3000));
+							await page.goBack({ waitUntil: 'networkidle2' });
 							await page.waitForTimeout(r15);
-							//add comment method one
-							// const commentURL = (await page.url()) + 'comments/';
-							// await page.goto(commentURL, { waitUntil: 'networkidle2' });
-							// await page.waitForTimeout(r15);
-							// await page.tap('textarea.Ypffh');
-							// await page.waitForTimeout(r15);
-							// const thisComment = memeComments[r(0, memeComments.length)];
-							// logD(`			✎ Comment: ${thisComment}\n`);
-							// await page.type('textarea.Ypffh', thisComment);
-							// await page.waitForTimeout(r15);
-							// const postBTN = await page.$x('//button[contains(text(), "Post")]');
-							// if (postBTN) {
-							// 	await postBTN[0].tap();
-							// 	await page.waitForTimeout(r23);
-							// }
 						}
-					} else {
-                        logD(`No Posts Found to Like`);
-                        await page.goBack({ waitUntil: 'networkidle2' });
-                    }
+						await page.keyboard.press('PageDown');
+						await page.waitForTimeout(r15);
+						//----- get top 28 posts
+						let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
+						if (posts) {
+							//---- pick a post to like
+							let p = r(0, posts.length);
+							//----click One random Public post to like
+							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
+							await page.waitForTimeout(r15);
+							logD(`		♥ Liked post number ${p} ` + (await page.url()));
+							//----the Like button to hit
+							let likeBtn = await page.$x('//*[@aria-label="Like"]');
+							if (likeBtn) {
+								//----Smash that Like btn
+								await likeBtn[0].tap();
+								await page.waitForTimeout(r15);
+								//add comment method one
+								// const commentURL = (await page.url()) + 'comments/';
+								// await page.goto(commentURL, { waitUntil: 'networkidle2' });
+								// await page.waitForTimeout(r15);
+								// await page.tap('textarea.Ypffh');
+								// await page.waitForTimeout(r15);
+								// const thisComment = memeComments[r(0, memeComments.length)];
+								// logD(`			✎ Comment: ${thisComment}\n`);
+								// await page.type('textarea.Ypffh', thisComment);
+								// await page.waitForTimeout(r15);
+								// const postBTN = await page.$x('//button[contains(text(), "Post")]');
+								// if (postBTN) {
+								// 	await postBTN[0].tap();
+								// 	await page.waitForTimeout(r23);
+								// }
+							}
+						}
+					}
 				}
 			}
 		}
 		//BACK AND CLOSE BROWSER		
 		await browser.close();
 		process.exit(1);
-	} catch (e) {	
-        logD(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)	
+	} catch (e) {
+		logD(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)
 		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
 		process.exit(1);
 	}
