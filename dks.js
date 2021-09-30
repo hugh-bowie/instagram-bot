@@ -74,7 +74,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		logD(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(21, 29);
+		let rNum = r(19, 23);
 		logD(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
@@ -84,7 +84,7 @@ const { memeAccounts, logD } = require('./src/meme');
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
-				if (postCount.length == 0) {
+				if (postCount.length != 1) {
 					if (!searchBool) {
 						// view their story
 						logD(`	★ ${x} viewing this story ${currentURL}`);

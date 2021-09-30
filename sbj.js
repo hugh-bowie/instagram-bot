@@ -84,7 +84,7 @@ const { realtorAccounts, logS } = require('./src/realtor');
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
-				if (postCount.length == 0) {
+				if (postCount.length != 1) {
 					if (!searchBool) {
 						// view their story
 						logS(`	★ ${x} viewing this story ${currentURL}`);
@@ -131,7 +131,6 @@ const { realtorAccounts, logS } = require('./src/realtor');
 						}
 					}
 				}
-
 			}
 		}
 		//BACK AND CLOSE BROWSER		

@@ -84,14 +84,16 @@ const { hbAccounts, logH } = require('./src/hbiv');
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
-				if (postCount.length == 0) {
+				if (postCount.length != 1) {
 					if (!searchBool) {
 						// view their story
 						logH(`	★ ${x} viewing this story ${currentURL}`);
 						let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
 						if (viewStoryBtn) {
 							await viewStoryBtn[0].tap();
-							await page.waitForTimeout(r(2000, 3000));
+							await page.waitForXPath('//*[@aria-label="Close"]', { visible: true });
+							await page.waitForTimeout(r(3000, 4000));
+
 							await page.goBack({ waitUntil: 'networkidle2' });
 							await page.waitForTimeout(r15);
 						}
@@ -134,11 +136,11 @@ const { hbAccounts, logH } = require('./src/hbiv');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		await browser.close();
-		process.exit(1);
+		//await browser.close();
+		//process.exit(1);
 	} catch (e) {
 		logH(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)
 		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
-		process.exit(1);
+		//process.exit(1);
 	}
 })();
