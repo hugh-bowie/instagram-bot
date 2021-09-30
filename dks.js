@@ -17,8 +17,8 @@ const { memeAccounts, logD } = require('./src/meme');
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.DKS);
-		await page.type("[name='password']", process.env.DKSPW);
+		await page.type("[name='username']", process.env.DKS, { delay: r(20, 50) });
+		await page.type("[name='password']", process.env.DKSPW, { delay: r(20, 50) });
 		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
 		//----click notifications
