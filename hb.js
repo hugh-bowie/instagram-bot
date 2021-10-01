@@ -19,7 +19,7 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		await page.tap("[name='username']");
 		await page.type("[name='username']", process.env.HB);
 		await page.type("[name='password']", process.env.HBPW);
-		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.tap("[type='submit']")]);
 
 		//----click notifications
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
