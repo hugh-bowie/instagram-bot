@@ -9,7 +9,7 @@ const { memeAccounts, logD } = require('./src/meme');
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -86,7 +86,7 @@ const { memeAccounts, logD } = require('./src/meme');
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
 				if (postCount.length === 0) {
 					if (!searchBool) {
-						// view their story						
+						// view their story
 						let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
 						if (viewStoryBtn) {
 							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), viewStoryBtn[0].tap()]);
@@ -138,7 +138,7 @@ const { memeAccounts, logD } = require('./src/meme');
 				}
 			}
 		}
-		//BACK AND CLOSE BROWSER		
+		//BACK AND CLOSE BROWSER
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
