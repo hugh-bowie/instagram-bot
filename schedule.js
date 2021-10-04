@@ -5,7 +5,28 @@ const { r, log, timeNow } = require('./src/helpers');
 const firstRun = r(15, 20);
 const secondRun = r(43, 48);
 
-/////// 11:40 PM
+// schedule.scheduleJob(' 20 * * * *', () => {
+// 	let now = new Date().toLocaleString();
+// 	console.log(now + ' running dks.js');
+// 	spawn('node', ['dks.js']);
+// });
+
+/////// OVER NIGHT /////////
+schedule.scheduleJob(' 20 20 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
+schedule.scheduleJob(' 31 21 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
+schedule.scheduleJob(' 35 22 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
 schedule.scheduleJob(' 40 23 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
