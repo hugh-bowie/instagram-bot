@@ -31,7 +31,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`\n•• ${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
+		logD(`•• ${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
 		log(`\n•• ${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -65,8 +65,8 @@ const { memeAccounts, logD } = require('./src/meme');
 		}
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		log(`Found ${publicHrefs.length} Public accounts: ${publicHrefs}`);
-		let rNum = r(11, 15);
+		log(`Found ${publicHrefs.length} Public accounts`);
+		let rNum = r(15, 19);
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times

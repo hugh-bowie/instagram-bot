@@ -17,8 +17,8 @@ puppeteer.use(StealthPlugin());
 		console.log(savePath);
 		console.log(now);
 		//TEST STEALTH
-		await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
-		await page.screenshot({ path: savePath, fullPage: true });
+		// await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
+		// await page.screenshot({ path: savePath, fullPage: true });
 		await page.waitForTimeout(r35);
 
 		//BACK AND CLOSE BROWSER*/
