@@ -13,8 +13,8 @@ function r(min, max) {
 }
 
 //Function that logs timeStamp + data + \n
-function log(data, path) {
-	fs.appendFile(`${path}`, `${data}\n`, () => {
+function log(data) {
+	fs.appendFile('K:/My Drive/log.txt', `${data}\n`, () => {
 		console.log(`${data}`);
 	});
 }
