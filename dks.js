@@ -10,7 +10,7 @@ const { memeAccounts, logD } = require('./src/meme');
 	try {
 
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -35,8 +35,8 @@ const { memeAccounts, logD } = require('./src/meme');
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`•• ${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
-		log(`\n•• ${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
+		logD(`••${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
+		log(`\n••${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -77,7 +77,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		log(`Found ${publicHrefs.length} Public accounts`);
 
 		//--- loop over each profile [y]-times
-		let rNum = r(15, 19);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(7, 9);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
@@ -140,10 +140,10 @@ const { memeAccounts, logD } = require('./src/meme');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		await browser.close();
-		process.exit(1);
+		//await browser.close();
+		//process.exit(1);
 	} catch (e) {
 		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
-		process.exit(1);
+		//process.exit(1);
 	}
 })();
