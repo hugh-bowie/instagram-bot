@@ -27,7 +27,7 @@ schedule.scheduleJob(' 35 22 * * *', () => {
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
 });
-schedule.scheduleJob(' 40 23 * * *', () => {
+schedule.scheduleJob(' 57 23 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);

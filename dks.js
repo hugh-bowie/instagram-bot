@@ -66,7 +66,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(15, 19);
+		let rNum = r(17, 23);
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
