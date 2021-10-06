@@ -1,6 +1,6 @@
 const fs = require('fs');
 const r23 = r(2000, 3000);
-const r15 = r(1500, 2000);
+const r15 = r(1000, 1500);
 let date = new Date();
 let t = date.toLocaleTimeString(); // 2:22:09 PM
 let d = date.toLocaleDateString(); // 01/03/1984
