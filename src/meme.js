@@ -1,12 +1,6 @@
 const { r } = require('./helpers');
 const fs = require('fs');
 
-function logD(data) {
-	fs.appendFile('K:/My Drive/dks.txt', `${data}\n`, () => {
-		console.log(`${data}`);
-	});
-}
-
 const memeAccounts = [
 	// Office
 	'https://www.instagram.com/dwightsdiary/',
@@ -800,4 +794,4 @@ const fullCaption = `${postComments[r(0, postComments.length)]}\n.\n.\n.\n${tags
 // let farmAccount = r(1, memeAccounts.length);
 // console.log(farmAccount);
 
-module.exports = { memeAccounts, fullCaption, logD };
+module.exports = { memeAccounts, fullCaption };

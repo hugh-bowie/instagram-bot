@@ -3,8 +3,8 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, device, badAccounts, timeNow, r15, log } = require('./src/helpers');
-const { memeAccounts, logD } = require('./src/meme');
+const { r, log, logD, device, badAccounts, timeNow, r15 } = require('./src/helpers');
+const { memeAccounts } = require('./src/meme');
 
 (async () => {
 	try {
@@ -77,7 +77,7 @@ const { memeAccounts, logD } = require('./src/meme');
 		log(`Found ${publicHrefs.length} Public accounts`);
 
 		//--- loop over each profile [y]-times
-		let rNum = r(7, 9);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(3, 5);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
@@ -140,10 +140,10 @@ const { memeAccounts, logD } = require('./src/meme');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
 		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
-		//process.exit(1);
+		process.exit(1);
 	}
 })();

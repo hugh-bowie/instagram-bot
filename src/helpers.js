@@ -1,11 +1,6 @@
 const fs = require('fs');
 const r23 = r(2000, 3000);
-const r15 = r(1000, 1500);
-let date = new Date();
-let t = date.toLocaleTimeString(); // 2:22:09 PM
-let d = date.toLocaleDateString(); // 01/03/1984
-let timeNow = `${d} ${t}`;
-let timeFin = `${d} ${t}`;
+const r15 = r(2000, 3000);
 
 //random number function
 function r(min, max) {
@@ -14,10 +9,28 @@ function r(min, max) {
 
 //Function that logs timeStamp + data + \n
 function log(data) {
-	fs.appendFile('K:/My Drive/log.txt', `${data}\n`, () => {
-		console.log(`${data}`);
+	let date = new Date();
+	let t = date.toLocaleTimeString(); // 2:22:09 PM
+	// let d = date.toLocaleDateString(); // 01/03/1984	
+	fs.appendFile('K:/My Drive/log.txt', `${data} @${t}\n`, () => {
+		console.log(`${data} @${t}`);
 	});
 }
+
+function logD(data) {
+	let date = new Date();
+	let t = date.toLocaleTimeString(); // 2:22:09 PM
+	let d = date.toLocaleDateString(); // 01/03/1984
+	let timeNow = `${d} ${t}`;
+	fs.appendFile('K:/My Drive/dks.txt', `${data} @${timeNow}\n`, () => {
+		// console.log(`${data}`);
+	});
+}
+
+//\\\\ test delay function ////\\
+// setTimeout(function () {
+// 	log('some shit + 2000');
+// }, 2000);
 
 // pretends this is a phone not a desktop
 const device = {
@@ -36,4 +49,4 @@ const device = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, timeNow, timeFin, r, log, badAccounts, r15, r23 };
+module.exports = { device, r, log, logD, badAccounts, r15, r23 }; //timeNow,timeFin,
