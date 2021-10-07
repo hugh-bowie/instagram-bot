@@ -3,23 +3,22 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, log, logD, device, badAccounts, timeNow, r15 } = require('./src/helpers');
+const { r, log, logD, device, badAccounts, r15 } = require('./src/helpers');
 const { memeAccounts } = require('./src/meme');
 
 (async () => {
 	try {
 
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.DKS, { delay: r(20, 50) });
-		await page.type("[name='password']", process.env.DKSPW, { delay: r(20, 50) });
+		await page.type("[name='username']", process.env.DKS, { delay: r(50, 100) });
+		await page.type("[name='password']", process.env.DKSPW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
 		//----click notifications
@@ -31,12 +30,11 @@ const { memeAccounts } = require('./src/meme');
 
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
-		await page.waitForSelector("a[href$='/following/']");
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`••${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
-		log(`\n••${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
+		logD(`••${user} Flwrs:${flws} Flwng:${flwng} `);
+		log(`\n••${user} Flwrs:${flws} Flwng:${flwng} `);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -77,7 +75,7 @@ const { memeAccounts } = require('./src/meme');
 		log(`Found ${publicHrefs.length} Public accounts`);
 
 		//--- loop over each profile [y]-times
-		let rNum = r(3, 5);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(9, 11);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
@@ -99,7 +97,7 @@ const { memeAccounts } = require('./src/meme');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goBack({ waitUntil: 'networkidle2' });
+								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' });
 							}
 						}
 						await page.waitForTimeout(r15);
