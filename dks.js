@@ -32,17 +32,17 @@ const { memeAccounts } = require('./src/meme');
 		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logD(`••${user} Flwrs:${flws} Flwng:${flwng} `);
-		log(`\n••${user} Flwrs:${flws} Flwng:${flwng} `);
+		logD(`${user} Flwrs:${flws} `);
+		log(`\n${user} Flwrs:${flws} `);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
 		if (closeBtn) {
 			await page.tap('button.dCJp8');
 		}
+
 		//----go to one of the target accounts
-		let farmAccount = await memeAccounts[r(1, memeAccounts.length)];
+		let farmAccount = await memeAccounts[r(0, memeAccounts.length)];
 		await page.goto(farmAccount, { waitUntil: 'networkidle2' });
 		log(`Farming this Account: ${farmAccount}`);
 		await page.keyboard.press('PageDown');
@@ -57,11 +57,21 @@ const { memeAccounts } = require('./src/meme');
 			await page.waitForTimeout(r15);
 		}
 
-		//----click the Likes number on the photo
-		let likedByBtn = await page.$('[href$="liked_by/"]'); //'a[href$="liked_by/"]'
-		if (likedByBtn) {
-			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
+		//---- Check if Photo (good) or Video (not useable)
+		let isPhoto = await page.$eval('h1', pic => pic.innerText);
+		if (isPhoto == 'Video') {
+			//---- Get another random post
+			log(`Videos dont have liked by buttons try another`);
+			let nextPost = r(0, postHrefs.length);
+			await page.goto('https://www.instagram.com' + postHrefs[nextPost], { waitUntil: 'networkidle2' });
 			await page.waitForTimeout(r15);
+		} else {
+			//----click the Likes number on the photo
+			let likedByBtn = await page.$('[href$="liked_by/"]'); //'a[href$="liked_by/"]'
+			if (likedByBtn) {
+				await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
+				await page.waitForTimeout(r15);
+			}
 		}
 
 		//----pagedown 20 times = 90 followers
@@ -91,7 +101,7 @@ const { memeAccounts } = require('./src/meme');
 						if (viewStoryBtn) {
 							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), viewStoryBtn[0].tap()]);
 							await page.waitForTimeout(r(2000, 3000));
-							log(`	★ ${x} viewing this story ` + await page.url());
+							log(`★ ${x} viewing this story ` + await page.url());
 							let closeBtn = await page.$x('//*[@aria-label="Close"]');
 							if (closeBtn.length === 1) {
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
@@ -113,7 +123,7 @@ const { memeAccounts } = require('./src/meme');
 							let likeBtn = await page.$x('//*[@aria-label="Like"]');
 							if (likeBtn) {
 								//----Smash that Like btn
-								log(`		♥ Liked post number ${p} ` + (await page.url()));
+								log(`  ♥ Liked post number ${p} ` + (await page.url()));
 								await page.waitForTimeout(r(300, 500));
 								await page.tap('svg[aria-label="Like"]');
 								//add comment method one
