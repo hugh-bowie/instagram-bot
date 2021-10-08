@@ -85,7 +85,7 @@ const { memeAccounts } = require('./src/meme');
 		log(`Found ${publicHrefs.length} Public accounts`);
 
 		//--- loop over each profile [y]-times
-		let rNum = r(9, 11);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(11, 13);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
