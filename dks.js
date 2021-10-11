@@ -75,7 +75,7 @@ const { memeAccounts } = require('./src/meme');
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
 		//--- loop over each profile [y]-times
-		let rNum = r(15, 19);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(9, 13);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
