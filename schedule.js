@@ -12,58 +12,60 @@ const secondRun = r(43, 48);
 // });
 
 /////// OVER NIGHT /////////
-schedule.scheduleJob(' 20 20 * * *', () => {
-	let now = new Date().toLocaleString();
-	console.log(now + ' running dks.js');
-	spawn('node', ['dks.js']);
-});
+// schedule.scheduleJob(' 20 20 * * *', () => {
+// 	let now = new Date().toLocaleString();
+// 	console.log(now + ' running dks.js');
+// 	spawn('node', ['dks.js']);
+// });
 // schedule.scheduleJob(' 31 21 * * *', () => {
 // 	let now = new Date().toLocaleString();
 // 	console.log(now + ' running dks.js');
 // 	spawn('node', ['dks.js']);
 // });
-// schedule.scheduleJob(' 35 22 * * *', () => {
-// 	let now = new Date().toLocaleString();
-// 	console.log(now + ' running dks.js');
-// 	spawn('node', ['dks.js']);
-// });
-// schedule.scheduleJob(' 57 23 * * *', () => {
-// 	let now = new Date().toLocaleString();
-// 	console.log(now + ' running dks.js');
-// 	spawn('node', ['dks.js']);
-// });
-// //////12:44 AM
-// schedule.scheduleJob(' 44 0 * * *', () => {
-// 	let now = new Date().toLocaleString();
-// 	console.log(now + ' running dks.js');
-// 	spawn('node', ['dks.js']);
-// });
-//////1:47 AM
-schedule.scheduleJob(' 47 1 * * *', () => {
+//     10: PM
+schedule.scheduleJob(' 05 22 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
 });
-////// 2:51 AM
-schedule.scheduleJob(' 51 2 * * *', () => {
+//       11: PM
+schedule.scheduleJob(' 35 23 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
 });
+// //     12: AM
+// schedule.scheduleJob(' 42 0 * * *', () => {
+// 	let now = new Date().toLocaleString();
+// 	console.log(now + ' running dks.js');
+// 	spawn('node', ['dks.js']);
+// });
+//      1: AM
+schedule.scheduleJob(' 55 1 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
+// ////// 2:51 AM
+// schedule.scheduleJob(' 51 2 * * *', () => {
+// 	let now = new Date().toLocaleString();
+// 	console.log(now + ' running dks.js');
+// 	spawn('node', ['dks.js']);
+// });
 ////// 3:53 AM
-schedule.scheduleJob(' 53 3 * * *', () => {
+schedule.scheduleJob(' 27 3 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
 });
-////// 4:56 AM
-schedule.scheduleJob(' 56 4 * * *', () => {
-	let now = new Date().toLocaleString();
-	console.log(now + ' running dks.js');
-	spawn('node', ['dks.js']);
-});
+// ////// 4:56 AM
+// schedule.scheduleJob(' 56 4 * * *', () => {
+// 	let now = new Date().toLocaleString();
+// 	console.log(now + ' running dks.js');
+// 	spawn('node', ['dks.js']);
+// });
 ////// 5:59 AM
-schedule.scheduleJob(' 59 5 * * *', () => {
+schedule.scheduleJob(' 36 5 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
