@@ -51,7 +51,7 @@ const { memeAccounts } = require('./src/meme');
 		//----goto one random post
 		let postHrefs = await page.$$eval('a[href^="/p/"]', href => href.map(hre => hre.getAttribute('href')));
 		if (postHrefs) {
-			let rPost = r(0, postHrefs.length);
+			let rPost = r(1, postHrefs.length);
 			await page.goto('https://www.instagram.com' + postHrefs[rPost], { waitUntil: 'networkidle2' });
 			log(`Targeting users who liked post number ${rPost}  ` + (await page.url()));
 			await page.waitForTimeout(r15);
@@ -62,13 +62,14 @@ const { memeAccounts } = require('./src/meme');
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
 			await page.waitForTimeout(r15);
 		}
+
 		await page.waitForSelector('h1', { visible: true });
 		let likesH1 = await page.$x('//h1[contains(text(), "Likes")]');
 		if (likesH1) {
 			//----pagedown 20 times = 90 followers
 			for (let i = 0; i < 20; i++) {
 				await page.keyboard.press('PageDown');
-				await page.waitForTimeout(r(100, 500));
+				await page.waitForTimeout(r(333, 555));
 			}
 		}
 		// ---- get only public likers posts -----///// 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
@@ -97,10 +98,10 @@ const { memeAccounts } = require('./src/meme');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' });
+								await page.goBack({ waitUntil: 'networkidle2' });
+								await page.waitForTimeout(r15);
 							}
 						}
-						await page.waitForTimeout(r15);
 						//----- get top 24 posts
 						let posts = await page.$$eval('a[href^="/p/"]', hrefs => hrefs.map(ref => ref.getAttribute('href')));// let posts = await page.$x('//*[@class="FFVAD"]');
 						if (posts) {
@@ -114,8 +115,9 @@ const { memeAccounts } = require('./src/meme');
 							if (likeBtn) {
 								//----Smash that Like btn
 								log(`  ♥ Liked post number ${p} ` + (await page.url()));
-								await page.waitForTimeout(r(300, 500));
-								await page.tap('svg[aria-label="Like"]');
+								await page.waitForTimeout(r(500, 1000));
+								await likeBtn[1].tap();
+								await page.waitForTimeout(r(500, 1000));
 								//add comment method one
 								// const commentURL = (await page.url()) + 'comments/';
 								// await page.goto(commentURL, { waitUntil: 'networkidle2' });
@@ -141,7 +143,7 @@ const { memeAccounts } = require('./src/meme');
 		await browser.close();
 		process.exit(1);
 	} catch (e) {
-		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
+		console.log(`--ERROR--ERROR--ERROR--ERROR\n${e}\nERROR--ERROR--ERROR--ERROR`);
 		process.exit(1);
 	}
 })();

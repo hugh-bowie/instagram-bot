@@ -3,8 +3,8 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, device, badAccounts, timeNow, r15 } = require('./src/helpers');
-const { hbAccounts, logH } = require('./src/hbiv');
+const { r, log, logH, device, badAccounts, r15 } = require('./src/helpers');
+const { hbAccounts } = require('./src/hbiv');
 
 (async () => {
 	try {
@@ -17,9 +17,9 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("[name='username']");
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.HB);
-		await page.type("[name='password']", process.env.HBPW);
-		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.tap("[type='submit']")]);
+		await page.type("[name='username']", process.env.HB, { delay: r(50, 100) });
+		await page.type("[name='password']", process.env.HBPW, { delay: r(50, 100) });
+		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
 		//----click notifications
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
@@ -33,8 +33,8 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		await page.waitForSelector("a[href$='/following/']");
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		logH(`\n${user} Flwrs:${flws} Flwng:${flwng}  ${timeNow}`);
+		logH(`${user} Flwrs:${flws}`);
+		log(`\n${user} Flwrs:${flws}`);
 
 		//----- Close the 'use the App' button
 		const closeBtn = await page.$('button.dCJp8');
@@ -43,9 +43,9 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		}
 
 		//----go to one of the target accounts
-		let farmAccount = await hbAccounts[r(1, hbAccounts.length)];
-		await page.goto(farmAccount, { waitUntil: 'networkidle0' });
-		logH(`Farming Account: ${farmAccount}`);
+		let farmAccount = await hbAccounts[r(0, hbAccounts.length)];
+		await page.goto(farmAccount, { waitUntil: 'networkidle2' });
+		log(`Farming Account: ${farmAccount}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r15);
 
@@ -54,7 +54,7 @@ const { hbAccounts, logH } = require('./src/hbiv');
 		if (postHrefs) {
 			let rPost = r(0, postHrefs.length);
 			await page.goto('https://www.instagram.com' + postHrefs[rPost], { waitUntil: 'networkidle2' });
-			logH(`Targeting users who liked post number ${rPost}  ` + (await page.url()));
+			log(`Targeting users who liked post number ${rPost}  ` + (await page.url()));
 			await page.waitForTimeout(r15);
 		}
 
@@ -65,17 +65,22 @@ const { hbAccounts, logH } = require('./src/hbiv');
 			await page.waitForTimeout(r15);
 		}
 
-		//----pagedown 20 times = 90 followers
-		for (let i = 0; i < 20; i++) {
-			await page.keyboard.press('PageDown');
-			await page.waitForTimeout(r(500, 700));
+		await page.waitForSelector('h1', { visible: true });
+		let likesH1 = await page.$x('//h1[contains(text(), "Likes")]');
+		if (likesH1) {
+			//----pagedown 20 times = 90 followers
+			for (let i = 0; i < 20; i++) {
+				await page.keyboard.press('PageDown');
+				await page.waitForTimeout(r(333, 555));
+			}
 		}
 
 		// ---- get only public likers posts 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
-		logH(`Found ${publicHrefs.length} Public accounts`);
-		let rNum = r(21, 29);
-		logH(`number of loops ${rNum}`);
+		log(`Found ${publicHrefs.length} Public accounts`);
+		//--- loop over each profile [y]-times
+		let rNum = r(8, 12);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		log(`number of loops ${rNum}`);
 		if (publicHrefs) {
 			//---- loop over each profile [y]-times
 			for (let x = 0; x < rNum; x++) {
@@ -84,36 +89,39 @@ const { hbAccounts, logH } = require('./src/hbiv');
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
-				if (postCount.length != 1) {
+				if (postCount.length === 0) {
 					if (!searchBool) {
-						// view their story
-						logH(`	★ ${x} viewing this story ${currentURL}`);
+						// view their story						
 						let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
 						if (viewStoryBtn) {
-							await viewStoryBtn[0].tap();
-							await page.waitForXPath('//*[@aria-label="Close"]', { visible: true });
-							await page.waitForTimeout(r(3000, 4000));
-
-							await page.goBack({ waitUntil: 'networkidle2' });
-							await page.waitForTimeout(r15);
+							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), viewStoryBtn[0].tap()]);
+							await page.waitForTimeout(r(2000, 3000));
+							log(` ★ ${x} viewing this story ` + await page.url());
+							let closeBtn = await page.$x('//*[@aria-label="Close"]');
+							if (closeBtn.length === 1) {
+								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
+								await page.waitForTimeout(r15);
+							} else {
+								await page.goBack({ waitUntil: 'networkidle2' });
+								await page.waitForTimeout(r15);
+							}
 						}
-						await page.keyboard.press('PageDown');
-						await page.waitForTimeout(r15);
 						//----- get top 28 posts
 						let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
 						if (posts) {
 							//---- pick a post to like
 							let p = r(0, posts.length);
 							//----click One random Public post to like
-							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
+							await page.goto('https://www.instagram.com' + posts[p], { waitUntil: 'networkidle2' });
 							await page.waitForTimeout(r15);
-							logH(`		♥ Liked post number ${p} ` + (await page.url()));
 							//----the Like button to hit
 							let likeBtn = await page.$x('//*[@aria-label="Like"]');
 							if (likeBtn) {
 								//----Smash that Like btn
-								await likeBtn[0].tap();
-								await page.waitForTimeout(r15);
+								log(`  ♥ Liked post number ${p} ` + (await page.url()));
+								await page.waitForTimeout(r(500, 1000));
+								await likeBtn[1].tap();
+								await page.waitForTimeout(r(500, 1000));
 								//add comment method one
 								// const commentURL = (await page.url()) + 'comments/';
 								// await page.goto(commentURL, { waitUntil: 'networkidle2' });
@@ -136,11 +144,10 @@ const { hbAccounts, logH } = require('./src/hbiv');
 			}
 		}
 		//BACK AND CLOSE BROWSER
-		//await browser.close();
-		//process.exit(1);
+		await browser.close();
+		process.exit(1);
 	} catch (e) {
-		logH(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`)
-		console.log(`ERROR ERROR ERROR ERROR\n${e}\nERROR ERROR ERROR ERROR`);
-		//process.exit(1);
+		console.log(`--ERROR--ERROR--ERROR--ERROR\n${e}\nERROR--ERROR--ERROR--ERROR`);
+		process.exit(1);
 	}
 })();

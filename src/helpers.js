@@ -27,6 +27,16 @@ function logD(data) {
 	});
 }
 
+function logH(data) {
+	let date = new Date();
+	let t = date.toLocaleTimeString(); // 2:22:09 PM
+	let d = date.toLocaleDateString(); // 01/03/1984
+	let timeNow = `${d} ${t}`;
+	fs.appendFile('K:/My Drive/hb.txt', `${data} @${timeNow}\n`, () => {
+		// console.log(`${data}`);
+	});
+}
+
 function logT(data) {
 	let date = new Date();
 	let t = date.toLocaleTimeString(); // 2:22:09 PM
@@ -59,4 +69,4 @@ const device = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, r, log, logD, logT, badAccounts, r15, r23 }; //timeNow,timeFin,
+module.exports = { device, r, log, logD, logT, logH, badAccounts, r15, r23 }; //timeNow,timeFin,

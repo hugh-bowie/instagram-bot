@@ -1,11 +1,4 @@
 const { r } = require('./helpers');
-const fs = require('fs');
-
-function logH(data) {
-	fs.appendFile('K:/My Drive/hb.txt', `${data}\n`, () => {
-		console.log(`${data}`);
-	});
-}
 
 const hbAccounts = [
 	// Pages mostly women Visit
@@ -38,4 +31,4 @@ const hbAccounts = [
 	'https://www.instagram.com/lovetrends.shop/',
 ];
 
-module.exports = { hbAccounts, logH };
+module.exports = { hbAccounts };
