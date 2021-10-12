@@ -102,12 +102,12 @@ const { hbAccounts } = require('./src/hbiv');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goBack({ waitUntil: 'networkidle2' });
+								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 								await page.waitForTimeout(r15);
 							}
 						}
 						//----- get top 28 posts
-						let posts = await page.$x('//*[@class="FFVAD"]'); // ------- potentital alternative selector = $('[href^="/p/"]');
+						let posts = await page.$$eval('a[href^="/p/"]', hrefs => hrefs.map(ref => ref.getAttribute('href')));// let posts = await page.$x('//*[@class="FFVAD"]');
 						if (posts) {
 							//---- pick a post to like
 							let p = r(0, posts.length);

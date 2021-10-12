@@ -98,7 +98,7 @@ const { memeAccounts } = require('./src/meme');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goBack({ waitUntil: 'networkidle2' });
+								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 								await page.waitForTimeout(r15);
 							}
 						}
