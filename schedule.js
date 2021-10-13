@@ -1,7 +1,7 @@
 const spawn = require('child_process').spawn;
 const fs = require('fs');
 const schedule = require('node-schedule');
-const { r, log, timeNow } = require('./src/helpers');
+const { r, log } = require('./src/helpers');
 const firstRun = r(15, 20);
 const secondRun = r(43, 48);
 
@@ -11,13 +11,26 @@ const secondRun = r(43, 48);
 // 	spawn('node', ['dks.js']);
 // });
 
-/////// OVER NIGHT /////////
-// schedule.scheduleJob(' 20 20 * * *', () => {
-// 	let now = new Date().toLocaleString();
-// 	console.log(now + ' running dks.js');
-// 	spawn('node', ['dks.js']);
-// });
-///// 9 
+/* DAY TIME */
+/* 11:25 AM */
+schedule.scheduleJob(' 25 11 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
+/* 11:37 AM */
+schedule.scheduleJob(' 37 11 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running hb.js');
+	spawn('node', ['hb.js']);
+});
+/* OVER NIGHT
+schedule.scheduleJob(' 20 20 * * *', () => {
+	let now = new Date().toLocaleString();
+	console.log(now + ' running dks.js');
+	spawn('node', ['dks.js']);
+});
+///// 9
 schedule.scheduleJob(' 15 21 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
@@ -70,4 +83,4 @@ schedule.scheduleJob(' 45 5 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);
-});
+});*/
