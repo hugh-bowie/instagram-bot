@@ -8,7 +8,7 @@ const memeAccounts = [
 	'https://www.instagram.com/theofficeparody_/',
 	'https://www.instagram.com/glossy_zodiac',
 	'https://www.instagram.com/memestheoffice/',
-	'https://www.instagram.com/dwight.schruteee/',
+	// 'https://www.instagram.com/dwight.schruteee/',
 	'https://www.instagram.com/glossy_zodiac',
 	'https://www.instagram.com/jimhalpert/',
 	'https://www.instagram.com/tobyflendersson/',
