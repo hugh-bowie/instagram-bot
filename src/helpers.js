@@ -1,6 +1,6 @@
 const fs = require('fs');
 const r23 = r(2000, 3000);
-const r15 = r(1000, 2000);
+const r15 = r(1000, 3000);
 
 //random number function
 function r(min, max) {
