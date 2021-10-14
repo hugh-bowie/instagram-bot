@@ -76,7 +76,7 @@ const { memeAccounts } = require('./src/meme');
 		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
 		//--- loop over each profile [y]-times
-		let rNum = r(11, 13);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(19, 23);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
@@ -98,7 +98,7 @@ const { memeAccounts } = require('./src/meme');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
+								await page.goBack({ waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 								await page.waitForTimeout(r15);
 							}
 						}

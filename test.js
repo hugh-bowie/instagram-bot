@@ -16,17 +16,17 @@ const { memeAccounts } = require('./src/meme');
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-		// await page.tap("[name='username']");
-		// await page.type("[name='username']", process.env.DKS, { delay: r(50, 100) });
-		// await page.type("[name='password']", process.env.DKSPW, { delay: r(50, 100) });
-		// await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+		await page.tap("[name='username']");
+		await page.type("[name='username']", process.env.HB);
+		await page.type("[name='password']", process.env.HBPW);
+		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
 		// //----click notifications
-		// const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
-		// if (notifyBtn) {
-		// 	await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
-		// 	await page.waitForTimeout(r15);
-		// }
+		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
+		if (notifyBtn) {
+			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
+
+		}
 
 		// //---- got to home and screenshot the follower count
 		// await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
