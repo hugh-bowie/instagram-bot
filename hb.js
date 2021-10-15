@@ -10,7 +10,7 @@ const { hbAccounts } = require('./src/hbiv');
 	try {
 
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -31,6 +31,7 @@ const { hbAccounts } = require('./src/hbiv');
 		//---- got to home and screenshot the follower count
 		await page.goto('https://www.instagram.com/' + process.env.HB, { waitUntil: 'networkidle2' });
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
+		console.log(user);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		logH(`${user} Flwrs:${flws}`);
 		log(`\n${user} Flwrs:${flws}`);
