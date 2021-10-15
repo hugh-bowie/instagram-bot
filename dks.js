@@ -10,7 +10,7 @@ const { memeAccounts } = require('./src/meme');
 	try {
 
 		//----initialize
-		const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
 		const page = await browser.newPage();
 		await page.emulate(device);
 
@@ -62,7 +62,6 @@ const { memeAccounts } = require('./src/meme');
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
 			await page.waitForTimeout(r15);
 		}
-
 		await page.waitForSelector('h1', { visible: true });
 		let likesH1 = await page.$x('//h1[contains(text(), "Likes")]');
 		if (likesH1) {
@@ -73,14 +72,14 @@ const { memeAccounts } = require('./src/meme');
 			}
 		}
 		// ---- get only public likers posts -----///// 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
-		let publicHrefs = await page.$$eval('div.RR-M-.h5uC0', pub => pub.map(pu => pu.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.getAttribute('href')));
+		let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
 		//--- loop over each profile [y]-times
 		let rNum = r(19, 23);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
-				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
+				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); //>>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 				await page.waitForTimeout(r15);
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
@@ -88,51 +87,51 @@ const { memeAccounts } = require('./src/meme');
 				if (postCount.length === 0) {
 					if (!searchBool) {
 						// view their story
-						let viewStoryBtn = await page.$x('//*[@aria-disabled="false"]');
+						let viewStoryBtn = await page.$('div.RR-M-.h5uC0');
 						if (viewStoryBtn) {
-							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), viewStoryBtn[0].tap()]);
+							await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('div.RR-M-.h5uC0')]);
 							await page.waitForTimeout(r(2000, 3000));
 							log(` ★ ${x} viewing this story ` + await page.url());
-							let closeBtn = await page.$x('//*[@aria-label="Close"]');
+							let closeBtn = await page.$('[aria-label="Close"]');
 							if (closeBtn.length === 1) {
-								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), closeBtn[0].tap()]);
+								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[aria-label="Close"]')]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goBack({ waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
+								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 								await page.waitForTimeout(r15);
 							}
-						}
-						//----- get top 24 posts
-						let posts = await page.$$eval('a[href^="/p/"]', hrefs => hrefs.map(ref => ref.getAttribute('href')));// let posts = await page.$x('//*[@class="FFVAD"]');
-						if (posts) {
-							//---- pick a post to like
-							let p = r(0, posts.length);
-							//----click One random Public post to like
-							await page.goto('https://www.instagram.com' + posts[p], { waitUntil: 'networkidle2' });
-							await page.waitForTimeout(r15);
-							//----the Like button to hit // await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
-							let likeBtn = await page.$x('//*[@aria-label="Like"]');
-							if (likeBtn) {
-								//----Smash that Like btn
-								log(`  ♥ Liked post number ${p} ` + (await page.url()));
-								await page.waitForTimeout(r(500, 1000));
-								await likeBtn[1].tap();
-								await page.waitForTimeout(r(500, 1000));
-								//add comment method one
-								// const commentURL = (await page.url()) + 'comments/';
-								// await page.goto(commentURL, { waitUntil: 'networkidle2' });
-								// await page.waitForTimeout(r15);
-								// await page.tap('textarea.Ypffh');
-								// await page.waitForTimeout(r15);
-								// const thisComment = memeComments[r(0, memeComments.length)];
-								// logD(`			✎ Comment: ${thisComment}\n`);
-								// await page.type('textarea.Ypffh', thisComment);
-								// await page.waitForTimeout(r15);
-								// const postBTN = await page.$x('//button[contains(text(), "Post")]');
-								// if (postBTN) {
-								// 	await postBTN[0].tap();
-								// 	await page.waitForTimeout(r23);
-								// }
+							//----- get top 24 posts
+							let posts = await page.$$eval('a[href^="/p/"]', hrefs => hrefs.map(ref => ref.getAttribute('href')));// let posts = await page.$x('//*[@class="FFVAD"]');
+							if (posts) {
+								//---- pick a post to like
+								let p = r(0, posts.length);
+								//----click One random Public post to like
+								await page.goto('https://www.instagram.com' + posts[p], { waitUntil: 'networkidle2' });
+								await page.waitForTimeout(r15);
+								//----the Like button to hit // await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
+								let likeBtn = await page.$x('//*[@aria-label="Like"]');
+								if (likeBtn) {
+									//----Smash that Like btn
+									log(`  ♥ Liked post number ${p} ` + (await page.url()));
+									await page.waitForTimeout(r(500, 1000));
+									await likeBtn[1].tap();
+									await page.waitForTimeout(r(500, 1000));
+									//add comment method one
+									// const commentURL = (await page.url()) + 'comments/';
+									// await page.goto(commentURL, { waitUntil: 'networkidle2' });
+									// await page.waitForTimeout(r15);
+									// await page.tap('textarea.Ypffh');
+									// await page.waitForTimeout(r15);
+									// const thisComment = memeComments[r(0, memeComments.length)];
+									// logD(`			✎ Comment: ${thisComment}\n`);
+									// await page.type('textarea.Ypffh', thisComment);
+									// await page.waitForTimeout(r15);
+									// const postBTN = await page.$x('//button[contains(text(), "Post")]');
+									// if (postBTN) {
+									// 	await postBTN[0].tap();
+									// 	await page.waitForTimeout(r23);
+									// }
+								}
 							}
 						}
 					}
