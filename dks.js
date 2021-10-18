@@ -47,6 +47,8 @@ const { memeAccounts } = require('./src/meme');
 		log(`Farming this Account: ${farmAccount}`);
 		await page.keyboard.press('PageDown');
 		await page.waitForTimeout(r15);
+		await page.keyboard.press('PageDown');
+		await page.waitForTimeout(r15);
 
 		//----goto one random post
 		let postHrefs = await page.$$eval('a[href^="/p/"]', href => href.map(hre => hre.getAttribute('href')));
@@ -75,7 +77,7 @@ const { memeAccounts } = require('./src/meme');
 		let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
 		//--- loop over each profile [y]-times
-		let rNum = r(15, 19);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+		let rNum = r(15, 17);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
 		log(`visiting ${rNum} accounts`);
 		if (publicHrefs) {
 			for (let x = 0; x < rNum; x++) {
@@ -97,7 +99,7 @@ const { memeAccounts } = require('./src/meme');
 								await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[aria-label="Close"]')]);
 								await page.waitForTimeout(r15);
 							} else {
-								await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
+								await page.goBack({ waitUntil: 'networkidle2' }); // >>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 								await page.waitForTimeout(r15);
 							}
 							//----- get top 24 posts

@@ -21,11 +21,11 @@ const { memeAccounts } = require('./src/meme');
 		await page.type("[name='password']", process.env.HBPW);
 		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
-		// //----click notifications
+		//----click notifications
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
 		if (notifyBtn) {
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
-
+			await page.waitForTimeout(r15);
 		}
 
 		// //---- got to home and screenshot the follower count
