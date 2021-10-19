@@ -16,9 +16,10 @@ const { hbAccounts } = require('./src/hbiv');
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.HB, { delay: r(50, 100) });
-		await page.type("[name='password']", process.env.HBPW, { delay: r(50, 100) });
+		await page.waitForSelector("input[name='username']", { visible: true });
+		await page.tap("input[name='username']");
+		await page.type("input[name='username']", process.env.HB, { delay: r(50, 100) });
+		await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
 		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
 		//----click notifications
