@@ -15,7 +15,7 @@ const memeAccounts = [
 	'https://www.instagram.com/dwightchrute/',
 	'https://www.instagram.com/theoffices/',
 	'https://www.instagram.com/glossy_zodiac',
-	'https://www.instagram.com/dundermemson/',
+
 	'https://www.instagram.com/glossy_zodiac',
 	'https://www.instagram.com/stevecarrelll/',
 	'https://www.instagram.com/dwightschrutemoments/',
