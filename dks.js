@@ -59,13 +59,16 @@ const { memeAccounts } = require('./src/meme');
 			log(`Targeting users who liked post number ${rPost}  ` + (await page.url()));
 			await page.waitForTimeout(r15);
 		}
+
 		//----click the Likes number on the photo
-		let likedByBtn = await page.$('[href$="liked_by/"]'); //'a[href$="liked_by/"]'
+		let likedByBtn = await page.$('[href$="liked_by/"]'); // $x('//*[contains(@href, "/liked_by/")]')
 		if (likedByBtn) {
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
 			await page.waitForTimeout(r15);
+			await page.waitForSelector('h1', { visible: true });
 		}
-		await page.waitForSelector('h1', { visible: true });
+
+		//---- get all them likers
 		let likesH1 = await page.$x('//h1[contains(text(), "Likes")]');
 		if (likesH1) {
 			//----pagedown 20 times = 90 followers
@@ -74,6 +77,7 @@ const { memeAccounts } = require('./src/meme');
 				await page.waitForTimeout(r(333, 555));
 			}
 		}
+
 		// ---- get only public likers posts -----///// 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
 		let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
 		log(`Found ${publicHrefs.length} Public accounts`);
@@ -84,6 +88,7 @@ const { memeAccounts } = require('./src/meme');
 			for (let x = 0; x < rNum; x++) {
 				await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); //>>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
 				await page.waitForTimeout(r15);
+				await page.waitForSelector('h1', { visible: true });
 				let currentURL = await page.url();
 				let searchBool = badAccounts.includes(currentURL);
 				let postCount = await page.$x('//*[contains(text(), "No Posts Yet")]');
@@ -111,6 +116,7 @@ const { memeAccounts } = require('./src/meme');
 								//----click One random Public post to like
 								await page.goto('https://www.instagram.com' + posts[p], { waitUntil: 'networkidle2' });
 								await page.waitForTimeout(r15);
+								await page.waitForSelector('svg[aria-label="More options"]');
 								//----the Like button to hit // await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), posts[p].tap()]);
 								let likeBtn = await page.$x('//*[@aria-label="Like"]');
 								if (likeBtn) {

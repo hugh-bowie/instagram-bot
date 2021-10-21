@@ -14,11 +14,11 @@ puppeteer.use(StealthPlugin());
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
 		const page = await browser.newPage();
 		await page.emulate(device);
-		console.log(savePath);
-		console.log(now);
+		// console.log(savePath);
+		// console.log(now);
 		//TEST STEALTH
-		// await page.goto('https://bot.sannysoft.com', { waitUntil: 'load' });
-		// await page.screenshot({ path: savePath, fullPage: true });
+		await page.goto('https://bot.sannysoft.com', { waitUntil: 'networkidle2' });
+		await page.screenshot({ path: savePath, fullPage: true });
 		await page.waitForTimeout(r35);
 
 		//BACK AND CLOSE BROWSER*/
