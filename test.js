@@ -17,18 +17,18 @@ const { memeAccounts } = require('./src/meme');
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
 		await page.waitForSelector("input[name='username']", { visible: true });
-		await page.tap("input[name='username']");
-		await page.type("input[name='username']", process.env.HB, { delay: r(50, 100) });
-		await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
-		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
-
-		//----click notifications
-		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
-		if (notifyBtn) {
-			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
-			await page.waitForTimeout(r15);
-		}
-
+		/*		await page.tap("input[name='username']");
+				await page.type("input[name='username']", process.env.HB, { delay: r(50, 100) });
+				await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
+				await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+		
+				//----click notifications
+				const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
+				if (notifyBtn) {
+					await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
+					await page.waitForTimeout(r15);
+				}
+		*/
 		// //---- got to home and screenshot the follower count
 		// await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
 		// const user = await page.$eval('h1.K3Sf1', use => use.innerText);
