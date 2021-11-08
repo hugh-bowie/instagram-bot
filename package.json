@@ -8,7 +8,7 @@
 		"schedule": "node schedule.js",
 		"start": "node ig.js",
 		"stealth": "node stealth.js",
-		"update": "npm update dotenv fs-extra puppeteer puppeteer-extra puppeteer-extra-plugin-stealth"
+		"update": "npm install dotenv fs-extra puppeteer puppeteer-extra puppeteer-extra-plugin-stealth"
 	},
 	"author": "",
 	"license": "ISC",
