@@ -56,7 +56,7 @@ function logT(data) {
 // pretends this is a phone not a desktop
 const device = {
 	name: 'iPhone 11',
-	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Mobile/15E148 Safari/604.1',
 	viewport: {
 		width: 414,
 		height: 828,
