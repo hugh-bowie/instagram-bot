@@ -5,7 +5,7 @@ const { r, log } = require('./src/helpers');
 const firstRun = r(15, 20);
 const secondRun = r(43, 48);
 
-schedule.scheduleJob(' 26 22,0,2,4,6 * * *', () => {
+schedule.scheduleJob(' 16 23,1,3,5,7 * * *', () => {
 	let now = new Date().toLocaleString();
 	console.log(now + ' running dks.js');
 	spawn('node', ['dks.js']);

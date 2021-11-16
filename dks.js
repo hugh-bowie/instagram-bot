@@ -82,7 +82,7 @@ const { memeAccounts } = require('./src/meme');
     let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
     log(`Found ${publicHrefs.length} Public accounts`);
     //--- loop over each profile [y]-times
-    let rNum = r(13, 17);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+    let rNum = r(13, 15);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
     log(`visiting ${rNum} accounts`);
     if (publicHrefs) {
       for (let x = 0; x < rNum; x++) {
