@@ -10,7 +10,7 @@ const { memeAccounts } = require('./src/meme');
   try {
 
     //----initialize
-    const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,
+    const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,
     const page = await browser.newPage();
     await page.emulate(device);
 
@@ -82,11 +82,7 @@ const { memeAccounts } = require('./src/meme');
     let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
     log(`Found ${publicHrefs.length} Public accounts`);
     //--- loop over each profile [y]-times
-<<<<<<< HEAD
-    let rNum = r(13, 15);// ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
-=======
-    let rNum = r(15, 19);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
->>>>>>> d796a7d85994239d56ed81899cf3d90c90563596
+    let rNum = r(11, 15);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
     log(`visiting ${rNum} accounts`);
     if (publicHrefs) {
       for (let x = 0; x < rNum; x++) {
