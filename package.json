@@ -8,7 +8,8 @@
 		"schedule": "node schedule.js",
 		"start": "node ig.js",
 		"stealth": "node stealth.js",
-		"update": "npm i dotenv fs-extra puppeteer puppeteer-extra puppeteer-extra-plugin-stealth"
+		"update": "npm i dotenv fs-extra puppeteer puppeteer-extra puppeteer-extra-plugin-stealth",
+		"save": "git add . && git commit -m 'auto save' && git push origin main"
 	},
 	"author": "",
 	"license": "ISC",
