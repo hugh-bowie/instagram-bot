@@ -10,7 +10,7 @@ const { memeAccounts } = require('./src/meme');
   try {
 
     //----initialize
-    const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,♻♻♻♻♻♻♻♻♻♻
+    const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,♻♻♻♻♻♻♻♻♻♻
     const page = await browser.newPage();
     await page.emulate(device);
 
@@ -22,11 +22,24 @@ const { memeAccounts } = require('./src/meme');
     await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
     await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
-    //----click notifications
+    //----click no notifications
     const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
     if (notifyBtn) {
       await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
       await page.waitForTimeout(r23);
+    }
+
+    //----click no to homescreen
+    const cancelBtn = await page.$x('//*[contains(text(), "Cancel")]');
+    if (cancelBtn) {
+      await cancelBtn[0].tap();
+      await page.waitForTimeout(r23);
+    }
+
+    //----- Close the 'use the App' button
+    const closeBtn = await page.$x('//*[@aria-label="Close"]');
+    if (closeBtn) {
+      await closeBtn[0].tap();
     }
 
     //---- got to home and screenshot the follower count
@@ -35,12 +48,6 @@ const { memeAccounts } = require('./src/meme');
     const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
     logD(`${user} Flwrs:${flws}`);
     log(`\n${user} Flwrs:${flws}`);
-
-    //----- Close the 'use the App' button
-    const closeBtn = await page.$('button.dCJp8');
-    if (closeBtn) {
-      await page.tap('button.dCJp8');
-    }
 
     //----go to one of the target accounts
     let farmAccount = await memeAccounts[r(0, memeAccounts.length)];
@@ -82,7 +89,7 @@ const { memeAccounts } = require('./src/meme');
     let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
     log(`Found ${publicHrefs.length} Public accounts`);
     //--- loop over each profile [y]-times
-    let rNum = r(11, 15);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+    let rNum = r(9, 13);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
     log(`visiting ${rNum} accounts`);
     if (publicHrefs) {
       for (let x = 0; x < rNum; x++) {
