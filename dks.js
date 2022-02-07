@@ -10,7 +10,7 @@ const { memeAccounts } = require('./src/meme');
   try {
 
     //----initialize
-    const browser = await puppeteer.launch({ headless: true, args: ['--incognito'] }); //////// slowMo: 100,♻♻♻♻♻♻♻♻♻♻
+    const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,♻♻♻♻♻♻♻♻♻♻
     const page = await browser.newPage();
     await page.emulate(device);
 
@@ -21,6 +21,7 @@ const { memeAccounts } = require('./src/meme');
     await page.type("input[name='username']", process.env.DKS, { delay: r(50, 100) });
     await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
     await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+    await page.waitForTimeout(r23);
 
     //----click no notifications
     const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');

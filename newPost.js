@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 const { r, log, device, timeNow } = require('./src/helpers');
 let { fullCaption } = require('./src/meme');
 let photos = fs.readdirSync('./img/new/');
@@ -10,7 +11,7 @@ const oldPath = './img/new/' + photoPost; //IMG_4875.jpg
 const newPath = './img/used/' + photoPost; //IMG_4875.jpg
 const r23 = r(2000, 3000);
 const r15 = r(1000, 1500);
-puppeteer.use(StealthPlugin());
+
 
 (async () => {
 	try {
@@ -21,33 +22,32 @@ puppeteer.use(StealthPlugin());
 
 		//----login
 		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-		await page.waitForSelector("[name='username']");
+		await page.waitForSelector("[name='username']", { visible: true });
 		await page.tap("[name='username']");
-		await page.type("[name='username']", process.env.DKS, { delay: r(15, 50) });
-		await page.type("[name='password']", process.env.DKSPW, { delay: r(15, 50) });
-		await Promise.all([page.waitForNavigation(), page.tap("[type='submit']")]);
-		await page.waitForTimeout(r23);
+		await page.type("[name='username']", process.env.HB, { delay: r(15, 50) });
+		await page.type("[name='password']", process.env.PW, { delay: r(15, 50) });
+		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
 
-		//----click notifications
+		//----click no notifications
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
 		if (notifyBtn) {
-			await notifyBtn[0].tap();
+			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
 			await page.waitForTimeout(r23);
 		}
 
-		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle0' });
-		await page.waitForSelector("a[href$='/following/']");
-		const user = await page.$eval('h1', use => use.innerText);
-		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
-		const flwng = await page.$$eval('a[href$="/following/"]', wng => wng.map(ng => ng.children[0].innerText));
-		log(`\n ${user} ${timeNow}\nFlwrs: ${flws} Flwng: ${flwng} `);
+		//----click no to homescreen
+		const cancelBtn = await page.$x('//*[contains(text(), "Cancel")]');
+		if (cancelBtn) {
+			await cancelBtn[0].tap();
+			await page.waitForTimeout(r23);
+		}
 
 		//----- Close the 'use the App' button
-		const closeBtn = await page.$('button.dCJp8');
+		const closeBtn = await page.$x('//*[@aria-label="Close"]');
 		if (closeBtn) {
-			await page.tap('button.dCJp8');
+			await closeBtn[0].tap();
 		}
+
 		//---- Make New Post
 		let postNew = await page.$x('//*[@aria-label="New Post"]');
 		if (postNew) {
@@ -55,11 +55,11 @@ puppeteer.use(StealthPlugin());
 			await fileChooser.accept([`${oldPath}`]);
 			await page.waitForTimeout(2000);
 			//---- resize image
-			let expandBtn = await page.$x('//span[contains(text(), "Expand")]');
-			if (expandBtn) {
-				await expandBtn[0].tap();
-				await page.waitForTimeout(2000);
-			}
+			// let expandBtn = await page.$x('//span[contains(text(), "Expand")]');
+			// if (expandBtn) {
+			// 	await expandBtn[0].tap();
+			// 	await page.waitForTimeout(2000);
+			// }
 			//---- Push Next button
 			let nextBtn = await page.$x('//button[contains(text(), "Next")]');
 			if (nextBtn) {
@@ -83,7 +83,7 @@ puppeteer.use(StealthPlugin());
 		process.exit(1);
 	} catch (e) {
 		console.log('error||||||||||||||>>>>>>>> ' + e);
-		process.exit(1);
+		// process.exit(1);
 	}
 })();
 
