@@ -15,12 +15,12 @@ const { memeAccounts } = require('./src/meme');
 		//await page.emulate(device);
 
 		//----login
-		await page.goto('https://gitlab.com', { waitUntil: 'networkidle2' });
-		const loginBtn = await page.$x('//img[@class="navigation-right__icon"]');
-		if (loginBtn) {
-			console.log('found button');
-			await Promise.all([page.waitForNavigation({ waitUntil: 'domcontentloaded' }), loginBtn[0].click()]);
-		}
+		await page.goto('https://gitlab.com', { waitUntil: 'domcontentloaded' });
+		await waitForSelector('#navigation-login', { visible: true });
+		console.log('found button');
+		await Promise.all([page.waitForNavigation({ waitUntil: 'domcontentloaded' }), page.click('#navigation-login')]);
+		await page.waitForTimeout(r15);
+
 		await page.waitForSelector("#user_login", { visible: true });
 		//await page.click("#user_login");
 		await page.type("#user_login", process.env.GITUSR, { delay: r(50, 100) });
