@@ -13,7 +13,7 @@ function log(data) {
 	let date = new Date();
 	let t = date.toLocaleTimeString(); // 2:22:09 PM
 	// let d = date.toLocaleDateString(); // 01/03/1984	
-	fs.appendFile('K:/My Drive/log.txt', `${data} @${t}\n`, () => {
+	fs.appendFile('K:/My Drive/invoice.txt', `${data} @${t}\n`, () => {
 		console.log(`${data} @${t}`);
 	});
 }
