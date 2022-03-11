@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, log, logD, device, badAccounts, r15, r23, hCookie } = require('./src/helpers');
+const { r, log, logD, device, desktop, badAccounts, r15, r23, hCookie } = require('./src/helpers');
 const { memeAccounts } = require('./src/meme');
 
 (async () => {
@@ -12,11 +12,11 @@ const { memeAccounts } = require('./src/meme');
 		//----initialize
 		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); ////////     slowMo: 100,♻♻♻♻♻♻♻♻♻♻
 		const page = await browser.newPage();
-		await page.emulate(device);
+		await page.emulate(desktop);
 		await page.setCookie(hCookie);
 
 		//----login
-		await page.goto('https://www.the-house.com/shoes-skate-shoes?routes={%22pr%22:{%22i%22:120},%22sr%22:%22newest%22}', { waitUntil: 'networkidle2' });
+		await page.goto('https://www.the-house.com/shoes-skate-shoes?routes={%22pr%22:{%22i%22:120},%22sr%22:%22newest%22}', { waitUntil: 'domcontentloaded' });
 		await page.waitForTimeout(r15);
 		//----pagedown 20 times = 90 followers
 		for (let i = 0; i < 20; i++) {
@@ -25,7 +25,7 @@ const { memeAccounts } = require('./src/meme');
 		}
 
 		await page.waitForTimeout(5000);
-		await page.screenshot({ path: 'K:/My Drive/shoes.png', fullPage: 'true', captureBeyondViewport: 'true' });
+		await page.screenshot({ path: `K:/My Drive/shoes${r(1, 99)}.png`, fullPage: 'true', captureBeyondViewport: 'true' });
 		await page.waitForTimeout(1111);
 
 
