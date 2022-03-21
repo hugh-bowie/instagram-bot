@@ -24,7 +24,7 @@ function logD(data) {
 	let d = date.toLocaleDateString(); // 01/03/1984
 	let timeNow = `${d} ${t}`;
 	fs.appendFile('K:/My Drive/dks.txt', `${data} @${timeNow}\n`, () => {
-		// console.log(`${data}`);
+		console.log(`${data}`);
 	});
 }
 
