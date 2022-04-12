@@ -1,10 +1,9 @@
 const { r } = require('./helpers');
 const fs = require('fs');
 
-const suffixed = [
+const suffixes = [
 	'-a',
-	'-a-palooza',
-	'-a-thon',
+	'-athon',
 	'-ab',
 	'-ability',
 	'-able',
@@ -980,4 +979,17 @@ const suffixed = [
 	'-zza',
 ]
 
+
+const suffixing = suffixes
+	.sort(() => Math.random() - Math.random())
+	.slice(0, 50)
+	.toString()
+	.replace(/-/g, 'dwight')
+	.replace(/\,/g, ' \n');
+
+
+
+
+const suffixed = `${suffixing} \n`;
+console.log(`${suffixing} \n`);
 module.exports = { suffixed }
