@@ -982,14 +982,16 @@ const suffixes = [
 
 const suffixing = suffixes
 	.sort(() => Math.random() - Math.random())
-	.slice(0, 50)
+	.slice(0, 30)
 	.toString()
-	.replace(/-/g, 'dwight')
-	.replace(/\,/g, ' \n');
+	.replace(/-/g, '#creep')
+	.replace(/\,/g, ' ');
 
 
 
-
+const suffixtags = suffixes.sort(() => Math.random() - Math.random()).slice(0, 30).toString().replace(/-/g, '#lurk').replace(/\,/g, ' ');
 const suffixed = `${suffixing} \n`;
+console.log(`${suffixtags} \n`);
 console.log(`${suffixing} \n`);
+
 module.exports = { suffixed }
