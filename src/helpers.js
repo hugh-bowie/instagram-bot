@@ -73,7 +73,7 @@ const device = {
 
 const desktop = {
 	name: 'HP 24ec',
-	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1',
+	userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36',
 	viewport: {
 		width: 1920,
 		height: 1080,
