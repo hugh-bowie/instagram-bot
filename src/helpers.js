@@ -24,7 +24,7 @@ function logD(data) {
 	let d = date.toLocaleDateString(); // 01/03/1984
 	let timeNow = `${d} ${t}`;
 	fs.appendFile('K:/My Drive/dks.txt', `${data} @${timeNow}\n`, () => {
-		// console.log(`${data}`);
+		console.log(`${data}`);
 	});
 }
 
@@ -38,13 +38,13 @@ function logH(data) {
 	});
 }
 
-function logT(data) {
+function logW(data) {
 	let date = new Date();
 	let t = date.toLocaleTimeString(); // 2:22:09 PM
 	let d = date.toLocaleDateString(); // 01/03/1984
 	let timeNow = `${d} ${t}`;
-	fs.appendFile('K:/My Drive/twtr.txt', `${data} @${timeNow}\n`, () => {
-		// console.log(`${data}`);
+	fs.appendFile('/vibe_szn-flws.txt', `${data} @${timeNow}\n`, () => {
+		console.log(`${data}`);
 	});
 }
 
@@ -60,7 +60,7 @@ function logT(data) {
 // pretends this is a phone not a desktop
 const device = {
 	name: 'iPhone 13 Pro Max',
-	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1',
 	viewport: {
 		width: 428,
 		height: 926,
@@ -93,4 +93,4 @@ const hCookie = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, r, log, logD, logT, logH, badAccounts, r15, r23, hCookie, desktop }; //timeNow,timeFin,
+module.exports = { device, r, log, logD, logW, logH, badAccounts, r15, r23, hCookie, desktop }; //timeNow,timeFin,
