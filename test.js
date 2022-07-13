@@ -15,14 +15,38 @@ const { memeAccounts } = require('./src/meme');
 		await page.emulate(device);
 
 		//----login
-		await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-		await page.waitForSelector("input[name='username']", { visible: true });
-		await page.tap("input[name='username']");
-		await page.type("input[name='username']", process.env.DKS, { delay: r(50, 100) });
-		await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
-		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+		await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
+		await page.waitForSelector("input", { visible: true });
+		//const cookies = await page.cookies();
+		//await fs.writeFile('./src/cookies1.json', JSON.stringify(cookies, null, 2));
+		await page.tap("input");
+		await page.type("input", "HBIV Falling down", { delay: r(50, 100) });
+		await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.keyboard.press('Enter')]);
+		await page.waitForTimeout(r23);
+		const videoBtn = await page.$x('//*[contains(text(), "Videos")]');
+		if (videoBtn) {
+			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), videoBtn[0].tap()]);
+			await page.waitForTimeout(r23);
+		}
 
-		//----click no notifications
+
+		const myVideoBtn = await page.$('a[href="https://www.youtube.com/watch?v=a62saCq9Vek"]');
+		if (!myVideoBtn) {
+			await page.keyboard.press('PageDown');
+			await page.waitForTimeout(r23);
+			await page.keyboard.press('PageDown');
+			await page.waitForTimeout(r23);
+			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('a[href="https://www.youtube.com/watch?v=a62saCq9Vek"]')]);
+			await page.waitForTimeout(r23);
+
+		}
+
+
+
+		// await page.type("input[name='password']", process.env.PW, { delay: r(50, 100) });
+		// await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap("[type='submit']")]);
+
+		/*//----click no notifications
 		const notifyBtn = await page.$x('//*[contains(text(), "Not Now")]');
 		if (notifyBtn) {
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), notifyBtn[0].tap()]);
@@ -43,7 +67,7 @@ const { memeAccounts } = require('./src/meme');
 		}
 
 		//---- got to home and screenshot the follower count
-		await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
+		await page.goto('https://www.google.com', { waitUntil: 'networkidle2' });
 		const user = await page.$eval('h1.K3Sf1', use => use.innerText);
 		const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
 		logD(`${user} Flwrs:${flws}`);
