@@ -45,7 +45,7 @@ const { memeAccounts } = require('./src/meme');
 
     //---- got to home and screenshot the follower count
     await page.goto('https://www.instagram.com/' + process.env.DKS, { waitUntil: 'networkidle2' });
-    const user = await page.$eval('h1.K3Sf1', use => use.innerText);
+    const user = await page.$eval('h1', use => use.innerText);
     const flws = await page.$$eval('a[href$="/followers/"]', flw => flw.map(fl => fl.children[0].innerText));
     logD(`${user} Flwrs:${flws}`);
     log(`\n${user} Flwrs:${flws}`);
@@ -53,7 +53,7 @@ const { memeAccounts } = require('./src/meme');
     //----go to one of the target accounts
     let farmAccount = await memeAccounts[r(0, memeAccounts.length)];
     await page.goto(farmAccount, { waitUntil: 'networkidle2' });
-    log(`Farming this Account: ${farmAccount}`);
+    log(`Navigate to selected randomly from list of accounts: ${farmAccount}`);
     await page.keyboard.press('PageDown');
     await page.waitForTimeout(r15);
     await page.keyboard.press('PageDown');
@@ -64,12 +64,13 @@ const { memeAccounts } = require('./src/meme');
     if (postHrefs) {
       let rPost = r(1, postHrefs.length);
       await page.goto('https://www.instagram.com' + postHrefs[rPost], { waitUntil: 'networkidle2' });
-      log(`Targeting users who liked post number ${rPost}  ` + (await page.url()));
+      log(`Randomly selected this post: ${rPost} from users first ${postHrefs.length} posts  ` + (await page.url()));
       await page.waitForTimeout(r15);
     }
 
     //----click the Likes number on the photo
     let likedByBtn = await page.$('[href$="liked_by/"]'); // $x('//*[contains(@href, "/liked_by/")]')
+    log(`clicking the 'liked by btn' `);
     if (likedByBtn) {
       await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('[href$="liked_by/"]')]);
       await page.waitForTimeout(r15);
@@ -78,6 +79,7 @@ const { memeAccounts } = require('./src/meme');
 
     //---- get all them likers
     let likesH1 = await page.$x('//h1[contains(text(), "Likes")]');
+    log(`tapping pagedown to ensure enough public profiles are found`);
     if (likesH1) {
       //----pagedown 20 times = 90 followers
       for (let i = 0; i < 20; i++) {
@@ -88,10 +90,10 @@ const { memeAccounts } = require('./src/meme');
 
     // ---- get only public likers posts -----///// 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
     let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
-    log(`Found ${publicHrefs.length} Public accounts`);
+    log(`This post has ${publicHrefs.length} Public accounts with active stories to engage with`);
     //--- loop over each profile [y]-times
-    let rNum = r(17, 20);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
-    log(`visiting ${rNum} accounts`);
+    let rNum = r(3, 5);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+    log(`visiting random number: ${rNum} of these public accounts accounts`);
     if (publicHrefs) {
       for (let x = 0; x < rNum; x++) {
         await page.goto('https://www.instagram.com' + publicHrefs[x], { waitUntil: 'networkidle2' }); //>>>>>>>> USER WITH ZERO POSTS >>>>>'https://www.instagram.com/jasminee.hampton/'
@@ -160,6 +162,6 @@ const { memeAccounts } = require('./src/meme');
     process.exit(1);
   } catch (e) {
     console.log(`--ERROR--ERROR--ERROR--ERROR\n${e}\nERROR--ERROR--ERROR--ERROR`);
-    process.exit(1);
+    //process.exit(1);
   }
 })();
