@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 const { r, log, logD, device, badAccounts, r15, r23 } = require('./src/helpers');
-const { memeAccounts } = require('./src/meme');
+const { memeAccounts } = require('./src/accountList');
 
 (async () => {
 	try {
