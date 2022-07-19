@@ -17,8 +17,8 @@
 ## 📓 Description
 
 This application automates instagram engagement without use of the restrictive instagram/fb API by using the Puppeteer Library.<br>
-To avoid instagrams robust bot-detection the app uses the [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) plugin, as well as near human browsing speed complete with random interval pauses.<br>
-Use your existing account to login and check your profiles follower count, then navigate to a page with the demographic you wish to engage.<br>
+To avoid instagrams robust bot-detection the app uses the [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) plugin, as well human-like browsing with randomly generated pauses.<br>
+Login to your existing account (set you credentials in .env file locally) then check your profiles follower count, then navigate to a page with the demographic you wish to engage.<br>
 You decide how many accounts you wish to engage (under 25 per hour is best practice to avoid detection).<br>
 The app will then view the story, like and comment on a randomly selected photo of each user from that demographic.<br>
 You may schedule this app to run as often as youd like using the node-schedule package by adjusting the file "schedule.js".<br>
