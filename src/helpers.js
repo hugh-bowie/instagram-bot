@@ -12,8 +12,8 @@ function r(min, max) {
 function log(data) {
 	let date = new Date();
 	let t = date.toLocaleTimeString(); // 2:22:09 PM
-	// let d = date.toLocaleDateString(); // 01/03/1984	
-	fs.appendFile('K:/My Drive/invoice.txt', `${data} @${t}\n`, () => {
+	let d = date.toLocaleDateString(); // 01/03/1984	
+	fs.appendFile('K:/My Drive/log.txt', `${data} Date: ${d}@${t}\n`, () => {
 		console.log(`${data} @${t}`);
 	});
 }
@@ -38,24 +38,6 @@ function logH(data) {
 	});
 }
 
-function logW(data) {
-	let date = new Date();
-	let t = date.toLocaleTimeString(); // 2:22:09 PM
-	let d = date.toLocaleDateString(); // 01/03/1984
-	let timeNow = `${d} ${t}`;
-	fs.appendFile('/vibe_szn-flws.txt', `${data} @${timeNow}\n`, () => {
-		console.log(`${data}`);
-	});
-}
-
-// function screenShot(data) {
-
-// }
-
-//\\\\ test delay function ////\\
-// setTimeout(function () {
-// 	log('some shit + 2000');
-// }, 2000);
 
 // pretends this is a phone not a desktop
 const device = {
@@ -93,4 +75,4 @@ const hCookie = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, r, log, logD, logW, logH, badAccounts, r15, r23, hCookie, desktop }; //timeNow,timeFin,
+module.exports = { device, r, log, logD, logH, badAccounts, r15, r23, hCookie, desktop }; //timeNow,timeFin,
