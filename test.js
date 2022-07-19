@@ -38,7 +38,6 @@ const { memeAccounts } = require('./src/meme');
 			await page.waitForTimeout(r23);
 			await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.tap('a[href="https://www.youtube.com/watch?v=a62saCq9Vek"]')]);
 			await page.waitForTimeout(r23);
-
 		}
 
 
