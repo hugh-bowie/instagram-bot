@@ -75,4 +75,12 @@ const hCookie = {
 // Accounts not to engage
 const badAccounts = ['https://www.instagram.com/hb.iv', 'https://www.instagram.com/lj_brink_'];
 
-module.exports = { device, r, log, logD, logH, badAccounts, r15, r23, hCookie, desktop }; //timeNow,timeFin,
+
+const win = {
+	h: 900,
+	w: 516,
+	x: 5,
+	y: 5,
+}
+
+module.exports = { device, r, log, logD, logH, badAccounts, r15, r23, hCookie, desktop, win }; //timeNow,timeFin,

@@ -1,7 +1,7 @@
 const { r } = require('./helpers');
 
 const hbAccounts = [
-	// Pages mostly women Visit
+	// female
 	'https://www.instagram.com/glossy_zodiac',
 	// 'https://www.instagram.com/downtowndelray/',
 	// 'https://www.instagram.com/visit_delray_beach/',

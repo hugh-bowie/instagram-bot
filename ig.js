@@ -3,7 +3,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
-const { r, log, logD, device, badAccounts, r15, r23 } = require('./src/helpers');
+const { r, log, logD, device, badAccounts, r15, r23, win } = require('./src/helpers');
 const { memeAccounts } = require('./src/accountList.js');
 
 
@@ -11,12 +11,13 @@ const { memeAccounts } = require('./src/accountList.js');
   try {
 
     //----initialize
-    const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] }); //////// slowMo: 100,♻♻♻♻♻♻♻♻♻♻
+    const browser = await puppeteer.launch({ headless: false, args: [`--incognito `] });
     const page = await browser.newPage();
     await page.emulate(device);
 
     //----login
     await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
+
     await page.waitForSelector("input[name='username']", { visible: true });
     await page.tap("input[name='username']");
     await page.type("input[name='username']", process.env.DKS, { delay: r(50, 100) });
@@ -163,6 +164,6 @@ const { memeAccounts } = require('./src/accountList.js');
     process.exit(1);
   } catch (e) {
     console.log(`--ERROR--ERROR--ERROR--ERROR\n${e}\nERROR--ERROR--ERROR--ERROR`);
-    process.exit(1);
+    //process.exit(1);
   }
 })();

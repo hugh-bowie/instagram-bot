@@ -11,7 +11,12 @@ puppeteer.use(StealthPlugin());
 (async () => {
 	try {
 		//----initialize
-		const browser = await puppeteer.launch({ headless: false, args: ['--incognito'] });
+		const browser = await puppeteer.launch({
+			headless: false,
+			executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+			userDataDir: "C:/Users/HB/AppData/Local/Google/Chrome/User Data/Default",
+			args: ['--incognito']
+		});
 		const page = await browser.newPage();
 		await page.emulate(device);
 		// console.log(savePath);
