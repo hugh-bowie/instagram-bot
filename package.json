@@ -11,7 +11,7 @@
 		"update": "npm install dotenv fs-extra puppeteer puppeteer-extra puppeteer-extra-plugin-stealth",
 		"save": "git add . && git commit -m 'auto-push' && git push origin main"
 	},
-	"author": "",
+	"author": "hbiv",
 	"license": "ISC",
 	"dependencies": {
 		"dotenv": "^10.0.0",

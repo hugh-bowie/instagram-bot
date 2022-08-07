@@ -17,7 +17,6 @@ const { memeAccounts } = require('./src/accountList.js');
 
     //----login
     await page.goto('https://www.instagram.com/accounts/login/?source=auth_switcher', { waitUntil: 'networkidle2' });
-
     await page.waitForSelector("input[name='username']", { visible: true });
     await page.tap("input[name='username']");
     await page.type("input[name='username']", process.env.DKS, { delay: r(50, 100) });
@@ -90,11 +89,12 @@ const { memeAccounts } = require('./src/accountList.js');
     }
 
     // ---- get only public likers posts -----///// 'div.RR-M-.h5uC0' or '$x('//*[@aria-disabled="false"]')
-    let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].getAttribute('href')));
+    let publicHrefs = await page.$$eval('div[aria-disabled="false"]', pub => pub.map(pu => pu.parentNode.nextSibling.children[0].children[0].children[0].children[0].getAttribute('href')));
+    log(`Array of ${publicHrefs.toString()}`);
     log(`Array of ${publicHrefs.length} active users created`);
     await page.waitForTimeout(r15);
     //--- loop over each profile [y]-timeslet rNum = r(); 
-    let rNum = r(3, 5);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
+    let rNum = r(19, 21);//  ♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻♻
     log(`Engaging ${rNum} users this round`);
     if (publicHrefs) {
       for (let x = 0; x < rNum; x++) {
