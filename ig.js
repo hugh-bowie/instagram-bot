@@ -164,6 +164,6 @@ const { memeAccounts } = require('./src/accountList.js');
     process.exit(1);
   } catch (e) {
     console.log(`--ERROR--ERROR--ERROR--ERROR\n${e}\nERROR--ERROR--ERROR--ERROR`);
-    //process.exit(1);
+    process.exit(1);
   }
 })();
