@@ -42,7 +42,7 @@ function logH(data) {
 // pretends this is a phone not a desktop
 const device = {
 	name: 'iPhone 13 Pro Max',
-	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/102.2 Mobile/15E148 Safari/605.1.15',
+	userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/290.1.581873948 Mobile/21B91 Safari/604.1',
 	viewport: {
 		width: 428,
 		height: 926,
